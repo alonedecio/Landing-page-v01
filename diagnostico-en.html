@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a1616">
+<meta name="description" content="Explore your organisation’s AI maturity, understand what is working and identify practical next steps. Free assessment with no registration.">
+<title>AI Maturity Assessment | Conhecimento/Vivo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#e8eee8;--ink:#10251d;--ink2:#2b4435;--muted:#627469;--line:#bdcebf;--accent:#b9ffcf;--soft:#d6e6d9;--display:Syne,Arial,sans-serif;--mono:'IBM Plex Mono',monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+button{cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #3c9c60;outline-offset:3px}
+[hidden]{display:none!important}
+.topbar{height:72px;background:#0a1616;color:#eaffed;padding:0 5.5%;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #436651}
+.brand{font:700 20px var(--display);letter-spacing:-.06em;white-space:nowrap}
+.brand b{color:var(--accent)}
+.topbar-right{display:flex;align-items:center;gap:22px;font:10px var(--mono);letter-spacing:.05em;color:#adccba}
+.topbar-right a{padding:11px 15px;border:1px solid #527a60;color:#e8ffe9}
+.topbar-right a:hover{background:#1c4531}
+.intro{background:#0a1616;color:#ecf9ef;padding:66px 5.5% 70px;position:relative;overflow:hidden}
+.intro::before{content:"";position:absolute;right:-12%;top:-70%;width:70%;aspect-ratio:1;background:radial-gradient(circle,#28644855,transparent 65%);pointer-events:none}
+.intro-inner{position:relative;max-width:1260px;margin:auto;display:grid;grid-template-columns:1.1fr .9fr;gap:8%;align-items:center}
+.eyebrow,.small-label{font:10px var(--mono);letter-spacing:.11em;color:#b9ffcf;text-transform:uppercase}
+.intro h1{font:700 clamp(35px,4.8vw,75px)/1.03 var(--display);letter-spacing:-.065em;margin:21px 0 20px}
+.intro h1 em{color:var(--accent);font-style:normal}
+.intro p{color:#c0d8c5;max-width:645px;font-size:16px;line-height:1.65}
+.intro-panel{border-left:1px solid #5a8e68;padding-left:27px}
+.intro-panel .small-label{color:#b9ffcf}
+.intro-panel strong{display:block;font:600 clamp(21px,2.45vw,36px)/1.13 var(--display);letter-spacing:-.04em;margin:17px 0}
+.intro-panel p{font-size:13px;line-height:1.6;margin:0}
+.intro-panel .mini{font:10px/1.6 var(--mono);color:#a4c8ae;margin-top:24px;display:block}
+.shell{max-width:1160px;margin:auto;padding:40px 5.5% 85px}
+.main-panel{background:#fafcf8;border:1px solid #c8d9ca;box-shadow:0 28px 70px #1d3e271b;min-width:0}
+.start{padding:clamp(27px,4.5vw,64px)}
+.start-kicker,.chapter-index{font:10px var(--mono);letter-spacing:.1em;color:#327449}
+.chapter-head h2{font:700 clamp(30px,4vw,55px)/1.08 var(--display);letter-spacing:-.058em;margin:20px 0 16px}
+.start>p{max-width:730px;font-size:16px;line-height:1.6;color:#47604e}
+.start-feature{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:31px 0 24px}
+.start-feature>div{border-top:2px solid #5b9271;background:#e9f2e9;padding:18px;min-height:125px}
+.start-feature span{font:10px var(--mono);color:#317a4d}
+.start-feature strong{display:block;font:600 18px var(--display);margin:11px 0 8px}
+.start-feature small{font-size:12px;line-height:1.5;color:#526c59}
+.primary{display:inline-flex;gap:23px;align-items:center;justify-content:space-between;padding:17px 22px;background:#112d1d;color:#e4ffe9;border:1px solid #112d1d;font:600 11px var(--mono);letter-spacing:.03em}
+.primary:hover{background:#246943}
+.secondary{display:inline-flex;gap:14px;align-items:center;justify-content:center;padding:15px 20px;color:#214c34;background:transparent;border:1px solid #91b299;font:11px var(--mono)}
+.secondary:hover{background:#e3f0e4}
+.fine{display:block;font:10px/1.65 var(--mono);color:#637969;margin-top:19px}
+.method{border-top:1px solid #cee0cf;padding-top:16px;margin-top:26px;max-width:750px}
+.method summary{color:#2b784a;font:11px var(--mono);cursor:pointer}
+.method p{font:13px/1.65 Inter,Arial,sans-serif;color:#54705e}
+.phase-head{padding:24px clamp(21px,4.6vw,55px) 20px;border-bottom:1px solid #d1e1d3}
+.phase-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.phase-top .chapter-index:last-child{color:#6e8572}
+.track{height:4px;background:#dce9de;margin-top:19px}
+.track-fill{height:100%;width:0;background:#358a55;transition:width .25s}
+.chapter-head{padding:30px clamp(21px,4.6vw,55px) 12px}
+.chapter-head h2{margin:8px 0 9px;font-size:clamp(22px,2.9vw,39px)}
+.chapter-head p{font-size:13px;line-height:1.65;color:#54705d;margin:0}
+.question-list{padding:20px clamp(21px,4.6vw,55px)}
+.question{border:0;margin:0;padding:0;min-width:0}
+.question-number{font:10px var(--mono);color:#4a7f56;letter-spacing:.09em;margin:0 0 17px;display:block}
+.question h3{font:650 clamp(24px,3vw,41px)/1.18 var(--display);letter-spacing:-.05em;margin:0 0 15px;max-width:860px}
+.question p{font-size:13px;line-height:1.6;color:#5e7464;margin:0 0 22px}
+.options{display:grid;grid-template-columns:1fr;gap:9px}
+.option{display:flex;gap:14px;align-items:flex-start;padding:15px 17px;border:1px solid #c8dbc9;background:#f9fcf7;cursor:pointer;transition:background .15s,border-color .15s}
+.option:hover{border-color:#7ab08b;background:#edf7ed}
+.option input{width:18px;height:18px;margin:1px 0 0;flex:none;accent-color:#267a4b}
+.option span{font-size:14px;line-height:1.5;color:#284432}
+.option:has(input:checked){background:#e6f5e9;border-color:#297747;box-shadow:inset 3px 0 #297747}
+.unknown{background:none;border:0;border-bottom:1px solid #a9c4af;color:#3c7451;font:11px var(--mono);padding:9px 0;margin-top:18px}
+.unknown.active{color:#0d4729;font-weight:600;border-color:#39774b}
+.form-bottom{padding:23px clamp(21px,4.6vw,55px);border-top:1px solid #d4e1d5;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.validation{color:#914731;font:11px/1.5 var(--mono);margin:0;max-width:360px;min-height:16px}
+.form-actions{display:flex;gap:10px;align-items:center}
+.insight{padding:clamp(30px,5vw,70px)}
+.insight .small-label{color:#307d4d}
+.insight h2{font:700 clamp(32px,4vw,56px)/1.12 var(--display);letter-spacing:-.055em;margin:20px 0}
+.insight p{font-size:16px;line-height:1.7;color:#506b55;max-width:730px;margin-bottom:35px}
+.results-header{background:#102820;color:#edfff0;padding:38px clamp(24px,4.6vw,55px)}
+.results-header .chapter-index{color:#b9ffcf}
+.results-header h2{font:700 clamp(30px,4vw,55px)/1.1 var(--display);letter-spacing:-.06em;margin:17px 0}
+.results-header h2 em{color:#b9ffcf;font-style:normal}
+.results-header p{max-width:760px;color:#b7d4be;font-size:14px;line-height:1.65}
+.report-body{padding:30px clamp(20px,4.6vw,55px) 48px}
+.block-title{font:700 clamp(22px,2.7vw,37px)/1.12 var(--display);letter-spacing:-.045em;margin:40px 0 12px}
+.block-sub{font-size:13px;line-height:1.6;color:#55705d;margin:0 0 23px}
+.gap-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.gap-card{padding:21px 18px;background:#e6f1e6;border-top:3px solid #408c56}
+.gap-card small{font:10px/1.5 var(--mono);color:#3f8054;display:block}
+.gap-card strong{display:block;font:650 17px/1.25 var(--display);margin:12px 0 9px}
+.gap-card p{font-size:12px;line-height:1.65;color:#4b6452;margin:0}
+.confidence{font:11px/1.65 var(--mono);padding:17px 19px;background:#fff1d8;color:#735527;border:1px solid #ddc594;margin-top:18px}
+.score-intro{display:flex;justify-content:space-between;align-items:center;gap:23px;border-top:1px solid #d0e0d0;padding-top:25px}
+.bigscore{font:700 clamp(50px,8vw,110px)/1 var(--display);color:#247c4d;letter-spacing:-.08em;white-space:nowrap}
+.bigscore small{font:17px var(--mono);color:#63856c;letter-spacing:0}
+.score-intro>div>span{font:10px var(--mono);color:#57705c}
+.score-intro>div>strong{display:block;font:650 21px/1.25 var(--display);margin:10px 0}
+.score-intro>div>p{font-size:13px;line-height:1.5;color:#58715e}
+.radar-block{display:grid;grid-template-columns:.95fr 1.05fr;gap:5%;align-items:center;padding:29px 0;border-bottom:1px solid #c3d6c6}
+.radar-wrap{min-width:0;max-width:420px;margin:auto}
+.radar-wrap svg{display:block;width:100%;height:auto;overflow:visible}
+.bars{display:flex;flex-direction:column;gap:15px}
+.metric-line{display:flex;justify-content:space-between;gap:10px;align-items:center;font:12px var(--mono)}
+.metric-line b{color:#247b4d}
+.bar{background:#e0ebe1;height:5px;margin-top:8px}
+.bar span{background:#247b4d;height:100%;display:block}
+.mini-note{font:11px/1.7 var(--mono);color:#67806f}
+.levels{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.level{padding:14px 10px;border:1px solid #c8daca;background:#f4f8f2;min-width:0}
+.level.current{background:#143726;color:#f4fff3;border-color:#143726}
+.level b{font:11px var(--mono);display:block;color:#4a8c5a}
+.level.current b{color:#b9ffcf}
+.level strong{display:block;font:600 12px/1.3 var(--display);margin:14px 0 6px}
+.level span{font-size:10px;line-height:1.4;color:#6c816f;display:block}
+.level.current span{color:#b4d2bc}
+.focus-select{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:24px 0}
+.focus-select button{text-align:left;border:1px solid #b9d1bd;background:#f1f8f1;padding:14px 11px;color:#34533e;font:11px/1.4 var(--mono)}
+.focus-select button[aria-pressed="true"]{background:#153c2b;border-color:#153c2b;color:#eaffee}
+.focus-card{background:#e8f2e8;border:1px solid #b8d3bd;padding:24px}
+.focus-card h4{font:650 clamp(18px,2vw,28px)/1.2 var(--display);letter-spacing:-.035em;margin:0 0 14px}
+.focus-card p{font-size:13px;line-height:1.6;color:#3d5f48}
+.focus-card b{color:#1c6b3b}
+.action-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.action-list article{padding:20px 15px;border-top:2px solid #397e51;background:#e8f1e8}
+.action-list small{font:11px var(--mono);color:#387b4b}
+.action-list p{font-size:13px;line-height:1.55;color:#405b48}
+.next{margin-top:38px;padding:30px;background:#d9ecdb;border:1px solid #9cbea4}
+.next>span{font:10px var(--mono);color:#2e7547}
+.next h3{font:700 clamp(23px,2.8vw,40px)/1.13 var(--display);letter-spacing:-.04em;margin:16px 0}
+.next p{max-width:850px;font-size:13px;line-height:1.65;color:#45634d}
+.report-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:25px}
+.disclaimer{font:10px/1.7 var(--mono);color:#62796a;margin-top:22px}
+.contact{border-top:1px solid #aec9b0;margin-top:22px;padding-top:20px}
+.contact p{font-size:13px;line-height:1.65;color:#4b6b54}
+.contact-actions{display:flex;gap:8px;flex-wrap:wrap}
+.foot{background:#0a1616;color:#a8cbb2;padding:25px 5.5%;display:flex;justify-content:space-between;gap:16px;font:10px var(--mono)}
+@media(max-width:850px){.intro-inner{grid-template-columns:1fr;gap:25px}.intro-panel{padding:20px 0 0;border-left:0;border-top:1px solid #648a6c}.radar-block{grid-template-columns:1fr}.radar-wrap{max-width:380px}}
+@media(max-width:600px){.topbar{height:65px;padding:0 5%}.brand{font-size:16px}.topbar-right span{display:none}.topbar-right a{padding:9px;font-size:9px}.intro{padding:42px 5%}.intro h1{font-size:clamp(35px,9vw,55px)}.intro p{font-size:14px}.shell{padding:23px 4% 65px}.start{padding:25px 17px}.start h2{font-size:31px}.start-feature{grid-template-columns:1fr;gap:7px}.start-feature>div{min-height:0;padding:12px}.start-feature strong{margin:5px 0}.chapter-head{padding:23px 17px 10px}.chapter-head h2{font-size:25px}.phase-head{padding:20px 17px}.question-list{padding:18px 17px}.question h3{font-size:25px}.question p{font-size:12px}.option{padding:12px}.option span{font-size:12px}.form-bottom{padding:18px 17px;display:block}.validation{margin-bottom:12px}.form-actions{justify-content:space-between}.form-actions>*{flex:1}.form-actions .primary,.form-actions .secondary{padding:13px 10px;font-size:10px}.insight{padding:29px 18px}.insight h2{font-size:30px}.results-header{padding:30px 18px}.report-body{padding:25px 17px}.gap-cards,.action-list{grid-template-columns:1fr}.score-intro{display:block}.score-intro>div+div{margin-top:18px}.levels{grid-template-columns:1fr}.level{display:grid;grid-template-columns:30px 1fr;gap:6px}.level b{grid-row:1/3}.level strong{margin:0}.level span{grid-column:2}.focus-select{grid-template-columns:repeat(2,1fr)}.next{padding:20px 16px}.report-actions .primary,.report-actions .secondary{width:100%}.foot{flex-direction:column}}
+@media print{.topbar,.intro,.start,.quiz,.insight,.phase-head,.report-actions,.contact,.foot{display:none!important}body{background:white}.shell{max-width:none;padding:0}.main-panel{border:0;box-shadow:none}.results{display:block!important}.results-header{print-color-adjust:exact;-webkit-print-color-adjust:exact}.gap-cards,.levels,.action-list,.focus-card{break-inside:avoid}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+
+/* V15: isolated language selector; no changes to questionnaire behaviour */
+.locale-switch{display:inline-flex;align-items:center;gap:3px;border:1px solid #7da68b70;padding:3px 5px;color:#c4e4d0;font:600 10px var(--mono);flex-shrink:0;white-space:nowrap}
+.topbar-right .locale-switch a{border:0;background:transparent;padding:8px 6px;color:inherit;opacity:.7}
+.topbar-right .locale-switch a[aria-current="page"]{background:var(--accent);color:#0c2417;opacity:1}
+.topbar-right .locale-switch a:hover{opacity:1}
+.locale-switch .separator{opacity:.4}
+@media(max-width:600px){.topbar-right{gap:9px}.locale-switch{padding:2px 3px}.topbar-right .locale-switch a{padding:7px 4px}}
+@media(max-width:380px){.topbar{gap:8px}.brand{font-size:14px}.topbar-right a{padding:7px}}
+</style>
+<link rel="alternate" hreflang="pt-BR" href="diagnostico.html"><link rel="alternate" hreflang="en-GB" href="diagnostico-en.html"></head>
+<body>
+<header class="topbar"><a class="brand" href="index-en.html#diagnostico" aria-label="Conhecimento/Vivo, return to website">✳ conhecimento<b>/vivo</b></a><div class="topbar-right"><span>AI MATURITY ASSESSMENT</span><a href="index-en.html#diagnostico">← BACK TO WEBSITE</a><div class="locale-switch" role="group" aria-label="Assessment language"><a href="diagnostico.html" lang="pt-BR" hreflang="pt-BR" aria-label="Português (Brasil)">PT</a><span class="separator" aria-hidden="true">/</span><a href="diagnostico-en.html" lang="en-GB" hreflang="en-GB" aria-current="page" aria-label="English (United Kingdom)">EN</a></div></div></header>
+<section class="intro" aria-labelledby="pageTitle"><div class="intro-inner"><div><span class="eyebrow">AI MATURITY ASSESSMENT</span><h1 id="pageTitle">WHAT SHOULD YOUR BUSINESS DO NEXT <em>WITH AI?</em></h1><p>Discover what is already working, what is holding back results and where to focus your next efforts.</p></div><div class="intro-panel"><span class="small-label">AN ASSESSMENT WITH A PURPOSE</span><strong>Make clearer decisions. Spend less time guessing what to do next.</strong><p>Get a picture of your current practices and practical options to discuss with your team.</p><span class="mini">12 QUESTIONS · AROUND 5 MINUTES · NO SIGN-UP</span></div></div></section>
+<main class="shell"><div class="main-panel">
+<section class="start" id="startView" aria-labelledby="startTitle"><span class="start-kicker">WHAT YOU WILL GET</span><div class="start-feature"><div><span>01 / UNDERSTAND</span><strong>Where you stand</strong><small>Across six dimensions.</small></div><div><span>02 / IDENTIFY</span><strong>What might be holding you back</strong><small>Without unverified industry comparisons.</small></div><div><span>03 / MOVE FORWARD</span><strong>Three steps tailored to your situation</strong><small>Practical guidance to get started.</small></div></div><p class="fine">12 questions · around 5 minutes · instant results · no sign-up</p><button class="primary" id="begin" type="button">Discover my next step <span>↗</span></button><p class="fine">There are no right or wrong answers. Describe what happens today, not what is planned.</p><p class="fine">Your answers remain in this browser while you complete the assessment. Nothing is sent to our team without your action.</p><details class="method"><summary>How does it work?</summary><p>We assess adoption, results, knowledge, controls, processes and management. Your report offers initial guidance based on your answers — not an audit or certification.</p></details></section>
+<section class="quiz" id="quizView" hidden aria-labelledby="chapterTitle"><div class="phase-head"><div class="phase-top"><span class="chapter-index" id="phaseLabel">STAGE 1 OF 3</span><span class="chapter-index" id="questionCount">QUESTION 01 OF 12</span></div><div class="track" aria-hidden="true"><div class="track-fill" id="progressFill"></div></div></div><div class="chapter-head"><h2 id="chapterTitle"></h2><p id="chapterDescription"></p></div><form id="quizForm" novalidate><div class="question-list" id="questionList"></div><div class="form-bottom"><p class="validation" id="validation" aria-live="polite" role="alert"></p><div class="form-actions"><button class="secondary" id="back" type="button">← Back</button><button class="primary" id="next" type="submit">Continue <span>→</span></button></div></div></form></section>
+<section class="insight" id="insightView" hidden aria-labelledby="insightTitle"><span class="small-label" id="insightLabel">AN INSIGHT TO TAKE FORWARD</span><h2 id="insightTitle" tabindex="-1"></h2><p id="insightText"></p><div class="form-actions"><button class="secondary" id="insightBack" type="button">← Back</button><button class="primary" id="insightNext" type="button">Continue <span>→</span></button></div></section>
+<section class="results" id="resultsView" hidden aria-labelledby="resultsTitle"><div class="results-header"><span class="chapter-index">YOUR ASSESSMENT · INITIAL FINDINGS</span><h2 id="resultsTitle" tabindex="-1">YOUR NEXT OPPORTUNITY IS TO <em id="mainAction"></em></h2><p id="reportDate" class="mini-note"></p><p id="resultsIntro">The report turns your answers into practical hypotheses. You can review them with your team without sharing your data.</p></div><div class="report-body">
+<div class="gap-cards" id="summaryCards" aria-label="Your strengths, challenges and next step"></div><div class="confidence" id="confidenceWarning" hidden></div>
+<h3 class="block-title">YOUR CURRENT AI POSITION</h3><p class="block-sub">This is an initial indication based on the practices you described, not an industry benchmark.</p><div class="score-intro"><div><span>EXPLORATORY SCORE / 0–100</span><div class="bigscore" id="totalScore">—<small>/100</small></div></div><div><span>INDICATIVE MATURITY STAGE</span><strong id="stageName"></strong><p id="stageDescription"></p></div></div><p class="mini-note">Maturity does not mean automating everything. The most appropriate stage depends on your business goals and risks.</p>
+<h3 class="block-title">SIX DIMENSIONS OF YOUR AI MATURITY</h3><p class="block-sub">A snapshot of the foundations you have in place and what deserves closer attention before expanding AI use.</p><div class="radar-block"><div class="radar-wrap" id="radar"></div><div class="bars" id="bars"></div></div><p class="mini-note">Scores reflect the answers provided. A high score does not mean zero risk; a low score does not mean you need agents in every process.</p>
+<h3 class="block-title">WHERE TO BEGIN</h3><p class="block-sub">You do not need to solve everything at once. Focus on what could unlock the next valuable outcome.</p><div class="gap-cards" id="priorityCards"></div><p class="mini-note" id="priorityReason"></p>
+<h3 class="block-title">WHERE WOULD YOU LIKE TO SEE RESULTS FIRST?</h3><p class="block-sub">Choose an area to explore an example application. Your score will not change.</p><div class="focus-select" id="focusSelect" role="group" aria-label="Area of interest"><button type="button" data-focus="analistas" aria-pressed="false">Analysts' workflows</button><button type="button" data-focus="gestao" aria-pressed="false">Team management</button><button type="button" data-focus="clientes" aria-pressed="false">Customer service</button><button type="button" data-focus="descobrir" aria-pressed="true">Help me find an opportunity</button></div><div class="focus-card" id="focusCard" aria-live="polite"></div><p class="mini-note">Illustrative examples, not promises of automation or savings. Feasibility depends on each operation's sources, integrations and boundaries.</p>
+<h3 class="block-title">YOUR NEXT STEP NEEDN'T BE BIG. IT NEEDS TO BE CLEAR.</h3><div class="action-list" id="actionList"></div><p class="mini-note" id="teamQuestion"></p>
+<h3 class="block-title">FIVE STAGES OF MATURITY</h3><div class="levels" id="levels"></div>
+<div class="next"><span>IF YOU WOULD LIKE TO GO FURTHER</span><h3>Would a second perspective help turn this assessment into a decision?</h3><p>We can discuss what your answers suggest, identify a specific opportunity and consider whether a pilot makes sense — or whether it is better to strengthen the foundations first.</p><div class="report-actions"><button class="primary" id="contactOpen" type="button">Discuss my next step <span>↗</span></button><button class="secondary" type="button" id="print">Save my report as PDF ↗</button><button class="secondary" type="button" id="copy">Copy summary to share</button><button class="secondary" type="button" id="restart">Retake assessment</button></div><p class="fine">The report is yours to keep. Sharing it or talking to us is entirely optional.</p><div class="contact" id="contactPanel" hidden><h4>Shall we talk about your situation?</h4><p>You can copy your summary and share it with your team. Contact requests cannot yet be submitted in this demo because no contact channel has been configured.</p><div class="contact-actions"><button class="secondary" type="button" id="copyContact">Copy assessment summary</button><button class="secondary" type="button" id="contactClose">Back to report</button></div></div><p id="copyFeedback" class="mini-note" role="status" aria-live="polite"></p></div>
+<p class="disclaimer">This self-reported assessment is exploratory and is not an audit, certification or financial forecast. Its scoring bands are not validated industry benchmarks. Any application requires technical review, subject-matter expertise and risk assessment. This page does not send your answers to a server.</p></div></section>
+</div></main><footer class="foot"><span>✳ CONHECIMENTO / VIVO · EXPLORATORY ASSESSMENT</span><span>NOT A CERTIFICATION OR BENCHMARK</span></footer>
+<script>(function(){
+'use strict';
+const dimensions=[
+ {
+  "id": "adocao",
+  "label": "Team adoption",
+  "short": "Adoption",
+  "action": "turn effective AI uses into team practices",
+  "strength": "Your answers indicate practices that could be shared and strengthened.",
+  "risk": "the ability to repeat good practices across teams",
+  "steps": [
+   "Choose a frequent task and document an AI-assisted approach that worked.",
+   "Assign someone to maintain the example and share it with colleagues.",
+   "See whether another person can repeat the result to an acceptable standard."
+  ],
+  "owner": "Team leader",
+  "proof": "An example successfully reproduced"
+ },
+ {
+  "id": "resultados",
+  "label": "Results",
+  "short": "Results",
+  "action": "measure the value of what you already do",
+  "strength": "Your answers suggest that some criteria or measurements are already helping you identify value.",
+  "risk": "your ability to choose applications with real impact",
+  "steps": [
+   "Pick a process and record its current time, rework or quality.",
+   "Define a measurable goal for the trial.",
+   "Compare before and after, including human review."
+  ],
+  "owner": "Process owner",
+  "proof": "A before-and-after measure"
+ },
+ {
+  "id": "conhecimento",
+  "label": "Internal knowledge",
+  "short": "Knowledge",
+  "action": "make your company's expertise accessible",
+  "strength": "Your answers suggest that business criteria and sources may support more consistent applications.",
+  "risk": "access to reliable criteria and answers",
+  "steps": [
+   "Document five recurring questions and the criteria experts use to answer them.",
+   "Organise sources, responsible owners and review dates.",
+   "Test standard cases and exceptions with a specialist."
+  ],
+  "owner": "Subject-matter expert",
+  "proof": "Reviewed sources and test cases"
+ },
+ {
+  "id": "seguranca",
+  "label": "Security and quality",
+  "short": "Security",
+  "action": "put controls in place to progress confidently",
+  "strength": "Your answers indicate some practices for protecting and assessing AI use.",
+  "risk": "the safe expansion of AI solutions",
+  "steps": [
+   "Identify information that should not be shared without assessment.",
+   "Set permissions and test cases with human review.",
+   "Check failures, sources and limits before expanding use."
+  ],
+  "owner": "Solution owner and data protection lead",
+  "proof": "Reviewed tests and permissions"
+ },
+ {
+  "id": "processos",
+  "label": "Processes and integrations",
+  "short": "Processes",
+  "action": "connect AI to the work that needs to happen",
+  "strength": "Your answers suggest that AI is already supporting real process steps.",
+  "risk": "the reliable execution of tasks and workflows",
+  "steps": [
+   "Map a repetitive activity with a clear start, finish and owner.",
+   "Review systems, access requirements and integration options.",
+   "Test a limited workflow and monitor exceptions."
+  ],
+  "owner": "Operations owner",
+  "proof": "An evaluated, defined workflow"
+ },
+ {
+  "id": "gestao",
+  "label": "Agent management",
+  "short": "Management",
+  "action": "define how AI solutions will be managed",
+  "strength": "Your answers indicate some oversight and accountability for agents.",
+  "risk": "the oversight and evolution of digital capabilities",
+  "steps": [
+   "Define what the solution can do and what requires approval.",
+   "Assign business and technical owners, with a way to stop execution.",
+   "Review actions, errors, versions and indicators regularly."
+  ],
+  "owner": "Accountable manager and technical team",
+  "proof": "Recorded approvals and reviews"
+ }
+];
+const phases=[
+ {
+  "title": "People and results",
+  "entry": "AI may already be part of the routine. But what does it actually change?",
+  "help": "Let's look at what teams do and what the business can demonstrate.",
+  "questions": [
+   {
+    "dim": "adocao",
+    "q": "How does AI feature in your team's work today?",
+    "help": "Think about typical use, not just the keenest early adopters.",
+    "options": [
+     "It is not yet part of our daily work.",
+     "A few people experiment on their own initiative.",
+     "Use is frequent, but everyone works differently.",
+     "We share practices for defined tasks.",
+     "It is part of workflows with named owners and review."
+    ]
+   },
+   {
+    "dim": "adocao",
+    "q": "What happens when someone discovers an effective way to use AI?",
+    "help": "Does a useful idea spread, or stay with the person who found it?",
+    "options": [
+     "We do not yet have meaningful examples to share.",
+     "The learning tends to stay with that person.",
+     "We share tips informally.",
+     "We document reusable instructions and examples.",
+     "We review and spread good practices across teams."
+    ]
+   },
+   {
+    "dim": "resultados",
+    "q": "How do you decide where AI is worth applying?",
+    "help": "Think about how you choose use cases, not which tool you pick.",
+    "options": [
+     "We have not selected use cases yet.",
+     "We try new tools as they appear.",
+     "We prioritise tasks that seem faster with AI.",
+     "We select processes with clear problems and objectives.",
+     "We prioritise impact, feasibility and risk."
+    ]
+   },
+   {
+    "dim": "resultados",
+    "q": "How do you know whether AI is improving the work?",
+    "help": "Perceived benefits are a start; evidence helps you decide.",
+    "options": [
+     "We do not assess results yet.",
+     "People feel that it helps.",
+     "We have examples of saved time or reduced rework.",
+     "We measure before and after in some processes.",
+     "We track quality, time and business impact over time."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "Knowledge and trust",
+  "entry": "Useful AI needs to understand your business — and respect its boundaries.",
+  "help": "Now let's examine sources, criteria, security and quality.",
+  "questions": [
+   {
+    "dim": "conhecimento",
+    "q": "If an experienced colleague is away, where do the criteria for difficult decisions live?",
+    "help": "Include rules, exceptions and context that may not be in formal manuals.",
+    "options": [
+     "Mostly in the experience of a few people.",
+     "Scattered across conversations, files and messages.",
+     "In procedures covering only some situations.",
+     "In organised documents reviewed by named owners.",
+     "In an up-to-date knowledge base with criteria, cases and exceptions."
+    ]
+   },
+   {
+    "dim": "conhecimento",
+    "q": "If AI needs to check an internal rule, how does it find the information?",
+    "help": "Think about access to trustworthy sources during a task.",
+    "options": [
+     "It does not yet consult company information.",
+     "Someone copies and pastes the content each time.",
+     "We attach files to individual projects.",
+     "It consults authorised, identifiable sources.",
+     "It consults controlled, current and traceable sources."
+    ]
+   },
+   {
+    "dim": "seguranca",
+    "q": "How do you define what may be shared with or done by AI?",
+    "help": "Consider sensitive information, providers, permissions and owners.",
+    "options": [
+     "There is no clear guidance yet.",
+     "Everyone decides for themselves.",
+     "We have guidance, but limited oversight.",
+     "We have defined rules, permissions and owners.",
+     "Controls are checked and updated regularly."
+    ]
+   },
+   {
+    "dim": "seguranca",
+    "q": "When AI makes a mistake, how is it found and corrected?",
+    "help": "This includes inaccurate responses, outdated rules and unusual cases.",
+    "options": [
+     "We do not evaluate responses yet.",
+     "We correct errors when someone notices them.",
+     "Specialists review more important responses.",
+     "We have test cases and quality criteria.",
+     "We retest after changes and monitor failures."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "Processes and management",
+  "entry": "One final question: how far does AI help deliver real work?",
+  "help": "You do not need to automate everything. You need to know what is worth executing, under what conditions and with whom accountable.",
+  "questions": [
+   {
+    "dim": "processos",
+    "q": "What can AI do within your processes today?",
+    "help": "Distinguish producing an answer from completing a step of work.",
+    "options": [
+     "It is not involved in our processes yet.",
+     "It produces text or analysis when asked.",
+     "It supports defined steps in some processes.",
+     "It performs bounded tasks using authorised tools.",
+     "It runs monitored workflows with exception handling and metrics."
+    ]
+   },
+   {
+    "dim": "processos",
+    "q": "How does AI access the systems where the work happens?",
+    "help": "For example, CRM, ERP, documents, tickets or task management.",
+    "options": [
+     "It is not connected to our systems.",
+     "Someone moves information between systems manually.",
+     "We use attachments, exports or isolated automations.",
+     "We have integrations with defined access and functions.",
+     "Integrations are monitored, tested and maintained."
+    ]
+   },
+   {
+    "dim": "gestao",
+    "q": "When a task falls outside the standard process, who decides what an agent may do?",
+    "help": "The level of autonomy should match the risk of the task.",
+    "options": [
+     "We do not yet use agents that execute tasks.",
+     "A person reviews each action, but criteria are unclear.",
+     "Review rules exist, but are still informal.",
+     "Clear rules define when an agent can act or must request approval.",
+     "Limits reflect risk, actions are logged and intervention is planned."
+    ]
+   },
+   {
+    "dim": "gestao",
+    "q": "Once an AI solution is in use, who manages its development?",
+    "help": "Think about quality, maintenance and accountability for results.",
+    "options": [
+     "We do not yet have operational AI solutions.",
+     "The person who built it maintains it when needed.",
+     "There is technical monitoring, but no business review routine.",
+     "Business owners are assigned and reviews happen regularly.",
+     "We track performance, versions, risks and improvements."
+    ]
+   }
+  ]
+ }
+];
+const allQuestions=phases.flatMap(p=>p.questions);
+const levels=[
+ [
+  "Getting started",
+  "The business is exploring possibilities and relies largely on individual initiatives."
+ ],
+ [
+  "Growing adoption",
+  "AI use is spreading across people and tasks, but common practices are still limited."
+ ],
+ [
+  "Structured applications",
+  "Use cases, knowledge sources and ownership are bringing greater consistency to results."
+ ],
+ [
+  "Supervised operations",
+  "Defined processes have integrations, operating criteria and oversight."
+ ],
+ [
+  "Managed capabilities",
+  "The business monitors its AI solutions and improves its capabilities under governance."
+ ]
+];
+const focusData={
+ "analistas": {
+  "title": "Less time gathering information. More time analysing.",
+  "potential": "An agent could consult authorised documentation, policies and data, support reports, draft emails and retrieve approved sales messaging.",
+  "require": "Current sources, examples of high-quality work and access rules.",
+  "evaluate": "Preparation time, corrections needed and source checking.",
+  "question": "Which recurring report would improve if analysts could find the right answers faster?"
+ },
+ "gestao": {
+  "title": "Better visibility of delivery. Less time spent chasing updates.",
+  "potential": "An agent could organise tasks, summarise progress, flag blockers and draft feedback for a manager to review.",
+  "require": "Clear tasks and owners, authorised tool access and operating limits.",
+  "evaluate": "Task updates, management time and the quality of context for decisions.",
+  "question": "Which status-update routine takes most of your managers' time today?"
+ },
+ "clientes": {
+  "title": "Customers should not lose context when they need help.",
+  "potential": "An agent could answer common questions out of hours, consult permitted information, track requests and escalate sensitive cases to your team.",
+  "require": "A reviewed knowledge base, permitted access to customer history, privacy safeguards and escalation criteria.",
+  "evaluate": "First response time, appropriate resolution, handovers and customer satisfaction.",
+  "question": "When are customers left waiting for information your business already has?"
+ },
+ "descobrir": {
+  "title": "The best first application often begins with a clearly defined problem.",
+  "potential": "Look for recurring tasks, reasonably clear criteria and people willing to validate results.",
+  "require": "A conversation with the people doing the work and a few real examples.",
+  "evaluate": "Time, quality, implementation effort and risk.",
+  "question": "Which recurring task would improve if people could find the right answers faster?"
+ }
+};
+const $=id=>document.getElementById(id);
+const dom={start:$('startView'),quiz:$('quizView'),insight:$('insightView'),results:$('resultsView')};
+const answers=Array(12).fill(undefined);
+let screen='start',index=0,focus='descobrir',report=null;
+function h(tag,cls,text){
+ const node=document.createElement(tag);
+ if(cls)node.className=cls;
+ if(text!==undefined)node.textContent=text;
+ return node;
+}
+function show(which){screen=which;Object.entries(dom).forEach(([name,node])=>node.hidden=name!==which);}
+function scrollContent(){const y=$('startView').getBoundingClientRect().top+window.scrollY-18;window.scrollTo({top:Math.max(0,y),behavior:'auto'});}
+function phaseIndex(i){return Math.floor(i/4);}
+function renderQuestion(){
+ show('quiz');
+ const phase=phases[phaseIndex(index)],question=allQuestions[index];
+ $('phaseLabel').textContent="STAGE "+(phaseIndex(index)+1)+" OF 3 · "+phase.title.toUpperCase();
+ $('questionCount').textContent="QUESTION "+String(index+1).padStart(2,'0')+" OF 12";
+ $('progressFill').style.width=String((index+1)/12*100)+'%';
+ $('chapterTitle').textContent=phase.entry;
+ $('chapterDescription').textContent=phase.help;
+ $('validation').textContent='';
+ const root=$('questionList');root.replaceChildren();
+ const field=h('fieldset','question');const legend=h('legend','question-number',"QUESTION "+String(index+1).padStart(2,'0')+" OF 12 · "+dimensions.find(d=>d.id===question.dim).label.toUpperCase());
+ const title=h('h3','',question.q);title.id='activeQuestion';title.tabIndex=-1;const hint=h('p','',question.help);const opts=h('div','options');
+ field.setAttribute('aria-labelledby','activeQuestion');
+ field.append(legend,title,hint);
+ question.options.forEach((option,i)=>{
+  const label=h('label','option'),radio=h('input'),span=h('span','',option);
+  radio.type='radio';radio.name='answer';radio.value=String(i+1);radio.checked=answers[index]===i+1;
+  radio.addEventListener('change',()=>{answers[index]=i+1;$('unknown').classList.remove('active');$('unknown').setAttribute('aria-pressed','false');$('validation').textContent=''});
+  label.append(radio,span);opts.append(label);
+ });
+ field.append(opts);root.append(field);
+ const unknown=h('button','unknown'+(answers[index]===null?' active':''),"I don't know");
+ unknown.id='unknown';unknown.type='button';unknown.setAttribute('aria-pressed',String(answers[index]===null));
+ unknown.addEventListener('click',()=>{
+  answers[index]=null;
+  opts.querySelectorAll('input').forEach(r=>r.checked=false);
+  unknown.classList.add('active');unknown.setAttribute('aria-pressed','true');$('validation').textContent='';
+ });
+ root.append(unknown);
+ title.focus({preventScroll:true});
+ $('next').textContent=index===11?"View my assessment →":"Continue →";
+ scrollContent();
+}
+function getStats(){
+ const axes=dimensions.map(d=>{
+  const inds=allQuestions.map((q,i)=>q.dim===d.id?i:-1).filter(i=>i>=0);
+  const known=inds.map(i=>answers[i]).filter(v=>Number.isInteger(v));
+  return {...d,indices:inds,n:known.length,pct:known.length?Math.round((known.reduce((a,b)=>a+b,0)/known.length-1)/4*100):null};
+ });
+ const overall=axes.filter(d=>d.pct!==null);
+ const score=overall.length?Math.round(overall.reduce((a,b)=>a+b.pct,0)/overall.length):null;
+ const known=answers.filter(v=>Number.isInteger(v)).length;
+ const canStage=known>=9&&axes.every(d=>d.n>0);
+ const stage=canStage?Math.min(4,Math.floor(score/20)):null;
+ return {axes,score,known,stage};
+}
+function axis(stats,id){return stats.axes.find(d=>d.id===id);}
+function insightContent(number){
+ const stats=getStats(),a=axis(stats,'adocao'),r=axis(stats,'resultados'),k=axis(stats,'conhecimento'),g=axis(stats,'seguranca');
+ if(number===0){
+  if(r.pct!==null&&r.pct<50&&a.pct!==null&&a.pct>=50)return "An important observation: frequent AI use is not the same as understanding its impact. Measuring one process could show where investment makes sense.";
+  if(a.pct!==null&&a.pct<50)return "Your first improvement may not need a new tool. It might start by turning an individual's approach into a repeatable team practice.";
+  if(a.pct===null||r.pct===null)return "Some information about everyday work and outcomes is missing. Speaking to the people doing the work could help complete the picture.";
+  return "A useful starting point: turning effective AI use into observable outcomes helps you choose future opportunities more confidently.";
+ }
+ if(k.pct!==null&&k.pct<50)return "An agent should not have to guess the rules of your business. Organising sources and exceptions is often what makes its answers more useful.";
+ if(g.pct!==null&&g.pct<50)return "Making information available matters. Knowing who can access it and how responses are assessed enables responsible expansion.";
+ if(k.pct===null||g.pct===null)return "Before going further, establish where reliable business sources live and who sets operating boundaries.";
+ return "Reviewed sources and clear controls provide a strong foundation for testing AI applications closer to day-to-day operations.";
+}
+function renderInsight(number){
+ show('insight');
+ $('insightLabel').textContent="AN INSIGHT · STAGE "+(number+1)+" OF 3";
+ $('insightTitle').textContent=number===0?"USING AI IS A START. OUTCOMES ARE WHAT MATTER.":"CONTEXT AND BOUNDARIES MAKE THE DIFFERENCE.";
+ $('insightText').textContent=insightContent(number);
+ $('insightTitle').focus({preventScroll:true});
+ $('insightNext').textContent=number===0?"Explore what supports these outcomes →":"Explore what could scale →";
+ scrollContent();
+}
+function goBack(){
+ if(screen==='insight'){index=index===4?3:7;renderQuestion();return}
+ if(index===0){show('start');scrollContent();return}
+ if(index===4){renderInsight(0);return}
+ if(index===8){renderInsight(1);return}
+ index--;renderQuestion();
+}
+function nextQuestion(){
+ if(answers[index]===undefined){$('validation').textContent="Choose an answer or select “I don't know”.";return}
+ if(index===3){index=4;renderInsight(0);return}
+ if(index===7){index=8;renderInsight(1);return}
+ if(index===11){renderReport();return}
+ index++;renderQuestion();
+}
+function choosePriority(s){
+ const available=s.axes.filter(d=>d.pct!==null);
+ const low=available.every(d=>d.pct<50);
+ const high=available.length===6&&available.every(d=>d.pct>=75);
+ const r=axis(s,'resultados'),a=axis(s,'adocao'),k=axis(s,'conhecimento'),sec=axis(s,'seguranca'),proc=axis(s,'processos'),mgr=axis(s,'gestao');
+ let id=null,why='';
+ if(available.length===0){id='resultados';why="There are no known answers for any dimension. This is general guidance on gathering evidence, not a conclusion about your business.";}
+ else if(low&&available.length>=4){
+  id='resultados';why="The practices described are still developing. Starting with a simple process and one measure can help identify value without adding complexity.";
+ }else if(sec.pct!==null&&sec.pct<50&&((proc.pct!==null&&proc.pct>=50)||(mgr.pct!==null&&mgr.pct>=50))){
+  id='seguranca';why="Before expanding automated execution, review permissions, testing and human intervention.";
+ }else if(r.pct!==null&&r.pct<50&&a.pct!==null&&a.pct>=50){
+  id='resultados';why="You reported team AI use but limited measurement of results. A baseline can guide investment decisions.";
+ }else if(k.pct!==null&&k.pct<50&&proc.pct!==null&&proc.pct>=50){
+  id='conhecimento';why="AI is already used in processes, but business sources and decision criteria need attention before expansion.";
+ }else if(high){
+  const ordered=[...available].sort((x,y)=>x.pct-y.pct);
+  id=ordered[0].id;why="All six dimensions received high responses. Test the robustness of a specific application before extending its use.";
+ }else{
+  const weight=['seguranca','resultados','conhecimento','processos','gestao','adocao'];
+  const ordered=[...available].sort((x,y)=>x.pct-y.pct||weight.indexOf(x.id)-weight.indexOf(y.id));
+  id=ordered[0]?.id||'resultados';
+  why=ordered.length?"Based on your answers, this is one of the areas most worth investigating.":"There are few known answers. Discussing a specific process can help gather evidence before proceeding.";
+ }
+ const dim=dimensions.find(d=>d.id===id);
+ const confidence=(axis(s,id)?.n||0)<2;
+ const answerRef=axis(s,id)?.indices.map(i=>'Q'+String(i+1).padStart(2,'0')).join(" and ");
+ return {dim,why,confidence,answerRef,high,low};
+}
+function getNarrative(s){
+ const ranked=s.axes.filter(d=>d.pct!==null).sort((a,b)=>b.pct-a.pct);
+ const best=ranked[0];const priority=choosePriority(s);
+ const isStrong=best&&best.pct>=50;
+ const first=isStrong?
+  {label:"WHAT YOU ALREADY HAVE",title:best.label,text:"The strongest reported indication was in "+best.label+': '+best.strength}:
+  {label:"YOUR STARTING POINT",title:"Start by gathering evidence",text:best?"Your answers suggest practices are still developing. Start small, with a clear objective, an accountable owner and a way to evaluate results.":"There is not enough information to describe your practices. Speak to people who know the operation before deciding where to invest."};
+ const second=!best?{label:"WHAT TO INVESTIGATE",title:"Understand the operation first",text:"Without known answers, we cannot identify a bottleneck. Gather process information before prioritising technology."}:priority.high?{label:"WHERE TO GO DEEPER",title:"Test robustness in a specific use case",text:"You reported advanced practices. Check quality, risks and real value before expanding any solution."}:{label:"WHAT DESERVES ATTENTION",title:priority.dim.label,text:priority.dim.label+" may limit "+priority.dim.risk+". Discuss this hypothesis with your team before acting."};
+ const third={label:"WHAT TO DO NOW",title:"A practical first step",text:!best?"Speak to someone doing a recurring task and document how it works today.":priority.high?"Select a representative application and repeat quality, risk and impact tests with subject-matter experts.":priority.dim.steps[0]};
+ return {priority,first,second,third};
+}
+const svgNS='http://www.w3.org/2000/svg';
+function svgEl(name,attrs){const node=document.createElementNS(svgNS,name);Object.entries(attrs).forEach(([k,v])=>node.setAttribute(k,String(v)));return node}
+function drawRadar(s){
+ const cx=185,cy=185,R=119,n=6;
+ const xy=(i,f)=>{const a=Math.PI*2*i/n-Math.PI/2;return [cx+Math.cos(a)*R*f,cy+Math.sin(a)*R*f]};
+ const pts=f=>s.axes.map((d,i)=>xy(i,f).join(',')).join(' ');
+ const svg=svgEl('svg',{viewBox:'0 0 370 380',role:'img','aria-label':"Six-dimension radar. Exact scores are listed alongside it."});
+ [1,.75,.5,.25].forEach(v=>svg.append(svgEl('polygon',{points:pts(v),fill:'none',stroke:'#b6cbb8','stroke-width':1})));
+ s.axes.forEach((d,i)=>{
+  const [x,y]=xy(i,1);svg.append(svgEl('line',{x1:cx,y1:cy,x2:x,y2:y,stroke:'#c0d3c1'}));
+  const [tx,ty]=xy(i,1.29);const label=svgEl('text',{x:tx,y:ty,'text-anchor':'middle','dominant-baseline':'middle',fill:'#446950','font-family':'IBM Plex Mono, monospace','font-size':10});
+  label.textContent=d.short;svg.append(label);
+ });
+ const pol=svgEl('polygon',{points:s.axes.map((d,i)=>xy(i,(d.pct??0)/100).join(',')).join(' '),fill:'#64ac7840',stroke:'#2e9657','stroke-width':2});
+ svg.append(pol);
+ s.axes.forEach((d,i)=>{if(d.pct===null)return;const [x,y]=xy(i,d.pct/100);svg.append(svgEl('circle',{cx:x,cy:y,r:4,fill:'#247b4d'}))});
+ $('radar').replaceChildren(svg);
+ const bars=$('bars');bars.replaceChildren();
+ s.axes.forEach(d=>{
+  const box=h('div'),line=h('div','metric-line'),name=h('span','',d.label),number=h('b','',d.pct===null?"No data":d.pct+'%');
+  const bar=h('div','bar'),inner=h('span');inner.style.width=(d.pct??0)+'%';
+  line.append(name,number);bar.append(inner);box.append(line,bar);
+  if(d.n===1)box.append(h('span','mini-note',"Lower confidence: only one known answer."));
+  bars.append(box);
+ });
+}
+function renderLevels(s){
+ const root=$('levels');root.replaceChildren();
+ levels.forEach((item,i)=>{
+  const card=h('div','level'+(s.stage===i?' current':''));
+  card.append(h('b','','0'+(i+1)),h('strong','',item[0]),h('span','',s.stage===i?"YOUR INDICATIVE STAGE":item[1]));root.append(card);
+ });
+}
+function renderFocus(){
+ const data=focusData[focus],root=$('focusCard');root.replaceChildren();
+ root.append(h('h4','',data.title));
+ const rows=[["POSSIBILITY",data.potential],["WHAT IT REQUIRES",data.require],["HOW TO EVALUATE",data.evaluate]];
+ rows.forEach(([label,body])=>{const p=h('p');p.append(h('b','',label+' · '),document.createTextNode(body));root.append(p)});
+ $('teamQuestion').textContent="A question for your next team meeting: "+data.question;
+ document.querySelectorAll('[data-focus]').forEach(btn=>btn.setAttribute('aria-pressed',String(btn.dataset.focus===focus)));
+}
+function renderReport(){
+ show('results');const stats=getStats();report=stats;const narrative=getNarrative(stats),p=narrative.priority;
+ $('mainAction').textContent=stats.known===0?"understand the situation with people who know your processes.":p.dim.action+'.';
+ $('reportDate').textContent="REPORT GENERATED ON "+new Date().toLocaleDateString("en-GB");
+ $('resultsIntro').textContent="This is an initial hypothesis based on your answers. Use it to guide a discussion and decide what to investigate before investing.";
+ const summary=$('summaryCards');summary.replaceChildren();
+ [narrative.first,narrative.second,narrative.third].forEach(item=>{
+  const card=h('article','gap-card');card.append(h('small','',item.label),h('strong','',item.title),h('p','',item.text));summary.append(card);
+ });
+ const incomplete=stats.known<9||stats.axes.some(d=>d.n===0);
+ const flags=[];
+ if(incomplete)flags.push("This picture is incomplete. Treat the recommendations as hypotheses and involve people who understand the processes before deciding.");
+ if(p.confidence)flags.push("The suggested priority is based on fewer than two known answers and needs confirmation.");
+ if(axis(stats,'seguranca').pct!==null&&axis(stats,'seguranca').pct<50&&(axis(stats,'processos').pct>=50||axis(stats,'gestao').pct>=50))flags.push("Before expanding automated execution, review permissions, testing and human intervention.");
+ $('confidenceWarning').hidden=flags.length===0;$('confidenceWarning').textContent=flags.join(' ');
+ $('totalScore').replaceChildren(document.createTextNode(stats.score===null?'—':String(stats.score)),h('small','','/100'));
+ $('stageName').textContent=stats.stage===null?"Partial assessment — stage not calculated":"LEVEL "+(stats.stage+1)+' · '+levels[stats.stage][0];
+ $('stageDescription').textContent=stats.stage===null?"Answer as many items as you can for an indicative stage. At least nine known answers, including one per dimension, are required.":levels[stats.stage][1];
+ drawRadar(stats);
+ const cards=$('priorityCards');cards.replaceChildren();
+ const prioritySteps=p.high?["Choose an existing application with measurable impact.","Review sources, boundaries, tests and continuation criteria.","Test robustness and value against real cases before expanding."]:p.dim.steps;
+ ["DO NOW","PREPARE","VALIDATE"].forEach((label,i)=>{
+  const card=h('article','gap-card');card.append(h('small','',label),h('strong','',p.high?"Validate robustness":p.dim.label),h('p','',prioritySteps[i]));
+  if(i===0)card.append(h('p','',"Suggested owner: "+p.dim.owner+". Evidence: "+p.dim.proof+'.'));
+  cards.append(card);
+ });
+ $('priorityReason').textContent="Why this recommendation appeared: "+p.why+" Related dimension: "+(p.answerRef||"available answers")+'.';
+ renderFocus();renderLevels(stats);
+ $('resultsTitle').focus({preventScroll:true});
+ const plan=$('actionList');plan.replaceChildren();
+ [["01 / CHOOSE","Choose a process with a real problem, a clear owner and observable impact."],["02 / PREPARE","Organise the knowledge and controls this use case requires."],["03 / TEST","Test real scenarios and compare results, quality and effort."]].forEach(([label,copy])=>{
+  const card=h('article');card.append(h('small','',label),h('p','',copy));plan.append(card);
+ });
+ $('contactPanel').hidden=true;$('copyFeedback').textContent='';
+ scrollContent();
+}
+function summaryText(){
+ if(!report)return '';
+ const story=getNarrative(report),p=story.priority;
+ return ["Conhecimento/Vivo · AI maturity assessment","Date: "+new Date().toLocaleDateString("en-GB"),"Known answers: "+report.known+'/12',
+ "Exploratory score: "+(report.score===null?"unavailable":report.score+'/100'),
+ "Stage: "+(report.stage===null?"Partial assessment":levels[report.stage][0]),
+ "Supporting strength: "+story.first.title+' — '+story.first.text,"Priority: "+p.dim.label+' — '+p.why,
+ ...report.axes.map(d=>d.label+': '+(d.pct===null?"no answers":d.pct+'%')+(d.n===1?" (lower confidence)":'')),
+ "Do now: "+p.dim.steps[0],"Prepare: "+p.dim.steps[1],"Validate: "+p.dim.steps[2],
+ "Area of interest: "+focusData[focus].title,"Possibility: "+focusData[focus].potential,
+ "Plan: choose a process; prepare knowledge and controls; test and measure.",
+ "This is an exploratory self-reported assessment, not a certification or an industry benchmark."].join('\n');
+}
+async function copySummary(){
+ const content=summaryText();
+ try{
+  if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(content)}
+  else{
+   const input=h('textarea');input.value=content;input.style.position='fixed';input.style.left='-9999px';document.body.append(input);input.select();
+   const copied=document.execCommand('copy');input.remove();if(!copied)throw Error('copy failed');
+  }
+  $('copyFeedback').textContent="Summary copied. You can share it with your team whenever you like.";
+ }catch(e){$('copyFeedback').textContent="The summary could not be copied automatically. Try your browser's print or copy option."}
+}
+$('begin').addEventListener('click',()=>{index=0;renderQuestion()});
+$('quizForm').addEventListener('submit',e=>{e.preventDefault();nextQuestion()});
+$('back').addEventListener('click',goBack);
+$('insightBack').addEventListener('click',()=>{index=index===4?3:7;renderQuestion()});
+$('insightNext').addEventListener('click',()=>{renderQuestion()});
+$('print').addEventListener('click',()=>window.print());
+$('copy').addEventListener('click',copySummary);
+$('copyContact').addEventListener('click',copySummary);
+$('contactOpen').addEventListener('click',()=>{$('contactPanel').hidden=false;$('contactPanel').scrollIntoView({block:'nearest',behavior:'auto'})});
+$('contactClose').addEventListener('click',()=>{$('contactPanel').hidden=true;$('contactOpen').focus()});
+$('restart').addEventListener('click',()=>{answers.fill(undefined);focus='descobrir';report=null;show('start');scrollContent()});
+document.querySelectorAll('[data-focus]').forEach(btn=>btn.addEventListener('click',()=>{focus=btn.dataset.focus;renderFocus();$('copyFeedback').textContent=''}));
+show('start');
+})();</script>
+</body></html>
