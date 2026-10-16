@@ -57,15 +57,15 @@
 :root {--accent:#b9ffcf;--panel:#0d1819;--panel-border:#33584b}
 html {scroll-padding-top:20px}
 .journey {height:600svh;position:relative;background:#081115;color:#e9f7ef}
-.journey-sticky {position:sticky;top:0;height:100svh;min-height:620px;display:flex;flex-direction:column;overflow:hidden;padding:clamp(24px,3.7vh,42px) 5.5% 17px;background:radial-gradient(ellipse at 90% 80%,#173b3230,transparent 60%),#081115}
-.journey-head {display:flex;justify-content:space-between;gap:4vw;align-items:end;padding-bottom:23px}
+.journey-sticky {position:sticky;top:0;height:100svh;min-height:0;display:flex;flex-direction:column;overflow:hidden;padding:clamp(18px,2.6vh,32px) 5.5% 15px;background:radial-gradient(ellipse at 90% 80%,#173b3230,transparent 60%),#081115}
+.journey-head {display:flex;justify-content:space-between;gap:4vw;align-items:end;padding-bottom:14px}
 .journey-header-copy {max-width:850px}
 .journey-kicker,.journey-number,.journey-bottom,.journey-output>span,.mock-top,.mock-foot,.journey-step {font-family:var(--mono)}
 .journey-kicker {display:block;color:#a4d9b4;font-size:10px;letter-spacing:.14em;margin-bottom:14px}
 .journey-head h2 {font:700 clamp(30px,3.25vw,56px)/1.03 var(--display);letter-spacing:-.06em;margin:0}
 .journey-head h2 em {font-style:normal;color:#a4e2b9}
 .journey-head>p {margin:0;max-width:255px;font-size:13px;line-height:1.6;color:#a1b9ad}
-.journey-navigation {margin:0 0 22px}
+.journey-navigation {margin:0 0 12px}
 .journey-steps {display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
 .journey-step {text-align:left;padding:10px 4px 13px;border:0;background:transparent;color:#749287;display:flex;align-items:baseline;gap:12px;cursor:pointer;transition:color .2s}
 .journey-step b {font-size:11px;font-weight:500}
@@ -75,16 +75,16 @@ html {scroll-padding-top:20px}
 .journey-progress span {display:block;width:0;height:100%;background:#b9ffcf;transition:width .15s linear}
 .journey-viewport {flex:1;min-height:0;overflow:hidden;border-top:1px solid #294b3d;border-bottom:1px solid #294b3d}
 .journey-track {display:flex;width:100%;height:100%;will-change:transform}
-.journey-card {flex:0 0 100%;min-width:0;height:100%;display:grid;grid-template-columns:minmax(0,.43fr) minmax(0,.57fr);gap:4%;align-items:stretch;padding:clamp(20px,3.1vh,36px) 0}
+.journey-card {flex:0 0 100%;min-width:0;height:100%;display:grid;grid-template-columns:minmax(0,.43fr) minmax(0,.57fr);gap:4%;align-items:stretch;padding:clamp(12px,2vh,24px) 0}
 .journey-copy {min-width:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding-right:4%}
 .journey-number {font-size:12px;color:#b9ffcf;letter-spacing:.08em;display:flex;gap:17px}
 .journey-number span {color:#88a99b;font-size:9px}
-.journey-copy h3 {font:700 clamp(50px,6vw,110px)/.92 var(--display);letter-spacing:-.085em;margin:24px 0 22px}
+.journey-copy h3 {font:700 clamp(46px,5.6vw,94px)/.96 var(--display);letter-spacing:-.075em;margin:16px 0 16px}
 .journey-copy h3 span {color:#b9ffcf}
-.journey-claim {font:500 clamp(18px,1.75vw,27px)/1.27 var(--display);letter-spacing:-.035em;color:#e6f5e9;max-width:510px;margin:0 0 18px}
+.journey-claim {font:500 clamp(17px,1.65vw,25px)/1.25 var(--display);letter-spacing:-.035em;color:#e6f5e9;max-width:510px;margin:0 0 12px}
 .journey-copy>p:not(.journey-claim) {font-size:clamp(12px,1.02vw,15px);line-height:1.65;color:#aec2b9;max-width:500px}
-.journey-output {width:100%;border-top:1px solid #416558;padding-top:14px;margin-top:auto;display:flex;flex-direction:column;gap:7px}
-.journey-output>span {font-size:10px;color:#a5e8bc;letter-spacing:.09em}
+.journey-output {width:100%;border-top:1px solid #416558;padding-top:11px;margin-top:auto;display:flex;flex-direction:column;gap:6px}
+.journey-output>span {font-size:10px;color:#a5e8bc;letter-spacing:.09em;font-weight:700}
 .journey-output strong {font-size:clamp(14px,1.3vw,19px);font-weight:600}
 .journey-output small {font-size:11px;color:#9cb2aa;line-height:1.4}
 .journey-visual {min-width:0;min-height:0;display:flex;align-items:stretch}
@@ -93,9 +93,9 @@ html {scroll-padding-top:20px}
 .mock-top b {font-weight:500}
 .mock-top small {font-size:9px}
 .mock-dots {color:#619677;font-size:11px;letter-spacing:.3em;white-space:nowrap}
-.mock-foot {margin-top:auto;border-top:1px solid #aabfaf;background:#d6e4d8;padding:14px 20px;display:flex;justify-content:space-between;gap:16px;align-items:center;font-size:10px}
-.mock-foot>span {color:#507361;letter-spacing:.07em}
-.mock-foot strong {font-size:11px;font-weight:600;text-align:right}
+.mock-foot {margin-top:auto;border-top:1px solid #aabfaf;background:#d6e4d8;padding:10px 18px;display:flex;justify-content:flex-end;gap:12px;align-items:center;font-size:10px}
+.mock-foot>span {display:none}
+.mock-foot strong {font-size:10px;font-weight:600;text-align:right}
 .mock-foot strong span {color:#237948}
 .discover-upper {padding:clamp(19px,3vh,36px) clamp(16px,2vw,30px) 12px}
 .discover-upper>span,.evals-title>span,.roadmap-top>span {font:10px var(--mono);letter-spacing:.14em;color:#4f8264}
@@ -198,34 +198,21 @@ html {scroll-padding-top:20px}
 .value-metrics {border-top:1px solid #547361}
 .value-metrics p {margin:0;padding:16px 0;border-bottom:1px solid #547361;font-size:13px;line-height:1.5;color:#d2e9d7;display:flex;gap:17px}
 .value-metrics b {font:10px var(--mono);color:#b9ffcf;white-space:nowrap}
+
 .maturity-section {background:#e6efe8}
-.maturity-layout {display:grid;grid-template-columns:1fr 1.05fr;gap:6%;align-items:start}
-.maturity-overline {display:block;font:10px var(--mono);color:#4a8064;margin-bottom:30px}
-.maturity-copy .chapter-title {font-size:clamp(37px,4.75vw,76px)}
-.maturity-copy>p {max-width:520px;font-size:17px;line-height:1.7;color:#425a4a}
-.maturity-aside {display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid #a4bcaa;padding-top:22px;margin-top:60px;font:10px var(--mono);color:#47805f}
-.maturity-aside small {display:block;width:100%;font-size:10px;color:#748e7b;margin-top:8px}
-.maturity-panel {background:#0e211b;color:#f0fff0;border:1px solid #426b52;box-shadow:0 28px 90px #25422a25;padding:clamp(22px,3vw,42px);min-height:505px;display:flex;flex-direction:column}
-.maturity-panel-top {display:flex;justify-content:space-between;gap:14px;font:10px var(--mono);color:#a4d3b2;letter-spacing:.1em}
-.maturity-progress {height:2px;background:#456253;margin:22px 0 34px}
-.maturity-progress span {display:block;background:#b9ffcf;height:100%;width:25%;transition:width .3s}
-#maturityArea {flex:1}
-.maturity-question-kicker {font:10px var(--mono);color:#9fd3ab}
-.maturity-question {font:600 clamp(23px,2.65vw,39px)/1.15 var(--display);letter-spacing:-.05em;margin:15px 0 25px}
-.maturity-options {display:grid;gap:9px}
-.maturity-choice {border:1px solid #507561;background:#172f24;color:#dbf3e0;padding:14px 16px;text-align:left;display:flex;gap:13px;align-items:flex-start;font-size:13px;line-height:1.5;cursor:pointer;transition:background .2s,border-color .2s}
-.maturity-choice:hover,.maturity-choice:focus-visible {background:#24543b;border-color:#b9ffcf}
-.maturity-choice b {font:10px var(--mono);color:#b9ffcf;margin-top:3px}
-.maturity-controls {display:flex;justify-content:space-between;gap:15px;border-top:1px solid #405b49;padding-top:18px;margin-top:25px;align-items:center}
-.maturity-controls button {background:transparent;border:0;color:#d8f7dc;font:11px var(--mono);cursor:pointer}
-.maturity-controls button:disabled {opacity:.3;cursor:not-allowed}
-.maturity-controls span {font:9px/1.5 var(--mono);color:#83a38d;max-width:280px;text-align:right}
-.maturity-result-badge {font:10px var(--mono);letter-spacing:.09em;color:#b9ffcf}
-.maturity-result h3 {font:600 clamp(27px,3vw,47px)/1.08 var(--display);letter-spacing:-.05em;margin:19px 0}
-.maturity-result p {font-size:14px;line-height:1.6;color:#c1ddc8}
-.maturity-score {font:11px var(--mono);color:#a1d5b1;padding:12px 0;border-top:1px solid #416b51;border-bottom:1px solid #416b51}
-.maturity-result a,.maturity-result button {display:inline-block;margin:20px 8px 0 0;padding:14px 17px;background:#b9ffcf;color:#082017;font:11px var(--mono);text-decoration:none;border:1px solid #b9ffcf;cursor:pointer}
-.maturity-result button {background:transparent;color:#b9ffcf}
+.maturity-layout {display:grid;grid-template-columns:1.05fr .95fr;gap:8%;align-items:center}
+.maturity-overline {display:block;font:10px var(--mono);color:#4a8064;margin-bottom:28px;letter-spacing:.09em}
+.maturity-copy .chapter-title {font-size:clamp(38px,4.75vw,76px)}
+.maturity-copy>p {max-width:540px;font-size:16px;line-height:1.6;color:#425a4a}
+.maturity-preview {min-width:0;min-height:430px;background:#0e211b;border:1px solid #426b52;color:#e5f8e9;display:flex;flex-direction:column;align-items:flex-start;padding:clamp(26px,3vw,48px)}
+.maturity-preview-label {font:10px var(--mono);letter-spacing:.1em;color:#9bd6ab}
+.maturity-mark {font-size:58px;line-height:1;color:#b9ffcf;margin:36px 0 28px}
+.maturity-preview h3 {font:650 clamp(28px,3.1vw,49px)/1.06 var(--display);letter-spacing:-.058em;margin:0 0 16px}
+.maturity-preview p {font:14px/1.6 Inter,Arial,sans-serif;color:#b0ccb9;max-width:470px}
+.maturity-link {display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 19px;background:#b9ffcf;color:#0e211b;font:600 12px var(--mono);margin-top:auto;min-width:min(100%,355px)}
+.maturity-link:hover {background:#d8ffe4}
+.maturity-link span {font-size:18px}
+.maturity-preview small {font:10px/1.55 var(--mono);color:#9cbba6;display:block;margin-top:20px}
 .graph-info .detail-title {font:600 15px var(--display);color:#dcffe7;display:block;margin-bottom:5px}
 .graph-info .detail-desc {font:11px/1.45 Inter,sans-serif;color:#bbddc7;display:block}
 .graph-info .detail-pills {display:flex;gap:6px;flex-wrap:wrap;margin-top:11px}
@@ -389,6 +376,60 @@ html {scroll-padding-top:20px}
  .detail-graph-stage .graph-minor {max-width:85px;font-size:9px;padding:5px 6px}
  .detail-graph-stage .graph-core {width:86px;height:86px}
 }
+
+/* V8.1 / segurança, organograma e responsividade do carrossel */
+.data-trust {display:grid;grid-template-columns:.9fr 1.1fr;gap:6%;margin-top:15px;padding:25px clamp(24px,3vw,40px);border:1px solid #99b8a2;background:#d0dfd3}
+.data-trust span {display:block;font:10px var(--mono);color:#4d795a;letter-spacing:.08em;margin-bottom:12px}
+.data-trust strong {font:650 clamp(18px,2.05vw,29px)/1.15 var(--display);letter-spacing:-.03em}
+.data-trust p {font-size:13px;line-height:1.6;color:#405948;margin:0}
+.org-managers {position:relative}
+.org-managers:before {content:"";position:absolute;left:calc(50% - min(34%, 344px));right:calc(50% - min(34%, 344px));top:-1px;border-top:1px solid #5f9674;pointer-events:none}
+@media(max-width:1100px){
+ .maturity-layout {grid-template-columns:1fr;gap:28px}
+ .maturity-preview {min-height:390px}
+}
+@media(max-width:760px){
+ .data-trust {grid-template-columns:1fr;gap:16px}
+ .maturity-preview {min-height:340px}
+ .maturity-mark {margin:24px 0}
+}
+@media (min-width:761px) and (max-height:780px){
+ .journey-head h2 {font-size:clamp(28px,2.8vw,43px)}
+ .journey-head>p {font-size:11px}
+ .journey-copy h3 {font-size:clamp(46px,5vw,75px)}
+ .journey-copy>p:not(.journey-claim) {font-size:12px;line-height:1.45}
+ .journey-copy .journey-claim {font-size:clamp(16px,1.6vw,21px)}
+ .journey-output small {font-size:10px}
+ .mock-top {flex-basis:30px}
+ .discover-upper {padding-top:13px;padding-bottom:5px}
+ .discover-upper strong {font-size:clamp(19px,2vw,29px);margin:10px 0 5px}
+ .discover-flow {padding-bottom:7px}
+ .mock-list>div {padding:8px 0}
+ .file-tree {padding-top:12px}
+ .file-editor {padding-top:12px;gap:9px}
+ .file-editor div {padding:5px 9px}
+ .agent-topology {padding-top:12px;padding-bottom:6px}
+ .agent-interaction {margin-bottom:7px;padding:7px 13px}
+ .evals-title {padding-top:12px;padding-bottom:5px}
+ .evals-stats {padding-bottom:5px}
+ .evals-stats>div {padding:8px}
+ .evals-stats strong {margin:5px 0;font-size:clamp(16px,1.9vw,25px)}
+ .eval-table>div {padding:7px 4px}
+ .roadmap-top {padding-top:12px}
+ .roadmap-line {padding-top:8px;padding-bottom:8px}
+ .roadmap-line strong {margin:7px 0}
+ .cycle-diagram {margin-bottom:8px}
+}
+@media(min-width:761px) and (max-height:680px){
+ .journey {height:auto}
+ .journey-sticky {position:relative;height:auto;min-height:0;overflow:visible}
+ .journey-navigation {position:sticky;top:0;background:#081115;z-index:9;padding-top:8px}
+ .journey-viewport {overflow:visible}
+ .journey-track {display:block;transform:none!important}
+ .journey-card {height:auto;min-height:490px;border-top:1px solid #355343}
+ .journey-visual {min-height:410px}
+}
+
 </style></head><body>
 <div class="grain" aria-hidden="true"></div><header class="nav"><a href="#inicio" class="mark" aria-label="Conhecimento Vivo, início">✳ conhecimento<b>/vivo</b></a><nav class="navlinks" id="navlinks" aria-label="Menu principal"><a href="#ideia">A ideia</a><a href="#metodo">O método</a><a href="#aplicacoes">Aplicações</a><a href="#diagnostico">Diagnóstico</a></nav><a class="action" href="#diagnostico">Conheça o diagnóstico ↗</a><button class="hamburger" id="menuToggle" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button></header>
 <main><section class="hero" id="inicio"><div class="art-graph" id="artGraph" aria-label="Constelação abstrata de conexões que representa a arquitetura de um agente"><svg id="artGraphSvg" viewBox="0 0 800 760" role="img" aria-label="Um núcleo de agente conectado a uma rede complexa de capacidades sem rótulos"></svg></div><div class="hero-content"><div class="eyebrow">AGENTES ESPECIALISTAS A PARTIR DA SUA EXPERTISE</div><h1>CONSTRUA AGENTES<br>ESPECIALISTAS<br>COM <em>O QUE SUA<br>EMPRESA SABE</em><span class="outline">.</span></h1><p class="hero-copy">Sua empresa já tem expertise valiosa. Nós a transformamos em agentes especializados que apoiam decisões e executam tarefas autorizadas — com avaliação, controle e evolução.</p><div class="hero-actions"><a class="primary" href="#ideia">Veja como ganha forma <span>↗</span></a><a class="underlink" href="#diagnostico">Explorar diagnóstico ↗</a></div></div><div class="hero-footer"><span>CONHECIMENTO · CAPACIDADE · EVOLUÇÃO</span><span>SCROLL PARA DESCOBRIR ↓</span></div></section>
@@ -466,14 +507,14 @@ html {scroll-padding-top:20px}
 
 <section class="narrative-chapter chapter-dark teams-section" id="equipes">
  <div class="chapter-index">05 / OS TIMES DO FUTURO <span>PESSOAS + AGENTES · MESMA DIREÇÃO</span></div>
- <div class="teams-intro"><div><h2 class="chapter-title">OS PRÓXIMOS TIMES <em>NÃO SERÃO FORMADOS APENAS POR PESSOAS.</em></h2></div><p class="chapter-lead">A gestão continua humana. O que muda é a composição de quem executa: equipes de pessoas, equipes híbridas e operações conduzidas por agentes com supervisão definida.</p></div>
+ <div class="teams-intro"><div><h2 class="chapter-title">OS PRÓXIMOS TIMES <em>NÃO SERÃO FORMADOS APENAS POR PESSOAS.</em></h2></div><p class="chapter-lead">A gestão continua humana. O que muda é a composição de quem executa: equipes de pessoas, equipes híbridas e operações conduzidas por agentes, sempre com responsáveis, limites e supervisão definidos.</p></div>
  <div class="org-chart" aria-label="Organograma funcional demonstrativo com liderança e gestão humanas supervisionando três modelos de equipes">
   <div class="org-level"><div class="org-card org-lead"><span>ESTRATÉGIA</span><strong>GESTÃO DA EMPRESA</strong><small>Visão · objetivos · responsabilidade</small></div></div>
   <div class="org-stem" aria-hidden="true"></div>
   <div class="org-managers"><div class="org-card"><span>GESTÃO HUMANA</span><strong>GESTOR DE OPERAÇÕES</strong><small>Prioridades · performance</small></div><div class="org-card"><span>GESTÃO HUMANA</span><strong>GESTOR DE CONHECIMENTO</strong><small>Critérios · qualidade · evolução</small></div></div>
   <div class="org-fork" aria-hidden="true"></div>
   <div class="org-teams"><div class="org-card org-team"><span>MODELO 01 / HUMANO</span><div class="org-avatar-line"><i>●</i><i>●</i><i>●</i></div><strong>TIMES DE PESSOAS</strong><small>Colaboração · julgamento · relacionamento</small><p>Profissionais conduzem as atividades.</p></div><div class="org-card org-team org-highlight"><span>MODELO 02 / HÍBRIDO</span><div class="org-avatar-line"><i>●</i><i>●</i><i class="ai">✳</i></div><strong>PESSOAS + AGENTES</strong><small>Conhecimento · execução · supervisão</small><p>Agentes apoiam e ampliam as equipes.</p></div><div class="org-card org-team"><span>MODELO 03 / DIGITAL</span><div class="org-avatar-line"><i class="ai">✳</i><i class="ai">✳</i><i class="ai">✳</i></div><strong>TIMES DE AGENTES</strong><small>Fluxos autorizados · avaliação contínua</small><p>Agentes executam tarefas delimitadas sob gestão humana.</p></div></div>
-  <div class="org-foot"><span>UMA ÚNICA ESTRUTURA DE DIREÇÃO.</span><strong>DIFERENTES FORMAS DE PRODUZIR CAPACIDADE.</strong></div>
+  <div class="org-foot"><span>ORGANOGRAMA CONCEITUAL · LIDERANÇA E GESTÃO HUMANAS</span><strong>DIFERENTES FORMAS DE PRODUZIR CAPACIDADE.</strong></div>
  </div>
 </section>
 
@@ -484,16 +525,32 @@ html {scroll-padding-top:20px}
   <article><small>01 / DIREÇÃO</small><strong>Objetivos e autonomia</strong><p>Definir donos, resultados esperados, responsabilidades e até onde cada agente pode agir.</p></article>
   <article><small>02 / QUALIDADE</small><strong>Evals e supervisão</strong><p>Testar casos reais, acompanhar qualidade, evidências e limites antes de ampliar a atuação.</p></article>
   <article><small>03 / EVOLUÇÃO</small><strong>Versões e conhecimento</strong><p>Atualizar fontes, incorporar feedback e desenvolver habilidades com governança.</p></article>
-  <article><small>04 / CONTROLE</small><strong>Arquitetura sob sua direção</strong><p>Priorizar portabilidade de conhecimento e escolhas tecnológicas conscientes, quando viável.</p></article>
+  <article><small>04 / SEGURANÇA + AUTONOMIA</small><strong>Proteção e controle dos dados</strong><p>Planejar acessos, tratamento de dados alinhado à LGPD e escolhas tecnológicas que reduzam dependências desnecessárias.</p></article>
  </div>
+ <div class="data-trust"><div><span>PRIVACIDADE, CONTROLE E CONTINUIDADE</span><strong>Conhecimento proprietário merece uma arquitetura responsável.</strong></div><p>Definição de permissões, proteção de informações sensíveis e critérios para uso de modelos e fornecedores — sem abrir mão da supervisão humana e das escolhas da organização.</p></div>
  <div class="governance-value" id="aplicacoes"><div><span>O QUE ISSO DESBLOQUEIA</span><h3>NÃO É SOBRE TER MAIS IA.<br><em>É SOBRE AMPLIAR O QUE A EMPRESA CONSEGUE FAZER.</em></h3></div><div class="value-metrics"><p><b>01 ↗</b> Expertise disponível para mais pessoas.</p><p><b>02 ↗</b> Processos assistidos ou executados dentro de limites claros.</p><p><b>03 ↗</b> Mais consistência, rastreabilidade e aprendizagem.</p><p><b>04 ↗</b> Conhecimento preservado como ativo da organização.</p></div></div>
- <p class="chapter-footnote">Os benefícios são potenciais e devem ser validados em pilotos. Portabilidade e autonomia dependem das condições técnicas e contratuais de cada projeto.</p>
+ <p class="chapter-footnote">Benefícios e níveis de segurança dependem de implementação, fornecedores e validação em cada projeto. Aderência à LGPD exige medidas técnicas, contratuais e organizacionais; não há garantia de risco zero.</p>
 </section>
 
+
 <section class="narrative-chapter chapter-light diagnostic-invite maturity-section" id="diagnostico">
- <div class="chapter-index">07 / MATURIDADE EM IA <span>UMA PRIMEIRA LEITURA, NÃO UM VEREDITO</span></div>
- <div class="maturity-layout"><div class="maturity-copy"><span class="maturity-overline">A PRÓXIMA TRANSFORMAÇÃO JÁ COMEÇOU</span><h2 class="chapter-title">O QUANTO SUA EMPRESA ESTÁ <em>PREPARADA PARA SER IA FIRST?</em></h2><p>Usar IA ocasionalmente é diferente de construir uma organização capaz de trabalhar com ela. Explore quatro dimensões: conhecimento, processos, qualidade e governança.</p><div class="maturity-aside">AUTODIAGNÓSTICO EXPLORATÓRIO <b>↗</b><small>Quatro perguntas · respostas locais · sem envio de dados</small></div></div>
- <div class="maturity-panel" id="maturityPanel"><div class="maturity-panel-top"><span>DIAGNÓSTICO / PRONTIDÃO PARA IA</span><span id="maturityStepLabel">01 / 04</span></div><div class="maturity-progress" aria-hidden="true"><span id="maturityProgress"></span></div><div id="maturityArea" aria-live="polite"></div><div class="maturity-controls"><button type="button" id="maturityBack" disabled>← VOLTAR</button><span>UMA HIPÓTESE INICIAL, NÃO UMA AVALIAÇÃO CERTIFICADA.</span></div></div></div>
+ <div class="chapter-index">07 / PRONTIDÃO PARA IA <span>UMA PERGUNTA ESTRATÉGICA PARA A LIDERANÇA</span></div>
+ <div class="maturity-layout">
+  <div class="maturity-copy">
+   <span class="maturity-overline">A TRANSFORMAÇÃO COMEÇA COM UM DIAGNÓSTICO</span>
+   <h2 class="chapter-title">SUA EMPRESA USA IA. <em>MAS ESTÁ PRONTA PARA SER IA FIRST?</em></h2>
+   <p>Adotar ferramentas é apenas o começo. A próxima etapa exige conhecimento estruturado, processos claros, avaliação, segurança e governança.</p>
+   <p>Estamos preparando um diagnóstico para ajudar empresas a identificar sua prontidão e oportunidades de evolução.</p>
+  </div>
+  <div class="maturity-preview">
+   <span class="maturity-preview-label">FERRAMENTA / EM PREPARAÇÃO</span>
+   <div class="maturity-mark">✳</div>
+   <h3>DESCUBRA O PRÓXIMO PASSO DA SUA EMPRESA.</h3>
+   <p>Uma avaliação guiada para transformar dúvidas sobre IA em prioridades concretas.</p>
+   <a class="maturity-link" href="#conversa">Tenho interesse no diagnóstico <span>↗</span></a>
+   <small>O formulário completo ainda será disponibilizado. Por enquanto, o botão leva à seção de contato.</small>
+  </div>
+ </div>
 </section>
 <section class="closing section" id="conversa"><div class="section-top">08 / SEU PRÓXIMO MOVIMENTO</div><h2 class="big reveal">O FUTURO DA SUA IA<br><i>COMEÇA COM O QUE VOCÊ JÁ SABE.</i></h2><p>Não é preciso transformar a empresa inteira de uma vez. Vamos identificar uma oportunidade, definir um piloto e testar com critério.</p><a class="primary" href="mailto:contato@exemplo.com?subject=Quero%20conversar%20sobre%20um%20piloto%20de%20IA">Conversar sobre um piloto ↗</a><small>CONTATO DEMONSTRATIVO — CONFIGURAR ANTES DE PUBLICAR</small></section></main>
 <footer><b>✳ conhecimento<span>/vivo</span></b><span>ESTUDO VISUAL · DIREÇÃO V8 / 2026</span><a href="#inicio">VOLTAR AO INÍCIO ↑</a></footer>
@@ -696,6 +753,7 @@ if(journey){
   const buttons=[...document.querySelectorAll('.journey-step')];
   const slides=[...document.querySelectorAll('.journey-card')];
   const compact=window.matchMedia('(max-width:760px)');
+  const short=window.matchMedia('(max-height:680px)');
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   let scheduled=false;
   function setCurrent(index,progress){
@@ -710,7 +768,7 @@ if(journey){
   }
   function syncJourney(){
     scheduled=false;
-    const isStatic=compact.matches||reduced.matches;
+    const isStatic=compact.matches||short.matches||reduced.matches;
     journey.classList.toggle('is-static',isStatic);
     if(isStatic){
       track.style.transform='none';
@@ -732,7 +790,7 @@ if(journey){
     if(!scheduled){scheduled=true;requestAnimationFrame(syncJourney)}
   }
   buttons.forEach((button,index)=>button.addEventListener('click',()=>{
-    if(compact.matches||reduced.matches){
+    if(compact.matches||short.matches||reduced.matches){
       slides[index].scrollIntoView({behavior:reduced.matches?'auto':'smooth',block:'start'});
     }else{
       const sectionTop=window.scrollY+journey.getBoundingClientRect().top;
@@ -743,64 +801,9 @@ if(journey){
   window.addEventListener('scroll',requestSync,{passive:true});
   window.addEventListener('resize',requestSync);
   if(compact.addEventListener)compact.addEventListener('change',requestSync);
+  if(short.addEventListener)short.addEventListener('change',requestSync);
   if(reduced.addEventListener)reduced.addEventListener('change',requestSync);
   syncJourney();
-}
-/* V8 / autodiagnóstico exploratório em quatro dimensões */
-const maturityArea=document.getElementById('maturityArea');
-if(maturityArea){
-  const questions=[
-    {topic:'CONHECIMENTO',title:'Onde vivem os critérios que orientam decisões importantes?',options:['Na experiência de algumas pessoas.','Em conversas e documentos dispersos.','Em procedimentos conhecidos e parcialmente organizados.','Em bases revisadas, com fontes, exceções e responsáveis claros.']},
-    {topic:'PROCESSOS',title:'Como a IA participa das rotinas da sua empresa hoje?',options:['Quase não é utilizada.','Pessoas usam ferramentas por iniciativa própria.','Existem casos de uso delimitados e algum processo definido.','IA apoia processos com objetivos, responsáveis e integração planejados.']},
-    {topic:'QUALIDADE',title:'Como vocês verificam a qualidade do que a IA produz?',options:['Ainda não verificamos de forma consistente.','Conferimos quando algo parece errado.','Especialistas revisam casos e critérios conhecidos.','Mantemos testes repetíveis, indicadores e revisão de falhas.']},
-    {topic:'GOVERNANÇA',title:'Quem define os limites e acompanha a evolução dessas soluções?',options:['Não há responsabilidades definidas.','Cada equipe decide por conta própria.','Existem donos, aprovações e regras para parte dos usos.','Há gestão de acessos, supervisão, versões e plano de evolução.']}
-  ];
-  const answers=[];
-  let step=0;
-  const label=document.getElementById('maturityStepLabel');
-  const progress=document.getElementById('maturityProgress');
-  const back=document.getElementById('maturityBack');
-  function renderMaturity(){
-    const done=step>=questions.length;
-    label.textContent=done?'RESULTADO':'0'+(step+1)+' / 04';
-    progress.style.width=(done?100:(step+1)*25)+'%';
-    back.disabled=step===0||done;
-    if(done){
-      const total=answers.reduce((sum,value)=>sum+value,0);
-      const stage=total<=4?0:total<=8?1:2;
-      const titles=['A oportunidade começa pela base.','Sua empresa já está em movimento.','Há fundamentos para ir além.'];
-      const descs=[
-        'Suas respostas sugerem que organizar conhecimento, definir responsáveis e escolher um piloto podem ser os passos mais úteis antes de ampliar o uso de IA.',
-        'Já existem práticas importantes. A próxima oportunidade é conectar processos, critérios de qualidade e governança em capacidades mais consistentes.',
-        'Sua empresa relata práticas relativamente estruturadas. O próximo passo pode ser testar uma capacidade especializada com indicadores, supervisão e evolução planejada.'
-      ];
-      const card=document.createElement('div');card.className='maturity-result';
-      card.innerHTML='<span class="maturity-result-badge">LEITURA EXPLORATÓRIA / PRONTIDÃO PARA IA</span><h3>'+titles[stage]+'</h3><p>'+descs[stage]+'</p><div class="maturity-score">SINAL INDICATIVO: '+total+' / 12 · BASEADO EM RESPOSTAS AUTODECLARADAS</div><p>Este questionário não mede maturidade certificada nem garante resultados. Um diagnóstico real exige evidências, entrevistas e avaliação técnica.</p><a href="#conversa">CONVERSAR SOBRE O PRÓXIMO PASSO ↗</a><button type="button" id="maturityRestart">REFAZER</button>';
-      maturityArea.replaceChildren(card);
-      document.getElementById('maturityRestart').addEventListener('click',()=>{answers.length=0;step=0;renderMaturity()});
-      return;
-    }
-    const q=questions[step];
-    const content=document.createElement('div');
-    const kicker=document.createElement('div');kicker.className='maturity-question-kicker';kicker.textContent='DIMENSÃO '+(step+1)+' · '+q.topic;
-    const h=document.createElement('h3');h.className='maturity-question';h.textContent=q.title;
-    const options=document.createElement('div');options.className='maturity-options';
-    q.options.forEach((option,index)=>{
-      const btn=document.createElement('button');
-      btn.type='button';btn.className='maturity-choice';
-      const code=document.createElement('b');code.textContent='0'+(index+1);
-      const sentence=document.createElement('span');sentence.textContent=option;
-      btn.append(code,sentence);
-      btn.addEventListener('click',()=>{answers[step]=index;step++;renderMaturity()});
-      options.append(btn);
-    });
-    content.append(kicker,h,options);
-    maturityArea.replaceChildren(content);
-  }
-  back.addEventListener('click',()=>{
-    if(step>0&&step<=4){step--;answers.splice(step);renderMaturity()}
-  });
-  renderMaturity();
 }
 
 })();
