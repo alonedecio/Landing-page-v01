@@ -176,32 +176,263 @@ button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{o
 <script>(function(){
 'use strict';
 const dimensions=[
- {id:'adocao',label:'Adoção pela equipe',short:'Adoção',action:'transformar bons usos em práticas de equipe',strength:'Existem práticas relatadas que podem ser compartilhadas e consolidadas.',risk:'a repetição das boas práticas entre equipes',steps:['Escolha uma tarefa frequente e registre um modo de usar IA que funcionou.','Defina uma pessoa responsável por atualizar o exemplo e compartilhá-lo.','Veja se outra pessoa consegue repetir o resultado com qualidade.'],owner:'Liderança da equipe',proof:'Um exemplo reproduzido com qualidade'},
- {id:'resultados',label:'Resultados',short:'Resultados',action:'medir o valor do que vocês já fazem',strength:'Há relatos de critérios ou medições que ajudam a identificar valor.',risk:'a escolha de aplicações que geram impacto',steps:['Escolha um processo e registre tempo, retrabalho ou qualidade atuais.','Defina uma meta concreta para o teste.','Compare a execução antes e depois, incluindo revisão humana.'],owner:'Responsável pelo processo',proof:'Uma medida antes e depois'},
- {id:'conhecimento',label:'Conhecimento interno',short:'Conhecimento',action:'tornar a experiência da empresa acessível',strength:'Há critérios e fontes relatados que podem orientar aplicações mais consistentes.',risk:'o acesso a critérios e respostas confiáveis',steps:['Documente cinco dúvidas recorrentes e os critérios que especialistas usam.','Organize fontes, responsáveis e data de revisão.','Teste casos comuns e exceções com um especialista.'],owner:'Especialista da área',proof:'Fontes e casos revisados'},
- {id:'seguranca',label:'Segurança e qualidade',short:'Segurança',action:'criar controles para avançar com confiança',strength:'Há práticas relatadas de proteção e avaliação a desenvolver com as equipes.',risk:'a ampliação segura das soluções',steps:['Identifique dados que não podem ser compartilhados sem avaliação.','Defina permissões e casos de teste com revisão humana.','Verifique falhas, fontes e limites antes de ampliar uso.'],owner:'Responsável pela solução e proteção de dados',proof:'Casos de teste e permissões revistos'},
- {id:'processos',label:'Processos e integrações',short:'Processos',action:'ligar a IA ao trabalho que precisa acontecer',strength:'Há iniciativas relatadas que ligam IA a etapas reais dos processos.',risk:'a execução consistente de tarefas e fluxos',steps:['Mapeie uma atividade repetitiva com início, fim e responsável.','Verifique sistemas, acessos e possibilidades de integração.','Teste execução limitada e acompanhe exceções.'],owner:'Responsável operacional',proof:'Um fluxo delimitado avaliado'},
- {id:'gestao',label:'Gestão de agentes',short:'Gestão',action:'definir como as soluções serão acompanhadas',strength:'Há iniciativas relatadas de supervisão e responsabilidade pelos agentes.',risk:'a supervisão e evolução das capacidades digitais',steps:['Defina o que a solução pode executar e o que exige aprovação.','Atribua donos de negócio e técnico, com forma de interromper a execução.','Revise ações, erros, versões e indicadores periodicamente.'],owner:'Gestor responsável e equipe técnica',proof:'Aprovações e revisões registradas'}
+ {
+  "id": "adocao",
+  "label": "Team adoption",
+  "short": "Adoption",
+  "action": "turn effective AI uses into team practices",
+  "strength": "Your answers indicate practices that could be shared and strengthened.",
+  "risk": "the ability to repeat good practices across teams",
+  "steps": [
+   "Choose a frequent task and document an AI-assisted approach that worked.",
+   "Assign someone to maintain the example and share it with colleagues.",
+   "See whether another person can repeat the result to an acceptable standard."
+  ],
+  "owner": "Team leader",
+  "proof": "An example successfully reproduced"
+ },
+ {
+  "id": "resultados",
+  "label": "Results",
+  "short": "Results",
+  "action": "measure the value of what you already do",
+  "strength": "Your answers suggest that some criteria or measurements are already helping you identify value.",
+  "risk": "your ability to choose applications with real impact",
+  "steps": [
+   "Pick a process and record its current time, rework or quality.",
+   "Define a measurable goal for the trial.",
+   "Compare before and after, including human review."
+  ],
+  "owner": "Process owner",
+  "proof": "A before-and-after measure"
+ },
+ {
+  "id": "conhecimento",
+  "label": "Internal knowledge",
+  "short": "Knowledge",
+  "action": "make your company's expertise accessible",
+  "strength": "Your answers suggest that business criteria and sources may support more consistent applications.",
+  "risk": "access to reliable criteria and answers",
+  "steps": [
+   "Document five recurring questions and the criteria experts use to answer them.",
+   "Organise sources, responsible owners and review dates.",
+   "Test standard cases and exceptions with a specialist."
+  ],
+  "owner": "Subject-matter expert",
+  "proof": "Reviewed sources and test cases"
+ },
+ {
+  "id": "seguranca",
+  "label": "Security and quality",
+  "short": "Security",
+  "action": "put controls in place to progress confidently",
+  "strength": "Your answers indicate some practices for protecting and assessing AI use.",
+  "risk": "the safe expansion of AI solutions",
+  "steps": [
+   "Identify information that should not be shared without assessment.",
+   "Set permissions and test cases with human review.",
+   "Check failures, sources and limits before expanding use."
+  ],
+  "owner": "Solution owner and data protection lead",
+  "proof": "Reviewed tests and permissions"
+ },
+ {
+  "id": "processos",
+  "label": "Processes and integrations",
+  "short": "Processes",
+  "action": "connect AI to the work that needs to happen",
+  "strength": "Your answers suggest that AI is already supporting real process steps.",
+  "risk": "the reliable execution of tasks and workflows",
+  "steps": [
+   "Map a repetitive activity with a clear start, finish and owner.",
+   "Review systems, access requirements and integration options.",
+   "Test a limited workflow and monitor exceptions."
+  ],
+  "owner": "Operations owner",
+  "proof": "An evaluated, defined workflow"
+ },
+ {
+  "id": "gestao",
+  "label": "Agent management",
+  "short": "Management",
+  "action": "define how AI solutions will be managed",
+  "strength": "Your answers indicate some oversight and accountability for agents.",
+  "risk": "the oversight and evolution of digital capabilities",
+  "steps": [
+   "Define what the solution can do and what requires approval.",
+   "Assign business and technical owners, with a way to stop execution.",
+   "Review actions, errors, versions and indicators regularly."
+  ],
+  "owner": "Accountable manager and technical team",
+  "proof": "Recorded approvals and reviews"
+ }
 ];
 const phases=[
- {title:'Pessoas e resultados',entry:'A IA já faz parte da rotina. Mas o que ela muda de verdade?',help:'Vamos olhar para o que as equipes fazem e para o que a empresa consegue comprovar.',questions:[
-  {dim:'adocao',q:'Hoje, como a IA aparece no trabalho da sua equipe?',help:'Considere o uso mais comum, não apenas quem é entusiasta.',options:['Ainda não faz parte da rotina.','Algumas pessoas testam por iniciativa própria.','O uso é frequente, mas cada pessoa faz de um jeito.','Temos práticas compartilhadas para tarefas definidas.','Faz parte de rotinas com responsáveis e revisão.']},
-  {dim:'adocao',q:'Quando alguém descobre um bom uso de IA, o que acontece?',help:'Uma boa ideia se multiplica — ou fica com quem a criou?',options:['Ainda não temos usos relevantes para compartilhar.','O aprendizado costuma ficar com a pessoa.','Compartilhamos dicas de maneira informal.','Registramos instruções e exemplos reutilizáveis.','Revisamos e disseminamos boas práticas entre equipes.']},
-  {dim:'resultados',q:'Como vocês decidem onde vale aplicar IA?',help:'Pense na escolha dos casos de uso, não na ferramenta.',options:['Ainda não escolhemos casos de uso.','Testamos novidades conforme surgem.','Priorizamos tarefas que parecem mais rápidas com IA.','Escolhemos processos com problemas e objetivos claros.','Priorizamos por impacto, viabilidade e riscos.']},
-  {dim:'resultados',q:'Como vocês sabem se a IA está melhorando o trabalho?',help:'Perceber ganho é um começo; demonstrá-lo ajuda a decidir.',options:['Ainda não avaliamos resultados.','O ganho é percebido pelas pessoas.','Temos exemplos de tempo ou retrabalho reduzido.','Medimos antes e depois em alguns processos.','Acompanhamos qualidade, tempo e impacto ao longo do tempo.']}
- ]},
- {title:'Conhecimento e confiança',entry:'Uma boa IA precisa conhecer seu negócio — e respeitar seus limites.',help:'Agora vamos olhar para fontes, critérios, segurança e qualidade.',questions:[
-  {dim:'conhecimento',q:'Se uma pessoa experiente se ausentar, onde ficam os critérios das decisões difíceis?',help:'Inclua regras, exceções e o contexto que nem sempre está nos manuais.',options:['Principalmente na experiência de algumas pessoas.','Espalhados em conversas, arquivos e mensagens.','Em procedimentos que cobrem apenas parte dos casos.','Em documentos organizados e revisados por responsáveis.','Em uma base atualizada com critérios, casos e exceções.']},
-  {dim:'conhecimento',q:'Se a IA precisar consultar uma regra interna, como ela encontra a informação?',help:'Pense no acesso a fontes confiáveis durante uma tarefa.',options:['Ainda não consulta informações da empresa.','Alguém copia e cola o conteúdo a cada uso.','Usamos arquivos anexados em projetos específicos.','Consulta fontes autorizadas e identificáveis.','Consulta fontes controladas, atualizadas e rastreáveis.']},
-  {dim:'seguranca',q:'Como vocês definem o que pode ser compartilhado ou feito com IA?',help:'Considere dados sensíveis, fornecedores, permissões e responsáveis.',options:['Ainda não existem orientações claras.','Cada pessoa decide por conta própria.','Há orientações, mas pouco acompanhamento.','Existem regras, permissões e responsáveis definidos.','Os controles são verificados e atualizados regularmente.']},
-  {dim:'seguranca',q:'Quando a IA erra, como o problema é descoberto e corrigido?',help:'Vale para respostas imprecisas, regras antigas e casos fora do padrão.',options:['Ainda não avaliamos as respostas.','Corrigimos quando alguém percebe um erro.','Especialistas revisam respostas mais importantes.','Temos casos de teste e critérios de qualidade.','Testamos novamente após mudanças e acompanhamos falhas.']}
- ]},
- {title:'Processos e gestão',entry:'A pergunta final: até onde a IA ajuda a entregar trabalho real?',help:'Não é preciso automatizar tudo. É preciso saber o que vale executar, sob quais condições e com quem responsável.',questions:[
-  {dim:'processos',q:'Hoje, o que a IA consegue fazer dentro dos processos?',help:'Diferencie produzir uma resposta de concluir uma etapa do trabalho.',options:['Ainda não participa dos processos.','Produz textos ou análises quando alguém solicita.','Apoia etapas definidas de alguns processos.','Executa tarefas delimitadas com ferramentas autorizadas.','Opera fluxos acompanhados, com exceções e indicadores.']},
-  {dim:'processos',q:'Como a IA acessa os sistemas em que o trabalho acontece?',help:'Por exemplo: CRM, ERP, documentos, tickets ou gestão de tarefas.',options:['Não se conecta aos nossos sistemas.','Uma pessoa transfere os dados manualmente.','Usamos anexos, exportações ou automações isoladas.','Temos integrações com acessos e funções definidos.','As integrações são monitoradas, testadas e mantidas.']},
-  {dim:'gestao',q:'Quando uma tarefa foge do padrão, quem decide o que o agente pode fazer?',help:'A autonomia precisa combinar com o risco da tarefa.',options:['Ainda não usamos agentes que executam tarefas.','Cada ação é revisada por uma pessoa, sem critérios claros.','Há regras de revisão, mas ainda informais.','Existem regras claras para agir ou pedir aprovação.','Há limites por risco, registro de ações e intervenção prevista.']},
-  {dim:'gestao',q:'Depois que uma solução com IA entra em uso, quem acompanha sua evolução?',help:'Pense em qualidade, manutenção e quem responde pelos resultados.',options:['Ainda não temos soluções em operação.','Quem criou a solução cuida dela quando necessário.','Existe acompanhamento técnico, sem rotina de negócio.','Há responsáveis de negócio e revisão periódica.','Acompanhamos desempenho, versões, riscos e melhorias.']}
- ]}
+ {
+  "title": "People and results",
+  "entry": "AI may already be part of the routine. But what does it actually change?",
+  "help": "Let's look at what teams do and what the business can demonstrate.",
+  "questions": [
+   {
+    "dim": "adocao",
+    "q": "How does AI feature in your team's work today?",
+    "help": "Think about typical use, not just the keenest early adopters.",
+    "options": [
+     "It is not yet part of our daily work.",
+     "A few people experiment on their own initiative.",
+     "Use is frequent, but everyone works differently.",
+     "We share practices for defined tasks.",
+     "It is part of workflows with named owners and review."
+    ]
+   },
+   {
+    "dim": "adocao",
+    "q": "What happens when someone discovers an effective way to use AI?",
+    "help": "Does a useful idea spread, or stay with the person who found it?",
+    "options": [
+     "We do not yet have meaningful examples to share.",
+     "The learning tends to stay with that person.",
+     "We share tips informally.",
+     "We document reusable instructions and examples.",
+     "We review and spread good practices across teams."
+    ]
+   },
+   {
+    "dim": "resultados",
+    "q": "How do you decide where AI is worth applying?",
+    "help": "Think about how you choose use cases, not which tool you pick.",
+    "options": [
+     "We have not selected use cases yet.",
+     "We try new tools as they appear.",
+     "We prioritise tasks that seem faster with AI.",
+     "We select processes with clear problems and objectives.",
+     "We prioritise impact, feasibility and risk."
+    ]
+   },
+   {
+    "dim": "resultados",
+    "q": "How do you know whether AI is improving the work?",
+    "help": "Perceived benefits are a start; evidence helps you decide.",
+    "options": [
+     "We do not assess results yet.",
+     "People feel that it helps.",
+     "We have examples of saved time or reduced rework.",
+     "We measure before and after in some processes.",
+     "We track quality, time and business impact over time."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "Knowledge and trust",
+  "entry": "Useful AI needs to understand your business — and respect its boundaries.",
+  "help": "Now let's examine sources, criteria, security and quality.",
+  "questions": [
+   {
+    "dim": "conhecimento",
+    "q": "If an experienced colleague is away, where do the criteria for difficult decisions live?",
+    "help": "Include rules, exceptions and context that may not be in formal manuals.",
+    "options": [
+     "Mostly in the experience of a few people.",
+     "Scattered across conversations, files and messages.",
+     "In procedures covering only some situations.",
+     "In organised documents reviewed by named owners.",
+     "In an up-to-date knowledge base with criteria, cases and exceptions."
+    ]
+   },
+   {
+    "dim": "conhecimento",
+    "q": "If AI needs to check an internal rule, how does it find the information?",
+    "help": "Think about access to trustworthy sources during a task.",
+    "options": [
+     "It does not yet consult company information.",
+     "Someone copies and pastes the content each time.",
+     "We attach files to individual projects.",
+     "It consults authorised, identifiable sources.",
+     "It consults controlled, current and traceable sources."
+    ]
+   },
+   {
+    "dim": "seguranca",
+    "q": "How do you define what may be shared with or done by AI?",
+    "help": "Consider sensitive information, providers, permissions and owners.",
+    "options": [
+     "There is no clear guidance yet.",
+     "Everyone decides for themselves.",
+     "We have guidance, but limited oversight.",
+     "We have defined rules, permissions and owners.",
+     "Controls are checked and updated regularly."
+    ]
+   },
+   {
+    "dim": "seguranca",
+    "q": "When AI makes a mistake, how is it found and corrected?",
+    "help": "This includes inaccurate responses, outdated rules and unusual cases.",
+    "options": [
+     "We do not evaluate responses yet.",
+     "We correct errors when someone notices them.",
+     "Specialists review more important responses.",
+     "We have test cases and quality criteria.",
+     "We retest after changes and monitor failures."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "Processes and management",
+  "entry": "One final question: how far does AI help deliver real work?",
+  "help": "You do not need to automate everything. You need to know what is worth executing, under what conditions and with whom accountable.",
+  "questions": [
+   {
+    "dim": "processos",
+    "q": "What can AI do within your processes today?",
+    "help": "Distinguish producing an answer from completing a step of work.",
+    "options": [
+     "It is not involved in our processes yet.",
+     "It produces text or analysis when asked.",
+     "It supports defined steps in some processes.",
+     "It performs bounded tasks using authorised tools.",
+     "It runs monitored workflows with exception handling and metrics."
+    ]
+   },
+   {
+    "dim": "processos",
+    "q": "How does AI access the systems where the work happens?",
+    "help": "For example, CRM, ERP, documents, tickets or task management.",
+    "options": [
+     "It is not connected to our systems.",
+     "Someone moves information between systems manually.",
+     "We use attachments, exports or isolated automations.",
+     "We have integrations with defined access and functions.",
+     "Integrations are monitored, tested and maintained."
+    ]
+   },
+   {
+    "dim": "gestao",
+    "q": "When a task falls outside the standard process, who decides what an agent may do?",
+    "help": "The level of autonomy should match the risk of the task.",
+    "options": [
+     "We do not yet use agents that execute tasks.",
+     "A person reviews each action, but criteria are unclear.",
+     "Review rules exist, but are still informal.",
+     "Clear rules define when an agent can act or must request approval.",
+     "Limits reflect risk, actions are logged and intervention is planned."
+    ]
+   },
+   {
+    "dim": "gestao",
+    "q": "Once an AI solution is in use, who manages its development?",
+    "help": "Think about quality, maintenance and accountability for results.",
+    "options": [
+     "We do not yet have operational AI solutions.",
+     "The person who built it maintains it when needed.",
+     "There is technical monitoring, but no business review routine.",
+     "Business owners are assigned and reviews happen regularly.",
+     "We track performance, versions, risks and improvements."
+    ]
+   }
+  ]
+ }
 ];
 const allQuestions=phases.flatMap(p=>p.questions);
 const levels=[
