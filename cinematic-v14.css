@@ -214,7 +214,8 @@
 .cinematic-v14 .primary:focus-visible,
 .cinematic-v14 .maturity-link:focus-visible {outline:3px solid #a9a7ff;outline-offset:4px}
 @media(max-width:800px) {
- .cinematic-v14 .hero:after {opacity:.4;mask-image:linear-gradient(to bottom,transparent 4%,#000 42%,#000 100%)}
+ .cinematic-v14 .hero:after {opacity:.4;mask-image:linear-gradient(to bottom,transparent 4%,#000 42%,#000 100%);animation:none}
+ .cinematic-v14 .art-graph:before {animation:none}
  .cinematic-v14 .art-graph {filter:none}
  .cinematic-v14 .journey-visual .mock-window {transform:none!important}
  .cinematic-v14 .journey-card:hover .mock-window {box-shadow:0 22px 65px rgba(0,0,0,.28)}
