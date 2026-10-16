@@ -310,7 +310,8 @@ function choosePriority(s){
  const high=available.length===6&&available.every(d=>d.pct>=75);
  const r=axis(s,'resultados'),a=axis(s,'adocao'),k=axis(s,'conhecimento'),sec=axis(s,'seguranca'),proc=axis(s,'processos'),mgr=axis(s,'gestao');
  let id=null,why='';
- if(low&&available.length>=4){
+ if(available.length===0){id='resultados';why='Nenhuma dimensão teve respostas conhecidas. Esta é uma orientação geral para reunir evidências, não uma conclusão sobre sua empresa.';}
+ else if(low&&available.length>=4){
   id='resultados';why='As práticas relatadas ainda estão em formação. Começar com um processo simples e uma medida ajuda a encontrar valor sem ampliar a complexidade.';
  }else if(sec.pct!==null&&sec.pct<50&&((proc.pct!==null&&proc.pct>=50)||(mgr.pct!==null&&mgr.pct>=50))){
   id='seguranca';why='Antes de ampliar execuções, vale revisar permissões, testes e intervenção humana.';
@@ -338,9 +339,9 @@ function getNarrative(s){
  const isStrong=best&&best.pct>=50;
  const first=isStrong?
   {label:'O QUE VOCÊS JÁ TÊM',title:best.label,text:'O sinal mais positivo apareceu em '+best.label+': '+best.strength}:
-  {label:'SEU PONTO DE PARTIDA',title:'Comece com uma oportunidade delimitada',text:'O cenário ainda está em formação. A oportunidade é começar pequeno, com objetivo, responsável e forma de avaliar.'};
- const second=priority.high?{label:'ONDE APROFUNDAR',title:'Testar robustez em um caso específico',text:'Você relatou práticas avançadas. Vale verificar qualidade, riscos e valor real antes de ampliar qualquer solução.'}:{label:'O QUE MERECE ATENÇÃO',title:priority.dim.label,text:priority.dim.label+' pode limitar '+priority.dim.risk+'. Vale validar essa hipótese com a equipe.'};
- const third={label:'O QUE FAZER AGORA',title:'Primeiro passo viável',text:priority.high?'Selecione uma aplicação representativa e repita os testes de qualidade, risco e impacto com especialistas.':priority.dim.steps[0]};
+  {label:'SEU PONTO DE PARTIDA',title:'Comece reunindo evidências',text:best?'As respostas sugerem um cenário ainda em formação. A oportunidade é começar pequeno, com objetivo, responsável e forma de avaliar.':'Ainda não temos informações suficientes para descrever suas práticas. Consulte quem conhece a operação antes de escolher um investimento.'};
+ const second=!best?{label:'O QUE INVESTIGAR',title:'Conhecer a operação primeiro',text:'Sem respostas conhecidas, não é possível identificar um gargalo. Reúna informações dos processos antes de priorizar tecnologia.'}:priority.high?{label:'ONDE APROFUNDAR',title:'Testar robustez em um caso específico',text:'Você relatou práticas avançadas. Vale verificar qualidade, riscos e valor real antes de ampliar qualquer solução.'}:{label:'O QUE MERECE ATENÇÃO',title:priority.dim.label,text:priority.dim.label+' pode limitar '+priority.dim.risk+'. Vale validar essa hipótese com a equipe.'};
+ const third={label:'O QUE FAZER AGORA',title:'Primeiro passo viável',text:!best?'Converse com quem executa uma tarefa recorrente e documente como ela acontece hoje.':priority.high?'Selecione uma aplicação representativa e repita os testes de qualidade, risco e impacto com especialistas.':priority.dim.steps[0]};
  return {priority,first,second,third};
 }
 const svgNS='http://www.w3.org/2000/svg';
@@ -386,7 +387,7 @@ function renderFocus(){
 }
 function renderReport(){
  show('results');const stats=getStats();report=stats;const narrative=getNarrative(stats),p=narrative.priority;
- $('mainAction').textContent=p.dim.action+'.';
+ $('mainAction').textContent=stats.known===0?'esclarecer o cenário com quem conhece seus processos.':p.dim.action+'.';
  $('reportDate').textContent='RELATÓRIO GERADO EM '+new Date().toLocaleDateString('pt-BR');
  $('resultsIntro').textContent='Esta leitura é uma hipótese inicial baseada nas suas respostas. Serve para orientar uma conversa e escolher onde investigar antes de investir.';
  const summary=$('summaryCards');summary.replaceChildren();
