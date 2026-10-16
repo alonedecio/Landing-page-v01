@@ -164,143 +164,294 @@ button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{o
 <div class="next"><span>SE QUISER IR ALÉM DO DIAGNÓSTICO</span><h3>Quer uma segunda leitura para transformar esse mapa em uma decisão?</h3><p>Podemos conversar sobre o que suas respostas sugerem, identificar uma oportunidade concreta e discutir se vale testar um piloto — ou se primeiro precisamos organizar as bases.</p><div class="report-actions"><button class="primary" id="contactOpen" type="button">Conversar sobre meu próximo passo <span>↗</span></button><button class="secondary" type="button" id="print">Salvar meu relatório em PDF ↗</button><button class="secondary" type="button" id="copy">Copiar resumo para compartilhar</button><button class="secondary" type="button" id="restart">Refazer diagnóstico</button></div><p class="fine">O relatório já é seu. Compartilhá-lo e conversar conosco é opcional.</p><div class="contact" id="contactPanel" hidden><h4>Vamos conversar a partir do seu cenário?</h4><p>Você pode copiar o resumo e levá-lo à equipe. O envio de solicitações ainda não está disponível nesta versão de demonstração, pois não há um canal de contato configurado.</p><div class="contact-actions"><button class="secondary" type="button" id="copyContact">Copiar resumo do diagnóstico</button><button class="secondary" type="button" id="contactClose">Voltar ao relatório</button></div></div><p id="copyFeedback" class="mini-note" role="status" aria-live="polite"></p></div>
 <p class="disclaimer">Este diagnóstico é exploratório, baseado em respostas autodeclaradas, e não constitui auditoria, certificação ou projeção financeira. Indicadores e cortes não foram validados como benchmark de mercado. A viabilidade de qualquer aplicação exige avaliação técnica, participação de especialistas e análise dos riscos. As respostas não são enviadas a servidores por esta página.</p></div></section>
 </div></main><footer class="foot"><span>✳ CONHECIMENTO / VIVO · DIAGNÓSTICO EXPLORATÓRIO</span><span>SEM CERTIFICAÇÃO OU BENCHMARK</span></footer>
-<script>
-(function(){
+<script>(function(){
 'use strict';
 const dimensions=[
- {id:'adocao',label:'Adoção',help:'Uso consistente de IA pelas equipes.',tip:'Criar práticas compartilhadas, capacitar pessoas e definir casos de uso recorrentes.'},
- {id:'impacto',label:'Valor',help:'Objetivos e resultados observados.',tip:'Selecionar um processo piloto e definir indicadores de tempo, qualidade ou capacidade.'},
- {id:'contexto',label:'Contexto',help:'Conhecimento e fontes disponíveis para a IA.',tip:'Mapear especialistas, documentar critérios e organizar fontes com revisão.'},
- {id:'governanca',label:'Governança',help:'Qualidade, permissões e proteção de informações.',tip:'Definir responsáveis, acessos, requisitos de LGPD e testes repetíveis com especialistas.'},
- {id:'automacao',label:'Automação',help:'Processos que a IA consegue apoiar ou executar.',tip:'Escolher um fluxo delimitado, documentá-lo e testar integrações autorizadas.'},
- {id:'autonomia',label:'Autonomia',help:'Execução sob objetivos e supervisão definidos.',tip:'Especificar o que o agente pode fazer sozinho, quando pedir aprovação e como auditar ações.'}
+ {id:'adocao',label:'Adoção pela equipe',short:'Adoção',action:'transformar bons usos em práticas de equipe',strength:'Existem práticas relatadas que podem ser compartilhadas e consolidadas.',risk:'a repetição das boas práticas entre equipes',steps:['Escolha uma tarefa frequente e registre um modo de usar IA que funcionou.','Defina uma pessoa responsável por atualizar o exemplo e compartilhá-lo.','Veja se outra pessoa consegue repetir o resultado com qualidade.'],owner:'Liderança da equipe',proof:'Um exemplo reproduzido com qualidade'},
+ {id:'resultados',label:'Resultados',short:'Resultados',action:'medir o valor do que vocês já fazem',strength:'Há relatos de critérios ou medições que ajudam a identificar valor.',risk:'a escolha de aplicações que geram impacto',steps:['Escolha um processo e registre tempo, retrabalho ou qualidade atuais.','Defina uma meta concreta para o teste.','Compare a execução antes e depois, incluindo revisão humana.'],owner:'Responsável pelo processo',proof:'Uma medida antes e depois'},
+ {id:'conhecimento',label:'Conhecimento interno',short:'Conhecimento',action:'tornar a experiência da empresa acessível',strength:'Há critérios e fontes relatados que podem orientar aplicações mais consistentes.',risk:'o acesso a critérios e respostas confiáveis',steps:['Documente cinco dúvidas recorrentes e os critérios que especialistas usam.','Organize fontes, responsáveis e data de revisão.','Teste casos comuns e exceções com um especialista.'],owner:'Especialista da área',proof:'Fontes e casos revisados'},
+ {id:'seguranca',label:'Segurança e qualidade',short:'Segurança e qualidade',action:'criar controles para avançar com confiança',strength:'Há práticas relatadas de proteção e avaliação a desenvolver com as equipes.',risk:'a ampliação segura das soluções',steps:['Identifique dados que não podem ser compartilhados sem avaliação.','Defina permissões e casos de teste com revisão humana.','Verifique falhas, fontes e limites antes de ampliar uso.'],owner:'Responsável pela solução e proteção de dados',proof:'Casos de teste e permissões revistos'},
+ {id:'processos',label:'Processos e integrações',short:'Processos',action:'ligar a IA ao trabalho que precisa acontecer',strength:'Há iniciativas relatadas que ligam IA a etapas reais dos processos.',risk:'a execução consistente de tarefas e fluxos',steps:['Mapeie uma atividade repetitiva com início, fim e responsável.','Verifique sistemas, acessos e possibilidades de integração.','Teste execução limitada e acompanhe exceções.'],owner:'Responsável operacional',proof:'Um fluxo delimitado avaliado'},
+ {id:'gestao',label:'Gestão de agentes',short:'Gestão de agentes',action:'definir como as soluções serão acompanhadas',strength:'Há iniciativas relatadas de supervisão e responsabilidade pelos agentes.',risk:'a supervisão e evolução das capacidades digitais',steps:['Defina o que a solução pode executar e o que exige aprovação.','Atribua donos de negócio e técnico, com forma de interromper a execução.','Revise ações, erros, versões e indicadores periodicamente.'],owner:'Gestor responsável e equipe técnica',proof:'Aprovações e revisões registradas'}
 ];
-const steps=[
- {title:'Pessoas e valor.',description:'Não pergunte o quanto seu time conhece de IA. Pense no que já faz de maneira repetível e no benefício concreto.',questions:[
-  {dim:'adocao',q:'Como a IA aparece no trabalho das equipes?',detail:'Pense no uso real em diferentes áreas, não apenas em entusiastas.',options:['A empresa praticamente não utiliza IA.','Algumas pessoas experimentam por conta própria.','Existem usos frequentes, mas cada pessoa trabalha de um jeito.','A empresa compartilha práticas e orientações para casos de uso.','O uso está integrado a rotinas e responsabilidades definidas.']},
-  {dim:'adocao',q:'O que acontece quando alguém descobre uma boa forma de trabalhar com IA?',detail:'A expertise é individual ou vira capacidade organizacional?',options:['Ainda não existem práticas de IA relevantes.','A descoberta normalmente fica com quem a fez.','Algumas dicas são compartilhadas informalmente.','Prompts, instruções e exemplos são documentados e reutilizados.','Há responsáveis, padrões revisados e aprendizagem entre equipes.']},
-  {dim:'impacto',q:'Por que a empresa investe tempo em IA?',detail:'Considere como as oportunidades são priorizadas.',options:['Não existe objetivo definido.','Por curiosidade e interesse individual.','Para acelerar tarefas pontuais.','Para melhorar indicadores de processos priorizados.','Por metas de negócio acompanhadas e revisadas pela gestão.']},
-  {dim:'impacto',q:'Como vocês comprovam que a IA está agregando valor?',detail:'Ganho percebido não é igual a resultado medido.',options:['Ainda não há acompanhamento.','As pessoas relatam que ficaram mais produtivas.','Há exemplos de tempo ou retrabalho reduzido.','Medimos resultados de algumas aplicações.','Medimos qualidade, capacidade e impacto por processo ao longo do tempo.']}
+const phases=[
+ {title:'Pessoas e resultados',entry:'A IA já faz parte da rotina. Mas o que ela muda de verdade?',help:'Vamos olhar para o que as equipes fazem e para o que a empresa consegue comprovar.',questions:[
+  {dim:'adocao',q:'Hoje, como a IA aparece no trabalho da sua equipe?',help:'Considere o uso mais comum, não apenas quem é entusiasta.',options:['Ainda não faz parte da rotina.','Algumas pessoas testam por iniciativa própria.','O uso é frequente, mas cada pessoa faz de um jeito.','Temos práticas compartilhadas para tarefas definidas.','Faz parte de rotinas com responsáveis e revisão.']},
+  {dim:'adocao',q:'Quando alguém descobre um bom uso de IA, o que acontece?',help:'Uma boa ideia se multiplica — ou fica com quem a criou?',options:['Ainda não temos usos relevantes para compartilhar.','O aprendizado costuma ficar com a pessoa.','Compartilhamos dicas de maneira informal.','Registramos instruções e exemplos reutilizáveis.','Revisamos e disseminamos boas práticas entre equipes.']},
+  {dim:'resultados',q:'Como vocês decidem onde vale aplicar IA?',help:'Pense na escolha dos casos de uso, não na ferramenta.',options:['Ainda não escolhemos casos de uso.','Testamos novidades conforme surgem.','Priorizamos tarefas que parecem mais rápidas com IA.','Escolhemos processos com problemas e objetivos claros.','Priorizamos por impacto, viabilidade e riscos.']},
+  {dim:'resultados',q:'Como vocês sabem se a IA está melhorando o trabalho?',help:'Perceber ganho é um começo; demonstrá-lo ajuda a decidir.',options:['Ainda não avaliamos resultados.','O ganho é percebido pelas pessoas.','Temos exemplos de tempo ou retrabalho reduzido.','Medimos antes e depois em alguns processos.','Acompanhamos qualidade, tempo e impacto ao longo do tempo.']}
  ]},
- {title:'Conhecimento e controle.',description:'Uma IA especializada precisa conhecer as regras do negócio e operar com fontes, critérios de qualidade e limites.',questions:[
-  {dim:'contexto',q:'Onde estão os critérios e exceções que definem boas decisões?',detail:'Quando um caso escapa da regra, o conhecimento está acessível?',options:['Principalmente na experiência de poucas pessoas.','Em conversas e arquivos espalhados.','Em procedimentos parciais, pouco revisados.','Em documentos organizados e mantidos por responsáveis.','Em bases versionadas com casos, fontes, exceções e revisão contínua.']},
-  {dim:'contexto',q:'Quanto contexto da empresa a IA consegue consultar durante uma tarefa?',detail:'Não confunda copiar documentos manualmente com acesso controlado a fontes confiáveis.',options:['Quase nenhum contexto próprio.','Uma pessoa precisa copiar informações em cada uso.','Existem projetos com parte dos documentos anexados.','A IA acessa bases selecionadas, com permissões e referências.','Há acesso controlado, rastreabilidade, atualização e verificação de fontes.']},
-  {dim:'governanca',q:'Como a empresa trata dados sensíveis e autoriza o uso de IA?',detail:'Considere acessos, fornecedores, privacidade e tratamento de dados pessoais.',options:['Ainda não temos regras ou responsabilidades claras.','Cada pessoa decide o que pode compartilhar.','Existem orientações, mas sem verificação consistente.','Há políticas, permissões e responsáveis para os casos adotados.','Controles são testados, revisados e alinhados a requisitos legais e contratuais.']},
-  {dim:'governanca',q:'Como vocês avaliam respostas e decisões produzidas por IA?',detail:'Considere erros, casos difíceis e critérios de aceitação.',options:['Não temos um processo de avaliação.','Revisamos apenas quando algo chama atenção.','Especialistas conferem algumas respostas importantes.','Há casos de referência e critérios de aceitação.','Evals repetíveis, revisão de falhas e supervisão fazem parte das versões.']}
+ {title:'Conhecimento e confiança',entry:'Uma boa IA precisa conhecer seu negócio — e respeitar seus limites.',help:'Agora vamos olhar para fontes, critérios, segurança e qualidade.',questions:[
+  {dim:'conhecimento',q:'Se uma pessoa experiente se ausentar, onde ficam os critérios das decisões difíceis?',help:'Inclua regras, exceções e o contexto que nem sempre está nos manuais.',options:['Principalmente na experiência de algumas pessoas.','Espalhados em conversas, arquivos e mensagens.','Em procedimentos que cobrem apenas parte dos casos.','Em documentos organizados e revisados por responsáveis.','Em uma base atualizada com critérios, casos e exceções.']},
+  {dim:'conhecimento',q:'Se a IA precisar consultar uma regra interna, como ela encontra a informação?',help:'Pense no acesso a fontes confiáveis durante uma tarefa.',options:['Ainda não consulta informações da empresa.','Alguém copia e cola o conteúdo a cada uso.','Usamos arquivos anexados em projetos específicos.','Consulta fontes autorizadas e identificáveis.','Consulta fontes controladas, atualizadas e rastreáveis.']},
+  {dim:'seguranca',q:'Como vocês definem o que pode ser compartilhado ou feito com IA?',help:'Considere dados sensíveis, fornecedores, permissões e responsáveis.',options:['Ainda não existem orientações claras.','Cada pessoa decide por conta própria.','Há orientações, mas pouco acompanhamento.','Existem regras, permissões e responsáveis definidos.','Os controles são verificados e atualizados regularmente.']},
+  {dim:'seguranca',q:'Quando a IA erra, como o problema é descoberto e corrigido?',help:'Vale para respostas imprecisas, regras antigas e casos fora do padrão.',options:['Ainda não avaliamos as respostas.','Corrigimos quando alguém percebe um erro.','Especialistas revisam respostas mais importantes.','Temos casos de teste e critérios de qualidade.','Testamos novamente após mudanças e acompanhamos falhas.']}
  ]},
- {title:'Operação e agentes.',description:'Agora avaliamos a distância entre utilizar IA como ferramenta e operá-la como capacidade digital sob direção humana.',questions:[
-  {dim:'automacao',q:'O que a IA realmente faz nos processos da empresa?',detail:'Diferencie respostas sob demanda de fluxos integrados.',options:['Não participa de processos relevantes.','Responde perguntas e produz materiais quando acionada.','Apoia etapas de alguns processos definidos.','Executa partes de fluxos com dados e ferramentas autorizadas.','Fluxos delimitados operam com acompanhamento, exceções e indicadores.']},
-  {dim:'automacao',q:'Como a IA interage com os sistemas onde o trabalho acontece?',detail:'CRM, ERP, base documental ou ferramentas internas são exemplos.',options:['Não utiliza sistemas da empresa.','Alguém transfere dados manualmente.','Há exportações, anexos ou automações isoladas.','Há integrações com permissões e fluxos definidos.','Integrações são geridas, monitoradas e testadas regularmente.']},
-  {dim:'autonomia',q:'Até onde os agentes podem agir sem autorização a cada etapa?',detail:'Autonomia deve ser proporcional ao risco e ao contexto.',options:['Não existem agentes que executem tarefas.','A IA sugere; pessoas realizam todas as ações.','Algumas ações simples são automatizadas pontualmente.','Existem limites e pontos explícitos de aprovação humana.','Há níveis de autonomia por risco, trilhas de auditoria e reversão prevista.']},
-  {dim:'autonomia',q:'Quem responde pela operação e evolução dos agentes?',detail:'Um agente não elimina a responsabilidade da empresa.',options:['Não há responsáveis definidos.','Cada pessoa gerencia a ferramenta que usa.','Um time técnico acompanha as automações.','Há responsáveis de negócio, supervisão e processo de atualização.','Agentes têm gestão de desempenho, versões, aprovações e plano de evolução.']}
+ {title:'Processos e gestão',entry:'A pergunta final: até onde a IA ajuda a entregar trabalho real?',help:'Não é preciso automatizar tudo. É preciso saber o que vale executar, sob quais condições e com quem responsável.',questions:[
+  {dim:'processos',q:'Hoje, o que a IA consegue fazer dentro dos processos?',help:'Diferencie produzir uma resposta de concluir uma etapa do trabalho.',options:['Ainda não participa dos processos.','Produz textos ou análises quando alguém solicita.','Apoia etapas definidas de alguns processos.','Executa tarefas delimitadas com ferramentas autorizadas.','Opera fluxos acompanhados, com exceções e indicadores.']},
+  {dim:'processos',q:'Como a IA acessa os sistemas em que o trabalho acontece?',help:'Por exemplo: CRM, ERP, documentos, tickets ou gestão de tarefas.',options:['Não se conecta aos nossos sistemas.','Uma pessoa transfere os dados manualmente.','Usamos anexos, exportações ou automações isoladas.','Temos integrações com acessos e funções definidos.','As integrações são monitoradas, testadas e mantidas.']},
+  {dim:'gestao',q:'Quando uma tarefa foge do padrão, quem decide o que o agente pode fazer?',help:'A autonomia precisa combinar com o risco da tarefa.',options:['Ainda não usamos agentes que executam tarefas.','Cada ação é revisada por uma pessoa, sem critérios claros.','Há regras de revisão, mas ainda informais.','Existem regras claras para agir ou pedir aprovação.','Há limites por risco, registro de ações e intervenção prevista.']},
+  {dim:'gestao',q:'Depois que uma solução com IA entra em uso, quem acompanha sua evolução?',help:'Pense em qualidade, manutenção e quem responde pelos resultados.',options:['Ainda não temos soluções em operação.','Quem criou a solução cuida dela quando necessário.','Existe acompanhamento técnico, sem rotina de negócio.','Há responsáveis de negócio e revisão periódica.','Acompanhamos desempenho, versões, riscos e melhorias.']}
  ]}
 ];
-const levelInfo=[
- ['Experimentos isolados','A IA ainda depende de iniciativa individual e de tarefas sob demanda.'],
- ['Uso compartilhado','Pessoas e equipes começam a criar práticas reaproveitáveis.'],
- ['Conhecimento estruturado','Contexto, critérios e fontes começam a sustentar aplicações consistentes.'],
- ['Agentes supervisionados','Processos delimitados passam a ser executados com integrações e supervisão.'],
- ['Capacidades geridas','A empresa administra agentes como ativos, com qualidade, segurança e evolução.']
+const allQuestions=phases.flatMap(p=>p.questions);
+const levels=[
+ ['Primeiros passos','A empresa ainda explora possibilidades e depende de iniciativas pontuais.'],
+ ['Uso em expansão','A IA começa a circular entre pessoas e tarefas, mas ainda há pouca padronização.'],
+ ['Aplicações estruturadas','Casos de uso, fontes e responsabilidades começam a dar consistência aos resultados.'],
+ ['Operação supervisionada','Processos delimitados passam a contar com integrações, critérios e acompanhamento.'],
+ ['Capacidades geridas','A empresa acompanha o desempenho das soluções e evolui suas capacidades com governança.']
 ];
-let step=-1;
-const answers={};
-const el=id=>document.getElementById(id);
-function show(id){['startView','quizView','resultsView'].forEach(x=>el(x).classList.toggle('active',x===id));el('startView').style.display=id==='startView'?'block':'none'}
-function updateSteps(){document.querySelectorAll('.progress-item').forEach(x=>{const n=Number(x.dataset.progress);const cur=step<0?0:step>=3?4:step+1;x.classList.toggle('active',n===cur);x.classList.toggle('finished',n<cur)})}
-function render(){
- updateSteps();
- if(step<0){show('startView');return}
- if(step>=3){show('resultsView');renderResults();return}
- show('quizView');
- const data=steps[step];
- el('stepKicker').textContent='ETAPA 0'+(step+1)+' / 03';
- el('chapterTitle').textContent=data.title;
- el('chapterDescription').textContent=data.description;
- el('fill').style.width=String((step+1)/3*100)+'%';
- el('validation').textContent='';
- const list=el('questionList');list.replaceChildren();
- data.questions.forEach((q,j)=>{
-   const key=String(step)+'-'+String(j);
-   const section=document.createElement('fieldset');section.className='question';section.setAttribute('aria-labelledby','question-title-'+key);section.style.border='0';section.style.margin='0';section.style.minWidth='0';section.style.paddingLeft='0';section.style.paddingRight='0';
-   const legend=document.createElement('legend');legend.className='question-number';legend.textContent='PERGUNTA '+String(step*4+j+1).padStart(2,'0')+' / 12 · '+dimensions.find(d=>d.id===q.dim).label.toUpperCase();legend.style.marginBottom='8px';section.append(legend);
-   const title=document.createElement('h3');title.id='question-title-'+key;title.textContent=q.q;section.append(title);
-   const hint=document.createElement('p');hint.textContent=q.detail;section.append(hint);
-   const options=document.createElement('div');options.className='options';
-   q.options.forEach((label,value)=>{
-     const item=document.createElement('label');item.className='option';
-     const radio=document.createElement('input');radio.type='radio';radio.name='question-'+key;radio.value=String(value);radio.checked=answers[key]===value;
-     radio.addEventListener('change',()=>{answers[key]=value;el('validation').textContent=''});
-     const span=document.createElement('span');span.textContent=label;item.append(radio,span);options.append(item);
-   });section.append(options);list.append(section);
- });
- el('next').innerHTML=step===2?'VER MEU RELATÓRIO <span>↗</span>':'CONTINUAR <span>→</span>';
+const focusData={
+ analistas:{title:'Menos tempo reunindo informação. Mais tempo analisando.',potential:'Um agente pode consultar documentação, políticas e dados autorizados, apoiar relatórios, estruturar e-mails e recuperar argumentos comerciais revisados.',require:'Fontes atualizadas, exemplos de entregas boas e regras de acesso.',evaluate:'Tempo de preparação, correções necessárias e conferência de fontes.',question:'Qual relatório recorrente melhoraria se os analistas encontrassem as respostas certas mais rápido?'},
+ gestao:{title:'Mais visibilidade das entregas. Menos trabalho para acompanhar.',potential:'Um agente pode organizar tarefas, consolidar andamento, sinalizar bloqueios e preparar feedback para revisão do gestor.',require:'Tarefas e responsáveis claros, acesso autorizado às ferramentas e limites para ações.',evaluate:'Atualização das tarefas, tempo de acompanhamento e qualidade do contexto para decisões.',question:'Qual rotina de acompanhamento mais consome o tempo dos gestores hoje?'},
+ clientes:{title:'O cliente não deveria ficar sem contexto quando precisa de ajuda.',potential:'Um agente pode responder dúvidas frequentes fora do horário, consultar informações permitidas, acompanhar solicitações e encaminhar situações sensíveis à equipe.',require:'Base revisada, integração com histórico permitido, privacidade e critérios de encaminhamento.',evaluate:'Tempo até a primeira resposta, resolução adequada, transferências e satisfação.',question:'Em qual momento os clientes ficam esperando por uma informação que a empresa já tem?'},
+ descobrir:{title:'A melhor primeira aplicação costuma surgir de um problema bem definido.',potential:'Busque tarefas recorrentes, critérios relativamente claros e pessoas dispostas a validar resultados.',require:'Uma conversa com quem executa a atividade e algumas amostras reais.',evaluate:'Tempo, qualidade, esforço de implementação e risco.',question:'Qual trabalho recorrente melhoraria se nossas pessoas encontrassem as respostas certas mais rápido?'}
+};
+const $=id=>document.getElementById(id);
+const dom={start:$('startView'),quiz:$('quizView'),insight:$('insightView'),results:$('resultsView')};
+const answers=Array(12).fill(undefined);
+let screen='start',index=0,focus='descobrir',report=null;
+function h(tag,cls,text){
+ const node=document.createElement(tag);
+ if(cls)node.className=cls;
+ if(text!==undefined)node.textContent=text;
+ return node;
 }
-function scores(){
- const dimScores={};dimensions.forEach(d=>dimScores[d.id]=[]);
- steps.forEach((group,i)=>group.questions.forEach((q,j)=>dimScores[q.dim].push(answers[String(i)+'-'+String(j)])));
- const scaled={};dimensions.forEach(d=>scaled[d.id]=Math.round(dimScores[d.id].reduce((a,b)=>a+b,0)/8*100));
- const total=Math.round(Object.values(scaled).reduce((a,b)=>a+b,0)/6);
- let level=Math.min(4,Math.floor(total/20));if(total===100)level=4;
- // Uma pontuação alta não deve ocultar ausência de proteção e avaliação.
- if(scaled.governanca<25)level=Math.min(level,2);
- return {scaled,total,level};
+function show(which){screen=which;Object.entries(dom).forEach(([name,node])=>node.hidden=name!==which);}
+function scrollContent(){const y=$('startView').getBoundingClientRect().top+window.scrollY-18;window.scrollTo({top:Math.max(0,y),behavior:'auto'});}
+function phaseIndex(i){return Math.floor(i/4);}
+function renderQuestion(){
+ show('quiz');
+ const phase=phases[phaseIndex(index)],question=allQuestions[index];
+ $('phaseLabel').textContent='ETAPA '+(phaseIndex(index)+1)+' DE 3 · '+phase.title.toUpperCase();
+ $('questionCount').textContent='PERGUNTA '+String(index+1).padStart(2,'0')+' DE 12';
+ $('progressFill').style.width=String((index+1)/12*100)+'%';
+ $('chapterTitle').textContent=phase.entry;
+ $('chapterDescription').textContent=phase.help;
+ $('validation').textContent='';
+ const root=$('questionList');root.replaceChildren();
+ const field=h('fieldset','question');const legend=h('legend','question-number','PERGUNTA '+String(index+1).padStart(2,'0')+' DE 12 · '+dimensions.find(d=>d.id===question.dim).label.toUpperCase());
+ const title=h('h3','',question.q);title.id='activeQuestion';const hint=h('p','',question.help);const opts=h('div','options');
+ field.setAttribute('aria-labelledby','activeQuestion');
+ field.append(legend,title,hint);
+ question.options.forEach((option,i)=>{
+  const label=h('label','option'),radio=h('input'),span=h('span','',option);
+  radio.type='radio';radio.name='answer';radio.value=String(i+1);radio.checked=answers[index]===i+1;
+  radio.addEventListener('change',()=>{answers[index]=i+1;$('unknown').classList.remove('active');$('unknown').setAttribute('aria-pressed','false');$('validation').textContent=''});
+  label.append(radio,span);opts.append(label);
+ });
+ field.append(opts);root.append(field);
+ const unknown=h('button','unknown'+(answers[index]===null?' active':''),'Não sei responder');
+ unknown.id='unknown';unknown.type='button';unknown.setAttribute('aria-pressed',String(answers[index]===null));
+ unknown.addEventListener('click',()=>{
+  answers[index]=null;
+  opts.querySelectorAll('input').forEach(r=>r.checked=false);
+  unknown.classList.add('active');unknown.setAttribute('aria-pressed','true');$('validation').textContent='';
+ });
+ root.append(unknown);
+ $('next').textContent=index===11?'Ver meu diagnóstico →':'Continuar →';
+ scrollContent();
+}
+function getStats(){
+ const axes=dimensions.map(d=>{
+  const inds=allQuestions.map((q,i)=>q.dim===d.id?i:-1).filter(i=>i>=0);
+  const known=inds.map(i=>answers[i]).filter(v=>Number.isInteger(v));
+  return {...d,indices:inds,n:known.length,pct:known.length?Math.round((known.reduce((a,b)=>a+b,0)/known.length-1)/4*100):null};
+ });
+ const overall=axes.filter(d=>d.pct!==null);
+ const score=overall.length?Math.round(overall.reduce((a,b)=>a+b.pct,0)/overall.length):null;
+ const known=answers.filter(v=>Number.isInteger(v)).length;
+ const canStage=known>=9&&axes.every(d=>d.n>0);
+ const stage=canStage?Math.min(4,Math.floor(score/20)):null;
+ return {axes,score,known,stage};
+}
+function axis(stats,id){return stats.axes.find(d=>d.id===id);}
+function insightContent(number){
+ const stats=getStats(),a=axis(stats,'adocao'),r=axis(stats,'resultados'),k=axis(stats,'conhecimento'),g=axis(stats,'seguranca');
+ if(number===0){
+  if(r.pct!==null&&r.pct<50&&a.pct!==null&&a.pct>=50)return 'Uma observação importante: usar IA com frequência não significa conhecer seu impacto. Medir um processo pode revelar onde vale investir.';
+  if(a.pct!==null&&a.pct<50)return 'O primeiro avanço nem sempre exige uma nova ferramenta. Pode começar ao transformar um uso individual em prática que o time consiga repetir.';
+  if(a.pct===null||r.pct===null)return 'Ainda faltam informações sobre a rotina e seus resultados. Uma conversa com quem executa o trabalho pode ajudar a completar esse retrato.';
+  return 'Bom ponto de partida: transformar bons usos em resultados observáveis ajuda a escolher as próximas oportunidades com mais segurança.';
+ }
+ if(k.pct!==null&&k.pct<50)return 'Um agente não deveria precisar adivinhar a regra do negócio. Organizar fontes e exceções é, muitas vezes, o passo que torna respostas mais úteis.';
+ if(g.pct!==null&&g.pct<50)return 'Informação disponível é importante. Saber quem pode acessá-la e como avaliar a resposta é o que permite ampliar usos com responsabilidade.';
+ if(k.pct===null||g.pct===null)return 'Para avançar com responsabilidade, vale confirmar onde estão as fontes do negócio e quem define os limites de uso.';
+ return 'Fontes revisadas e controles claros formam uma boa base para testar aplicações mais conectadas à operação.';
+}
+function renderInsight(number){
+ show('insight');
+ $('insightLabel').textContent='UMA DESCOBERTA · ETAPA '+(number+1)+' DE 3';
+ $('insightTitle').textContent=number===0?'O USO É UM COMEÇO. O RESULTADO É O QUE IMPORTA.':'O CONTEXTO E OS LIMITES FAZEM DIFERENÇA.';
+ $('insightText').textContent=insightContent(number);
+ $('insightNext').textContent=number===0?'Entender o que sustenta esses resultados →':'Ver o que já pode ganhar escala →';
+ scrollContent();
+}
+function goBack(){
+ if(screen==='insight'){index=index===4?3:7;renderQuestion();return}
+ if(index===0){show('start');scrollContent();return}
+ if(index===4){renderInsight(0);return}
+ if(index===8){renderInsight(1);return}
+ index--;renderQuestion();
+}
+function nextQuestion(){
+ if(answers[index]===undefined){$('validation').textContent='Escolha uma alternativa ou marque “Não sei responder”.';return}
+ if(index===3){index=4;renderInsight(0);return}
+ if(index===7){index=8;renderInsight(1);return}
+ if(index===11){renderReport();return}
+ index++;renderQuestion();
+}
+function choosePriority(s){
+ const available=s.axes.filter(d=>d.pct!==null);
+ const low=available.every(d=>d.pct<50);
+ const high=available.length===6&&available.every(d=>d.pct>=75);
+ const r=axis(s,'resultados'),a=axis(s,'adocao'),k=axis(s,'conhecimento'),sec=axis(s,'seguranca'),proc=axis(s,'processos'),mgr=axis(s,'gestao');
+ const numerically=(id,pct)=>pct!==null&&pct!==undefined&&pct>=0;
+ let id=null,why='';
+ if(low&&available.length>=4){
+  id='resultados';why='As práticas relatadas ainda estão em formação. Começar com um processo simples e uma medida ajuda a encontrar valor sem ampliar a complexidade.';
+ }else if(sec.pct!==null&&sec.pct<50&&((proc.pct!==null&&proc.pct>=50)||(mgr.pct!==null&&mgr.pct>=50))){
+  id='seguranca';why='Antes de ampliar execuções, vale revisar permissões, testes e intervenção humana.';
+ }else if(r.pct!==null&&r.pct<50&&a.pct!==null&&a.pct>=50){
+  id='resultados';why='Você relatou uso de IA na equipe, mas resultados ainda pouco medidos. Uma linha de base pode orientar o investimento.';
+ }else if(k.pct!==null&&k.pct<50&&proc.pct!==null&&proc.pct>=50){
+  id='conhecimento';why='Há uso em processos, mas as fontes e os critérios do negócio ainda merecem atenção antes de ampliar.';
+ }else if(high){
+  const ordered=[...available].sort((x,y)=>x.pct-y.pct);
+  id=ordered[0].id;why='As seis dimensões tiveram respostas elevadas. Vale testar a robustez de uma aplicação específica antes de expandir.';
+ }else{
+  const weight=['seguranca','resultados','conhecimento','processos','gestao','adocao'];
+  const ordered=[...available].sort((x,y)=>x.pct-y.pct||weight.indexOf(x.id)-weight.indexOf(y.id));
+  id=ordered[0]?.id||'resultados';
+  why=ordered.length?'É uma das dimensões que mais merecem investigação segundo as respostas informadas.':'Há poucas respostas conhecidas. Uma conversa sobre um processo concreto ajudará a obter evidências antes de avançar.';
+ }
+ const dim=dimensions.find(d=>d.id===id);
+ const confidence=(axis(s,id)?.n||0)<2;
+ const answerRef=dim.questions||axis(s,id)?.indices.map(i=>'Q'+String(i+1).padStart(2,'0')).join(' e ');
+ return {dim,why,confidence,answerRef,high,low};
+}
+function getNarrative(s){
+ const ranked=s.axes.filter(d=>d.pct!==null).sort((a,b)=>b.pct-a.pct);
+ const best=ranked[0];const priority=choosePriority(s);
+ const isStrong=best&&best.pct>=50;
+ const first=isStrong?
+  {label:'O QUE VOCÊS JÁ TÊM',title:best.label,text:'O sinal mais positivo apareceu em '+best.label+': '+best.strength}:
+  {label:'SEU PONTO DE PARTIDA',title:'Comece com uma oportunidade delimitada',text:'O cenário ainda está em formação. A oportunidade é começar pequeno, com objetivo, responsável e forma de avaliar.'};
+ const second={label:'O QUE MERECE ATENÇÃO',title:priority.dim.label,text:priority.dim.label+' pode limitar '+priority.dim.risk+'. Vale validar essa hipótese com a equipe.'};
+ const third={label:'O QUE FAZER AGORA',title:'Primeiro passo viável',text:priority.dim.steps[0]};
+ return {priority,first,second,third};
 }
 const svgNS='http://www.w3.org/2000/svg';
-function drawRadar(values){
- const n=dimensions.length,cx=190,cy=185,r=126;
- const xy=(i,f)=>{const a=i*Math.PI*2/n-Math.PI/2;return [cx+Math.cos(a)*r*f,cy+Math.sin(a)*r*f]};
- const points=(fraction)=>dimensions.map((d,i)=>xy(i,fraction).join(',')).join(' ');
- const chart=document.createElementNS(svgNS,'svg');chart.setAttribute('viewBox','0 0 380 385');chart.setAttribute('role','img');chart.setAttribute('aria-label','Radar de seis dimensões da maturidade. As pontuações exatas aparecem na lista ao lado.');
- const polygon=(p,fill,stroke,width)=>{const e=document.createElementNS(svgNS,'polygon');e.setAttribute('points',p);e.setAttribute('fill',fill);e.setAttribute('stroke',stroke);e.setAttribute('stroke-width',width);chart.append(e)};
- [1,.75,.5,.25].forEach(f=>polygon(points(f),'none','#b0c8b3',1));
- dimensions.forEach((d,i)=>{let p=xy(i,1);let line=document.createElementNS(svgNS,'line');line.setAttribute('x1',cx);line.setAttribute('y1',cy);line.setAttribute('x2',p[0]);line.setAttribute('y2',p[1]);line.setAttribute('stroke','#bed0c0');chart.append(line);
-   const lab=xy(i,1.25);const t=document.createElementNS(svgNS,'text');t.setAttribute('x',lab[0]);t.setAttribute('y',lab[1]);t.setAttribute('text-anchor','middle');t.setAttribute('dominant-baseline','middle');t.setAttribute('font-size','11');t.setAttribute('font-family','IBM Plex Mono, monospace');t.setAttribute('fill','#496e51');t.textContent=d.label;chart.append(t);
+function svgEl(name,attrs){const node=document.createElementNS(svgNS,name);Object.entries(attrs).forEach(([k,v])=>node.setAttribute(k,String(v)));return node}
+function drawRadar(s){
+ const cx=185,cy=185,R=119,n=6;
+ const xy=(i,f)=>{const a=Math.PI*2*i/n-Math.PI/2;return [cx+Math.cos(a)*R*f,cy+Math.sin(a)*R*f]};
+ const pts=f=>s.axes.map((d,i)=>xy(i,f).join(',')).join(' ');
+ const svg=svgEl('svg',{viewBox:'0 0 370 380',role:'img','aria-label':'Radar em seis dimensões. Pontuações disponíveis em texto ao lado.'});
+ [1,.75,.5,.25].forEach(v=>svg.append(svgEl('polygon',{points:pts(v),fill:'none',stroke:'#b6cbb8','stroke-width':1})));
+ s.axes.forEach((d,i)=>{
+  const [x,y]=xy(i,1);svg.append(svgEl('line',{x1:cx,y1:cy,x2:x,y2:y,stroke:'#c0d3c1'}));
+  const [tx,ty]=xy(i,1.29);const label=svgEl('text',{x:tx,y:ty,'text-anchor':'middle','dominant-baseline':'middle',fill:'#446950','font-family':'IBM Plex Mono, monospace','font-size':10});
+  label.textContent=d.short;svg.append(label);
  });
- polygon(dimensions.map((d,i)=>xy(i,values[d.id]/100).join(',')).join(' '),'#64ac7840','#2e9657',2.5);
- dimensions.forEach((d,i)=>{let [x,y]=xy(i,values[d.id]/100);const dot=document.createElementNS(svgNS,'circle');dot.setAttribute('cx',x);dot.setAttribute('cy',y);dot.setAttribute('r',4);dot.setAttribute('fill','#227947');chart.append(dot)});
- el('radar').replaceChildren(chart);
+ const pol=svgEl('polygon',{points:s.axes.map((d,i)=>xy(i,(d.pct??0)/100).join(',')).join(' '),fill:'#64ac7840',stroke:'#2e9657','stroke-width':2});
+ svg.append(pol);
+ s.axes.forEach((d,i)=>{if(d.pct===null)return;const [x,y]=xy(i,d.pct/100);svg.append(svgEl('circle',{cx:x,cy:y,r:4,fill:'#247b4d'}))});
+ $('radar').replaceChildren(svg);
+ const bars=$('bars');bars.replaceChildren();
+ s.axes.forEach(d=>{
+  const box=h('div'),line=h('div','metric-line'),name=h('span','',d.label),number=h('b','',d.pct===null?'Sem dados':d.pct+'%');
+  const bar=h('div','bar'),inner=h('span');inner.style.width=(d.pct??0)+'%';
+  line.append(name,number);bar.append(inner);box.append(line,bar);
+  if(d.n===1)box.append(h('span','mini-note','Menor confiança: 1 resposta conhecida.'));
+  bars.append(box);
+ });
 }
-function renderResults(){
- const {scaled,total,level}=scores();el('totalScore').innerHTML=String(total)+'<small>/100</small>';
- el('stageName').textContent='NÍVEL '+(level+1)+' · '+levelInfo[level][0];
- const rawLevel=Math.min(4,Math.floor(total/20));
- el('stageDescription').textContent=levelInfo[level][1]+(scaled.governanca<25&&level<rawLevel?' O estágio foi limitado pela baixa pontuação em governança: aumentar autonomia sem controles não representa maturidade sustentável.':'');
- drawRadar(scaled);
- const bars=el('bars');bars.replaceChildren();
- dimensions.forEach(d=>{
-  const box=document.createElement('div');const line=document.createElement('div');line.className='metric-line';
-  const label=document.createElement('span');label.textContent=d.label;
-  const val=document.createElement('b');val.textContent=scaled[d.id]+'%';line.append(label,val);
-  const bar=document.createElement('div');bar.className='bar';const fill=document.createElement('span');fill.style.width=scaled[d.id]+'%';bar.append(fill);box.append(line,bar);bars.append(box);
+function renderLevels(s){
+ const root=$('levels');root.replaceChildren();
+ levels.forEach((item,i)=>{
+  const card=h('div','level'+(s.stage===i?' current':''));
+  card.append(h('b','','0'+(i+1)),h('strong','',item[0]),h('span','',s.stage===i?'SEU ESTÁGIO INDICATIVO':item[1]));root.append(card);
  });
- const ranked=[...dimensions].sort((a,b)=>scaled[a.id]-scaled[b.id]);
- const cards=el('gaps');cards.replaceChildren();
- ranked.slice(0,3).forEach((d,i)=>{const card=document.createElement('div');card.className='gap-card';
-  const small=document.createElement('small');small.textContent='PRIORIDADE '+String(i+1).padStart(2,'0')+' · '+scaled[d.id]+'%';
-  const title=document.createElement('strong');title.textContent=d.label;
-  const p=document.createElement('p');p.textContent=d.tip;card.append(small,title,p);cards.append(card);
- });
- const stages=el('levels');stages.replaceChildren();
- levelInfo.forEach((l,i)=>{const item=document.createElement('div');item.className='level'+(i===level?' current':'');
-  const n=document.createElement('b');n.textContent='0'+(i+1);
-  const name=document.createElement('strong');name.textContent=l[0];
-  const desc=document.createElement('span');desc.textContent=i===level?'SEU ESTÁGIO INDICATIVO':l[1];
-  item.append(n,name,desc);stages.append(item);
- });
- el('nextDescription').textContent='Seu ponto de atenção mais imediato é '+ranked[0].label.toLowerCase()+'. Podemos validar essa hipótese com especialistas, escolher uma oportunidade concreta e desenhar um piloto com critérios de sucesso, proteção de dados e evolução.';
 }
-function scrollToForm(){const target=document.querySelector('.shell');const top=target.getBoundingClientRect().top+window.scrollY-15;window.scrollTo({top:Math.max(0,top),behavior:'auto'})}
-function go(n){step=n;render();if(n>=0)scrollToForm();else window.scrollTo({top:0,behavior:'auto'})}
-el('begin').addEventListener('click',()=>go(0));
-el('back').addEventListener('click',()=>go(step-1));
-el('quizForm').addEventListener('submit',e=>{
- e.preventDefault();const missing=steps[step].questions.findIndex((q,j)=>answers[String(step)+'-'+String(j)]===undefined);
- if(missing>=0){el('validation').textContent='Responda todas as quatro perguntas desta etapa para continuar.';const field=el('questionList').children[missing];field.scrollIntoView({behavior:'smooth',block:'center'});const radio=field.querySelector('input');radio.focus({preventScroll:true});return}
- go(step+1);
-});
-el('restart').addEventListener('click',()=>{Object.keys(answers).forEach(k=>delete answers[k]);go(-1)});
-el('print').addEventListener('click',()=>window.print());
-render();
-})();
-</script>
+function renderFocus(){
+ const data=focusData[focus],root=$('focusCard');root.replaceChildren();
+ root.append(h('h4','',data.title));
+ const rows=[['POSSIBILIDADE',data.potential],['PARA VIABILIZAR',data.require],['COMO AVALIAR',data.evaluate]];
+ rows.forEach(([label,body])=>{const p=h('p');p.append(h('b','',label+' · '),document.createTextNode(body));root.append(p)});
+ $('teamQuestion').textContent='Uma pergunta para discutir na próxima reunião: '+data.question;
+ document.querySelectorAll('[data-focus]').forEach(btn=>btn.setAttribute('aria-pressed',String(btn.dataset.focus===focus)));
+}
+function renderReport(){
+ show('results');const stats=getStats();report=stats;const narrative=getNarrative(stats),p=narrative.priority;
+ $('mainAction').textContent=p.dim.action+'.';
+ $('resultsIntro').textContent='Esta leitura é uma hipótese inicial baseada nas suas respostas. Serve para orientar uma conversa e escolher onde investigar antes de investir.';
+ const summary=$('summaryCards');summary.replaceChildren();
+ [narrative.first,narrative.second,narrative.third].forEach(item=>{
+  const card=h('article','gap-card');card.append(h('small','',item.label),h('strong','',item.title),h('p','',item.text));summary.append(card);
+ });
+ const incomplete=stats.known<9||stats.axes.some(d=>d.n===0), manyUnknown=stats.known<=8;
+ const flags=[];
+ if(incomplete)flags.push('Este retrato está incompleto. Use as recomendações como hipóteses e envolva quem conhece os processos antes de decidir.');
+ if(p.confidence)flags.push('A prioridade indicada tem menos de duas respostas conhecidas e precisa ser confirmada.');
+ if(axis(stats,'seguranca').pct!==null&&axis(stats,'seguranca').pct<50&&(axis(stats,'processos').pct>=50||axis(stats,'gestao').pct>=50))flags.push('Antes de ampliar execuções, vale revisar permissões, testes e intervenção humana.');
+ $('confidenceWarning').hidden=flags.length===0;$('confidenceWarning').textContent=flags.join(' ');
+ $('totalScore').replaceChildren(document.createTextNode(stats.score===null?'—':String(stats.score)),h('small','','/100'));
+ $('stageName').textContent=stats.stage===null?'Leitura parcial — estágio não calculado':'NÍVEL '+(stats.stage+1)+' · '+levels[stats.stage][0];
+ $('stageDescription').textContent=stats.stage===null?'Responda aos itens que puder para ter um estágio indicativo. São necessárias pelo menos 9 respostas conhecidas e uma em cada dimensão.':levels[stats.stage][1];
+ drawRadar(stats);
+ const cards=$('priorityCards');cards.replaceChildren();
+ ['FAZER AGORA','PREPARAR','VALIDAR'].forEach((label,i)=>{
+  const card=h('article','gap-card');card.append(h('small','',label),h('strong','',p.dim.label),h('p','',p.dim.steps[i]));
+  if(i===0)card.append(h('p','','Responsável sugerido: '+p.dim.owner+'. Evidência: '+p.dim.proof+'.'));
+  cards.append(card);
+ });
+ $('priorityReason').textContent='Por que esta recomendação apareceu: '+p.why+' Eixo relacionado: '+(p.answerRef||'respostas disponíveis')+'.';
+ renderFocus();renderLevels(stats);
+ const plan=$('actionList');plan.replaceChildren();
+ [['01 / ESCOLHER','Selecione um processo com dor real, dono claro e impacto observável.'],['02 / PREPARAR','Organize os conhecimentos e controles necessários para esse caso.'],['03 / TESTAR','Avalie com situações reais e compare resultado, qualidade e esforço.']].forEach(([label,copy])=>{
+  const card=h('article');card.append(h('small','',label),h('p','',copy));plan.append(card);
+ });
+ $('contactPanel').hidden=true;$('copyFeedback').textContent='';
+ scrollContent();
+}
+function summaryText(){
+ if(!report)return '';
+ const story=getNarrative(report),p=story.priority;
+ return ['Conhecimento/Vivo · Diagnóstico de maturidade em IA','Data: '+new Date().toLocaleDateString('pt-BR'),'Respostas conhecidas: '+report.known+'/12',
+ 'Índice exploratório: '+(report.score===null?'não disponível':report.score+'/100'),
+ 'Estágio: '+(report.stage===null?'Leitura parcial':levels[report.stage][0]),
+ 'Ponto de apoio: '+story.first.title+' — '+story.first.text,'Prioridade: '+p.dim.label+' — '+p.why,
+ ...report.axes.map(d=>d.label+': '+(d.pct===null?'sem respostas':d.pct+'%')+(d.n===1?' (menor confiança)':'')),
+ 'Fazer agora: '+p.dim.steps[0],'Preparar: '+p.dim.steps[1],'Validar: '+p.dim.steps[2],
+ 'Frente de interesse: '+focusData[focus].title,'Possibilidade: '+focusData[focus].potential,
+ 'Plano: Escolher um processo; preparar conhecimentos e controles; testar e medir.',
+ 'Este é um diagnóstico exploratório autodeclarado, não uma certificação ou benchmark.'].join('\n');
+}
+async function copySummary(){
+ const content=summaryText();
+ try{
+  if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(content)}
+  else{
+   const input=h('textarea');input.value=content;input.style.position='fixed';input.style.left='-9999px';document.body.append(input);input.select();
+   const copied=document.execCommand('copy');input.remove();if(!copied)throw Error('copy failed');
+  }
+  $('copyFeedback').textContent='Resumo copiado. Você pode compartilhar com sua equipe quando quiser.';
+ }catch(e){$('copyFeedback').textContent='Não foi possível copiar automaticamente. Tente usar a função de impressão ou cópia do navegador.'}
+}
+$('begin').addEventListener('click',()=>{index=0;renderQuestion()});
+$('quizForm').addEventListener('submit',e=>{e.preventDefault();nextQuestion()});
+$('back').addEventListener('click',goBack);
+$('insightBack').addEventListener('click',()=>{index=index===4?3:7;renderQuestion()});
+$('insightNext').addEventListener('click',()=>{renderQuestion()});
+$('print').addEventListener('click',()=>window.print());
+$('copy').addEventListener('click',copySummary);
+$('copyContact').addEventListener('click',copySummary);
+$('contactOpen').addEventListener('click',()=>{$('contactPanel').hidden=false;$('contactPanel').scrollIntoView({block:'nearest',behavior:'auto'})});
+$('contactClose').addEventListener('click',()=>{$('contactPanel').hidden=true;$('contactOpen').focus()});
+$('restart').addEventListener('click',()=>{answers.fill(undefined);focus='descobrir';report=null;show('start');scrollContent()});
+document.querySelectorAll('[data-focus]').forEach(btn=>btn.addEventListener('click',()=>{focus=btn.dataset.focus;renderFocus();$('copyFeedback').textContent=''}));
+show('start');
+})();</script>
 </body></html>
