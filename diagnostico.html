@@ -298,9 +298,9 @@ function renderResults(){
   item.append(n,name,desc);stages.append(item);
  });
  el('nextDescription').textContent='Seu ponto de atenção mais imediato é '+ranked[0].label.toLowerCase()+'. Podemos validar essa hipótese com especialistas, escolher uma oportunidade concreta e desenhar um piloto com critérios de sucesso, proteção de dados e evolução.';
- window.scrollTo({top:0,behavior:'auto'});
 }
-function go(n){step=n;render();window.scrollTo({top:0,behavior:'auto'})}
+function scrollToForm(){const target=document.querySelector('.shell');const top=target.getBoundingClientRect().top+window.scrollY-15;window.scrollTo({top:Math.max(0,top),behavior:'auto'})}
+function go(n){step=n;render();if(n>=0)scrollToForm();else window.scrollTo({top:0,behavior:'auto'})}
 el('begin').addEventListener('click',()=>go(0));
 el('back').addEventListener('click',()=>go(step-1));
 el('quizForm').addEventListener('submit',e=>{
