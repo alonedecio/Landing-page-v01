@@ -231,9 +231,9 @@ function render(){
  const list=el('questionList');list.replaceChildren();
  data.questions.forEach((q,j)=>{
    const key=String(step)+'-'+String(j);
-   const section=document.createElement('fieldset');section.className='question';section.style.border='0';section.style.margin='0';section.style.minWidth='0';section.style.paddingLeft='0';section.style.paddingRight='0';
+   const section=document.createElement('fieldset');section.className='question';section.setAttribute('aria-labelledby','question-title-'+key);section.style.border='0';section.style.margin='0';section.style.minWidth='0';section.style.paddingLeft='0';section.style.paddingRight='0';
    const legend=document.createElement('legend');legend.className='question-number';legend.textContent='PERGUNTA '+String(step*4+j+1).padStart(2,'0')+' / 12 · '+dimensions.find(d=>d.id===q.dim).label.toUpperCase();legend.style.marginBottom='8px';section.append(legend);
-   const title=document.createElement('h3');title.textContent=q.q;section.append(title);
+   const title=document.createElement('h3');title.id='question-title-'+key;title.textContent=q.q;section.append(title);
    const hint=document.createElement('p');hint.textContent=q.detail;section.append(hint);
    const options=document.createElement('div');options.className='options';
    q.options.forEach((label,value)=>{
@@ -273,7 +273,8 @@ function drawRadar(values){
 function renderResults(){
  const {scaled,total,level}=scores();el('totalScore').innerHTML=String(total)+'<small>/100</small>';
  el('stageName').textContent='NÍVEL '+(level+1)+' · '+levelInfo[level][0];
- el('stageDescription').textContent=levelInfo[level][1];
+ const rawLevel=Math.min(4,Math.floor(total/20));
+ el('stageDescription').textContent=levelInfo[level][1]+(scaled.governanca<25&&level<rawLevel?' O estágio foi limitado pela baixa pontuação em governança: aumentar autonomia sem controles não representa maturidade sustentável.':'');
  drawRadar(scaled);
  const bars=el('bars');bars.replaceChildren();
  dimensions.forEach(d=>{
