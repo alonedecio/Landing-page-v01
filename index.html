@@ -17,6 +17,15 @@
 @media(max-width:800px){.hero-content{width:100%}.hero-graph{inset:470px 2% 65px}.graph-info{max-width:70%;left:3%}}
 @media(max-width:480px){.hero{min-height:1080px}.hero-graph{top:535px;bottom:75px}.hero h1{font-size:46px}.graph-major{font-size:10px;padding:7px 9px}.graph-core{width:100px;height:100px;font-size:14px}.graph-minor{font-size:9px;padding:5px}.graph-info{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.graph-core,.graph-minor{animation:none}}
+
+/* Fix: keep graph labels and explanations in separate safe zones */
+.hero-graph{overflow:visible;border-radius:0;mask-image:none}
+.graph-info{left:7%;right:auto;bottom:2%;width:min(420px,70%);max-width:none;min-height:86px;box-sizing:border-box;z-index:6}
+.graph-caption{right:5%;bottom:2%;max-width:140px;line-height:1.7;text-align:right;z-index:6}
+.graph-minor{white-space:nowrap;z-index:5}
+.hero-footer{z-index:8}
+@media(max-width:800px){.graph-info{bottom:1%;left:4%;width:80%;max-width:none}.graph-caption{display:none}}
+@media(max-width:480px){.hero-graph{overflow:visible}.graph-info{bottom:0%;width:88%;min-height:65px}}
 </style></head><body>
 <div class="grain" aria-hidden="true"></div><header class="nav"><a href="#inicio" class="mark" aria-label="Conhecimento Vivo, início">✳ conhecimento<b>/vivo</b></a><nav class="navlinks" id="navlinks" aria-label="Menu principal"><a href="#ideia">A ideia</a><a href="#metodo">O método</a><a href="#aplicacoes">Aplicações</a><a href="#diagnostico">Diagnóstico</a></nav><a class="action" href="#diagnostico">Conheça o diagnóstico ↗</a><button class="hamburger" id="menuToggle" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button></header>
 <main><section class="hero" id="inicio"><div class="hero-graph" id="agentGraph" aria-label="Mapa interativo de um agente com conhecimento, habilidades, personalidade, ferramentas, governança e evolução"><svg id="graphLines" aria-hidden="true"></svg><div class="graph-nodes" id="graphNodes"></div><div class="graph-caption"><span class="status-dot"></span> ANATOMIA DE UM AGENTE · INTERAJA COM OS NÓS</div><div class="graph-info" id="graphInfo" aria-live="polite">Selecione uma dimensão para explorar a arquitetura.</div></div><div class="hero-content"><div class="eyebrow">Da expertise ao seu próprio copiloto</div><h1>TRANSFORME<br>CONHECIMENTO<br>EM <em>ATIVO DIGITAL</em><span class="outline">.</span></h1><p class="hero-copy">Criamos agentes especializados com a expertise da sua empresa: identidade, memória, habilidades, ferramentas e governança. Um ativo digital que consolida conhecimento, apoia decisões e evolui com supervisão.</p><div class="hero-actions"><a class="primary" href="#ideia">Veja como ganha forma <span>↗</span></a><a class="underlink" href="#diagnostico">Explorar diagnóstico ↗</a></div></div><div class="hero-footer"><span>EXPLORE O GRAFO · PASSE O CURSOR PELOS NÓS</span><span>SCROLL PARA DESCOBRIR ↓</span></div></section>
@@ -51,17 +60,45 @@ const leaves=Array.from({length:5},()=>{let e=make('','graph-minor','#b9ffcf');e
 function edge(x,y,u,v,isLeaf){let e=document.createElementNS(ns,'line');e.setAttribute('x1',x);e.setAttribute('y1',y);e.setAttribute('x2',u);e.setAttribute('y2',v);e.setAttribute('class',isLeaf?'graph-edge minor-edge':'graph-edge');svg.append(e)}
 function place(el,x,y){el.style.left=x+'px';el.style.top=y+'px'}
 function renderGraph(){
- const W=graph.clientWidth,H=graph.clientHeight;if(!W||!H)return;svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.replaceChildren();
- const cx=W*.50,cy=H*.45,rx=W*.36,ry=H*.36,small=W<650;
+ const W=graph.clientWidth,H=graph.clientHeight;if(!W||!H)return;
+ svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.replaceChildren();
+ const small=W<650, cx=W*.50,cy=H*.38,rx=W*.34,ry=H*.27;
+ const top=44, bottom=H*.73, left=55,right=W-55;
  place(core,cx,cy);
- let points=dims.map(d=>{let ang=d[1]*Math.PI/180;return {x:cx+Math.cos(ang)*rx*d[2],y:cy+Math.sin(ang)*ry*d[2],ang}});
+ const points=dims.map(d=>{const ang=d[1]*Math.PI/180;return {x:cx+Math.cos(ang)*rx*d[2],y:cy+Math.sin(ang)*ry*d[2],ang}});
  points.forEach((p,i)=>{place(major[i],p.x,p.y);edge(cx,cy,p.x,p.y,false)});
  leaves.forEach(e=>e.hidden=true);
- if(active>=0){let d=dims[active],p=points[active],n=d[3].length;
-  d[3].forEach((name,j)=>{let e=leaves[j];e.hidden=false;e.textContent=name;e.style.setProperty('--node-color',d[5]);let a=p.ang+(j-(n-1)/2)*.46,rad=small?45:68;
-    let x=Math.max(30,Math.min(W-30,p.x+Math.cos(a)*rad)),y=Math.max(20,Math.min(H-24,p.y+Math.sin(a)*rad));
-    place(e,x,y);edge(p.x,p.y,x,y,true)});
+ if(active<0)return;
+ const d=dims[active],p=points[active],n=d[3].length;
+ // Lay out labels on the tangent of the parent, avoiding both core and peer nodes.
+ const placed=[{x:cx,y:cy,w:small?112:152,h:small?112:148},...points.map((q,i)=>({x:q.x,y:q.y,w:major[i].offsetWidth+16,h:major[i].offsetHeight+16}))];
+ const tangent=p.ang+Math.PI/2;
+ const outward=p.ang;
+ const labelW=small?88:108,labelH=small?27:32;
+ const candidates=[];
+ for(let side of [1,-1])for(let radius of [small?95:125,small?132:169,small?169:215]){
+   const base=outward+(side===-1?Math.PI:0);
+   for(let swing of [0,.28,-.28,.52,-.52,.78,-.78]){
+     const aa=base+swing;
+     candidates.push({x:p.x+Math.cos(aa)*radius,y:p.y+Math.sin(aa)*radius});
+   }
  }
+ function fits(q,w,h){if(q.x-w/2<left-20||q.x+w/2>right+20||q.y-h/2<top||q.y+h/2>bottom)return false;
+ return placed.every(z=>Math.abs(q.x-z.x)>(w+z.w)/2+8||Math.abs(q.y-z.y)>(h+z.h)/2+9)}
+ d[3].forEach((name,j)=>{
+   const el=leaves[j];el.hidden=false;el.textContent=name;el.style.setProperty('--node-color',d[5]);
+   const w=Math.max(labelW,el.offsetWidth+8),h=Math.max(labelH,el.offsetHeight+7);
+   let viable=candidates.filter(q=>fits(q,w,h));
+   // Prefer a spaced fan (staggered tangential positions), not a collapsed stack.
+   let q=viable.sort((u,v)=>{
+      const target=j-(n-1)/2;
+      const fu=(u.x-p.x)*Math.cos(tangent)+(u.y-p.y)*Math.sin(tangent);
+      const fv=(v.x-p.x)*Math.cos(tangent)+(v.y-p.y)*Math.sin(tangent);
+      return Math.abs(fu-target*(small?44:60))-Math.abs(fv-target*(small?44:60));
+   })[0];
+   if(!q){q={x:Math.max(left,Math.min(right,p.x+(j-(n-1)/2)*(small?70:105))),y:Math.min(bottom-28,Math.max(top+24,p.y+(j%2?95:-95)))}}
+   place(el,q.x,q.y);placed.push({x:q.x,y:q.y,w,h});edge(p.x,p.y,q.x,q.y,true);
+ });
 }
 function setActive(i){active=i;major.forEach((e,j)=>{e.classList.toggle('is-active',i===j);e.classList.toggle('dim',i>=0&&i!==j);e.setAttribute('aria-expanded',i===j?'true':'false')});
 info.textContent=i<0?'Selecione uma dimensão para explorar a arquitetura.':dims[i][0]+' — '+dims[i][4];renderGraph()}
