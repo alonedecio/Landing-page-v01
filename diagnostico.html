@@ -4,176 +4,166 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0a1616">
 <meta name="description" content="Diagnóstico exploratório da maturidade em IA da sua empresa. Avalie adoção, contexto, automação, autonomia, governança e impacto.">
-<title>Diagnóstico de maturidade em IA · Conhecimento/Vivo</title>
+<title>Descubra sua maturidade em IA | Conhecimento/Vivo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#e8eee8;--ink:#10251d;--ink2:#2b4435;--muted:#627469;--line:#bdcebf;--accent:#b9ffcf;--panel:#0c2019;--soft:#d6e6d9;--display:Syne,Arial,sans-serif;--mono:'IBM Plex Mono',monospace}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}button,input{font:inherit}button{cursor:pointer}
-button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #2b9c5b;outline-offset:3px}
-.topbar{height:76px;background:#0a1616;color:#eaffed;padding:0 5.5%;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #436651}
-.brand{font:700 20px var(--display);letter-spacing:-.06em;white-space:nowrap}.brand b{color:var(--accent)}.topbar-right{display:flex;align-items:center;gap:25px;font:10px var(--mono);letter-spacing:.06em;color:#adccba}.topbar-right a{padding:11px 15px;border:1px solid #527a60;color:#e8ffe9}.topbar-right a:hover{background:#1c4531}
-.intro{background:#0a1616;color:#ecf9ef;padding:65px 5.5% 65px;position:relative;overflow:hidden}
-.intro:before{content:"";position:absolute;right:-13%;top:-65%;width:70%;aspect-ratio:1;background:radial-gradient(circle,#28644855,transparent 65%);pointer-events:none}
-.intro-inner{position:relative;max-width:1350px;margin:auto;display:grid;grid-template-columns:1.3fr .7fr;gap:6%;align-items:end}
-.eyebrow{font:11px var(--mono);letter-spacing:.13em;text-transform:uppercase;color:#b9ffcf}
-.intro h1{font:700 clamp(40px,5.9vw,89px)/1.02 var(--display);letter-spacing:-.072em;margin:25px 0 20px;max-width:900px}
-.intro h1 em{font-style:normal;color:#b9ffcf}
-.intro p{color:#b9cec0;font-size:16px;line-height:1.7;max-width:650px;margin:0}
-.intro-side{border-left:1px solid #5e9173;padding-left:27px;color:#d5eddb}
-.intro-side strong{display:block;font:600 21px/1.28 var(--display);letter-spacing:-.03em;margin:12px 0}
-.intro-side p{font-size:13px;line-height:1.6}
-.intro-side small{font:10px/1.7 var(--mono);color:#91baa0;display:block;margin-top:22px}
-.shell{max-width:1440px;margin:auto;padding:54px 5.5% 90px}
-.stage-label{display:flex;justify-content:space-between;gap:15px;align-items:center;border-bottom:1px solid #aac3af;padding-bottom:17px;margin-bottom:35px;font:11px var(--mono);letter-spacing:.1em;color:#46674f}
-.form-layout{display:grid;grid-template-columns:minmax(210px,.28fr) minmax(0,.72fr);gap:5.5%;align-items:start}
-.sidebar{position:sticky;top:28px}
-.sidebar .small{display:block;color:#487653;font:11px var(--mono);letter-spacing:.1em;margin-bottom:22px}
-.progress-steps{display:flex;flex-direction:column;gap:0;border-left:1px solid #b1c7b5}
-.progress-item{display:flex;gap:18px;text-align:left;border:0;background:none;color:#6b8571;padding:18px 0 18px 20px;position:relative;align-items:flex-start}
-.progress-item:before{content:"";position:absolute;left:-2px;top:0;bottom:0;width:3px;background:transparent}
-.progress-item.active:before{background:#287c4d}
-.progress-item .n{font:11px var(--mono);margin-top:3px}
-.progress-item b{display:block;font:600 15px/1.2 var(--display);letter-spacing:-.025em;margin-bottom:7px}
-.progress-item small{font:10px/1.5 var(--mono);display:block;opacity:.85}
-.progress-item.active{color:#164f32}.progress-item.finished{color:#466b50}
-.sidebar-note{margin-top:43px;padding:22px;border:1px solid #b6cbb9;background:#dde9de}
-.sidebar-note span{font:10px var(--mono);color:#4b7855}
-.sidebar-note p{font-size:12px;line-height:1.65;color:#45634f;margin:10px 0 0}
-.main-panel{background:#fbfcf8;border:1px solid #c7d7c7;box-shadow:0 35px 75px #1d3e2720;min-width:0}
-.start{padding:clamp(30px,4vw,65px)}
-.start-kicker{font:11px var(--mono);letter-spacing:.1em;color:#397d4d}
-.start h2,.chapter-head h2,.results h2{font:700 clamp(32px,4vw,58px)/1.09 var(--display);letter-spacing:-.065em;margin:18px 0 22px}
-.start p{color:#4c6755;font-size:16px;line-height:1.7;max-width:750px}
-.start-feature{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:32px 0}
-.start-feature>div{border-top:2px solid #5b9271;background:#eaf2e9;padding:17px 15px;min-height:140px}
-.start-feature b{display:block;font:600 15px var(--display);margin:14px 0 9px}
-.start-feature small{font:12px/1.5 Inter,sans-serif;color:#526c59}
-.start-feature span{font:11px var(--mono);color:#338157}
-.primary{display:inline-flex;gap:25px;align-items:center;justify-content:space-between;padding:18px 24px;background:#102c1e;color:#ddffe6;border:1px solid #102c1e;font:600 12px var(--mono);letter-spacing:.03em}
-.primary:hover{background:#246943}.primary:disabled{cursor:not-allowed;opacity:.35}
-.secondary{display:inline-flex;gap:15px;align-items:center;justify-content:center;padding:15px 22px;color:#25513a;background:transparent;border:1px solid #96b69b;font:11px var(--mono)}
-.fine{display:block;font:11px/1.6 var(--mono);color:#6d8272;margin-top:23px}
-.quiz{display:none}.quiz.active{display:block}
-.chapter-head{padding:35px clamp(20px,3.7vw,56px) 28px;border-bottom:1px solid #d0ded0}
-.chapter-index{color:#3b8552;letter-spacing:.1em;font:11px var(--mono)}
-.chapter-head h2{margin:16px 0 13px}
-.chapter-head p{font-size:14px;line-height:1.65;color:#536959;max-width:710px;margin:0}
-.top-progress{height:5px;background:#dfede1}.top-progress>div{height:100%;width:0%;background:#397c4f;transition:width .25s}
-.question-list{padding:10px clamp(20px,3.7vw,56px) 25px}
-.question{padding:28px 0 26px;border-bottom:1px solid #dbe5da}
-.question:last-child{border-bottom:0}
-.question-top{display:flex;justify-content:space-between;gap:15px}
-.question-number{font:10px var(--mono);color:#52845f;letter-spacing:.09em;margin:0 0 10px}
-.question h3{font:600 clamp(17px,1.8vw,24px)/1.25 var(--display);letter-spacing:-.035em;margin:0 0 10px;max-width:720px}
-.question p{font-size:12px;line-height:1.5;color:#6b806f;margin:0 0 18px}
-.options{display:grid;grid-template-columns:1fr;gap:8px}
-.option{display:flex;gap:12px;align-items:flex-start;padding:13px 15px;border:1px solid #cbdaca;background:#f8fbf7;cursor:pointer;transition:background .15s,border-color .15s}
-.option:hover{border-color:#65a77d;background:#edf6ee}
-.option input{width:17px;height:17px;flex:none;margin:2px 0 0;accent-color:#267a4b}
-.option span{font-size:13px;line-height:1.5;color:#2a4634}
-.option:has(input:checked){border-color:#267a4b;background:#e7f5e9;box-shadow:inset 3px 0 #267a4b}
-.form-bottom{display:flex;justify-content:space-between;align-items:center;gap:20px;border-top:1px solid #ceddcc;padding:22px clamp(20px,3.7vw,56px)}
-.validation{color:#9a4d34;font:12px/1.5 var(--mono);min-height:16px;margin:0}
-.form-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
-.results{display:none}
-.results.active{display:block}
-.results-header{background:#102820;color:#ebffed;padding:42px clamp(25px,4vw,58px)}
+:root{--bg:#e8eee8;--ink:#10251d;--ink2:#2b4435;--muted:#627469;--line:#bdcebf;--accent:#b9ffcf;--soft:#d6e6d9;--display:Syne,Arial,sans-serif;--mono:'IBM Plex Mono',monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+button{cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #3c9c60;outline-offset:3px}
+[hidden]{display:none!important}
+.topbar{height:72px;background:#0a1616;color:#eaffed;padding:0 5.5%;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #436651}
+.brand{font:700 20px var(--display);letter-spacing:-.06em;white-space:nowrap}
+.brand b{color:var(--accent)}
+.topbar-right{display:flex;align-items:center;gap:22px;font:10px var(--mono);letter-spacing:.05em;color:#adccba}
+.topbar-right a{padding:11px 15px;border:1px solid #527a60;color:#e8ffe9}
+.topbar-right a:hover{background:#1c4531}
+.intro{background:#0a1616;color:#ecf9ef;padding:66px 5.5% 70px;position:relative;overflow:hidden}
+.intro::before{content:"";position:absolute;right:-12%;top:-70%;width:70%;aspect-ratio:1;background:radial-gradient(circle,#28644855,transparent 65%);pointer-events:none}
+.intro-inner{position:relative;max-width:1260px;margin:auto;display:grid;grid-template-columns:1.1fr .9fr;gap:8%;align-items:center}
+.eyebrow,.small-label{font:10px var(--mono);letter-spacing:.11em;color:#b9ffcf;text-transform:uppercase}
+.intro h1{font:700 clamp(35px,4.8vw,75px)/1.03 var(--display);letter-spacing:-.065em;margin:21px 0 20px}
+.intro h1 em{color:var(--accent);font-style:normal}
+.intro p{color:#c0d8c5;max-width:645px;font-size:16px;line-height:1.65}
+.intro-panel{border-left:1px solid #5a8e68;padding-left:27px}
+.intro-panel .small-label{color:#b9ffcf}
+.intro-panel strong{display:block;font:600 clamp(21px,2.45vw,36px)/1.13 var(--display);letter-spacing:-.04em;margin:17px 0}
+.intro-panel p{font-size:13px;line-height:1.6;margin:0}
+.intro-panel .mini{font:10px/1.6 var(--mono);color:#a4c8ae;margin-top:24px;display:block}
+.shell{max-width:1160px;margin:auto;padding:40px 5.5% 85px}
+.main-panel{background:#fafcf8;border:1px solid #c8d9ca;box-shadow:0 28px 70px #1d3e271b;min-width:0}
+.start{padding:clamp(27px,4.5vw,64px)}
+.start-kicker,.chapter-index{font:10px var(--mono);letter-spacing:.1em;color:#327449}
+.start h2,.chapter-head h2{font:700 clamp(30px,4vw,55px)/1.08 var(--display);letter-spacing:-.058em;margin:20px 0 16px}
+.start>p{max-width:730px;font-size:16px;line-height:1.6;color:#47604e}
+.start-feature{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:31px 0 24px}
+.start-feature>div{border-top:2px solid #5b9271;background:#e9f2e9;padding:18px;min-height:125px}
+.start-feature span{font:10px var(--mono);color:#317a4d}
+.start-feature strong{display:block;font:600 18px var(--display);margin:11px 0 8px}
+.start-feature small{font-size:12px;line-height:1.5;color:#526c59}
+.primary{display:inline-flex;gap:23px;align-items:center;justify-content:space-between;padding:17px 22px;background:#112d1d;color:#e4ffe9;border:1px solid #112d1d;font:600 11px var(--mono);letter-spacing:.03em}
+.primary:hover{background:#246943}
+.secondary{display:inline-flex;gap:14px;align-items:center;justify-content:center;padding:15px 20px;color:#214c34;background:transparent;border:1px solid #91b299;font:11px var(--mono)}
+.secondary:hover{background:#e3f0e4}
+.fine{display:block;font:10px/1.65 var(--mono);color:#637969;margin-top:19px}
+.method{border-top:1px solid #cee0cf;padding-top:16px;margin-top:26px;max-width:750px}
+.method summary{color:#2b784a;font:11px var(--mono);cursor:pointer}
+.method p{font:13px/1.65 Inter,Arial,sans-serif;color:#54705e}
+.phase-head{padding:24px clamp(21px,4.6vw,55px) 20px;border-bottom:1px solid #d1e1d3}
+.phase-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.phase-top .chapter-index:last-child{color:#6e8572}
+.track{height:4px;background:#dce9de;margin-top:19px}
+.track-fill{height:100%;width:0;background:#358a55;transition:width .25s}
+.chapter-head{padding:30px clamp(21px,4.6vw,55px) 12px}
+.chapter-head h2{margin:8px 0 9px;font-size:clamp(22px,2.9vw,39px)}
+.chapter-head p{font-size:13px;line-height:1.65;color:#54705d;margin:0}
+.question-list{padding:20px clamp(21px,4.6vw,55px)}
+.question{border:0;margin:0;padding:0;min-width:0}
+.question-number{font:10px var(--mono);color:#4a7f56;letter-spacing:.09em;margin:0 0 17px;display:block}
+.question h3{font:650 clamp(24px,3vw,41px)/1.18 var(--display);letter-spacing:-.05em;margin:0 0 15px;max-width:860px}
+.question p{font-size:13px;line-height:1.6;color:#5e7464;margin:0 0 22px}
+.options{display:grid;grid-template-columns:1fr;gap:9px}
+.option{display:flex;gap:14px;align-items:flex-start;padding:15px 17px;border:1px solid #c8dbc9;background:#f9fcf7;cursor:pointer;transition:background .15s,border-color .15s}
+.option:hover{border-color:#7ab08b;background:#edf7ed}
+.option input{width:18px;height:18px;margin:1px 0 0;flex:none;accent-color:#267a4b}
+.option span{font-size:14px;line-height:1.5;color:#284432}
+.option:has(input:checked){background:#e6f5e9;border-color:#297747;box-shadow:inset 3px 0 #297747}
+.unknown{background:none;border:0;border-bottom:1px solid #a9c4af;color:#3c7451;font:11px var(--mono);padding:9px 0;margin-top:18px}
+.unknown.active{color:#0d4729;font-weight:600;border-color:#39774b}
+.form-bottom{padding:23px clamp(21px,4.6vw,55px);border-top:1px solid #d4e1d5;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.validation{color:#914731;font:11px/1.5 var(--mono);margin:0;max-width:360px;min-height:16px}
+.form-actions{display:flex;gap:10px;align-items:center}
+.insight{padding:clamp(30px,5vw,70px)}
+.insight .small-label{color:#307d4d}
+.insight h2{font:700 clamp(32px,4vw,56px)/1.12 var(--display);letter-spacing:-.055em;margin:20px 0}
+.insight p{font-size:16px;line-height:1.7;color:#506b55;max-width:730px;margin-bottom:35px}
+.results-header{background:#102820;color:#edfff0;padding:38px clamp(24px,4.6vw,55px)}
 .results-header .chapter-index{color:#b9ffcf}
-.results-header h2{font-size:clamp(32px,4.2vw,59px);margin:18px 0 12px}
+.results-header h2{font:700 clamp(30px,4vw,55px)/1.1 var(--display);letter-spacing:-.06em;margin:17px 0}
 .results-header h2 em{color:#b9ffcf;font-style:normal}
-.results-header p{max-width:650px;font-size:14px;line-height:1.7;color:#bed9c7}
-.report-body{padding:35px clamp(20px,4vw,58px) 48px}
-.score-intro{display:flex;gap:20px;justify-content:space-between;align-items:center;padding-bottom:30px;border-bottom:1px solid #c3d6c6}
-.score-intro .bigscore{font:700 clamp(50px,8vw,120px)/1 var(--display);letter-spacing:-.095em;color:#207d4c}
-.score-intro .bigscore small{font:18px var(--mono);letter-spacing:0;color:#637e6b}
-.score-intro>div>span{font:10px var(--mono);color:#6b8270;letter-spacing:.08em}
-.score-intro>div>strong{display:block;font:600 clamp(18px,2vw,29px) var(--display);letter-spacing:-.04em;margin-top:8px}
-.radar-block{display:grid;grid-template-columns:.95fr 1.05fr;gap:5%;align-items:center;padding:30px 0;border-bottom:1px solid #c3d6c6}
-.radar-wrap{min-width:0;max-width:450px;margin:auto}
-.radar-wrap svg{width:100%;height:auto;display:block;overflow:visible}
+.results-header p{max-width:760px;color:#b7d4be;font-size:14px;line-height:1.65}
+.report-body{padding:30px clamp(20px,4.6vw,55px) 48px}
+.block-title{font:700 clamp(22px,2.7vw,37px)/1.12 var(--display);letter-spacing:-.045em;margin:40px 0 12px}
+.block-sub{font-size:13px;line-height:1.6;color:#55705d;margin:0 0 23px}
+.gap-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.gap-card{padding:21px 18px;background:#e6f1e6;border-top:3px solid #408c56}
+.gap-card small{font:10px/1.5 var(--mono);color:#3f8054;display:block}
+.gap-card strong{display:block;font:650 17px/1.25 var(--display);margin:12px 0 9px}
+.gap-card p{font-size:12px;line-height:1.65;color:#4b6452;margin:0}
+.confidence{font:11px/1.65 var(--mono);padding:17px 19px;background:#fff1d8;color:#735527;border:1px solid #ddc594;margin-top:18px}
+.score-intro{display:flex;justify-content:space-between;align-items:center;gap:23px;border-top:1px solid #d0e0d0;padding-top:25px}
+.bigscore{font:700 clamp(50px,8vw,110px)/1 var(--display);color:#247c4d;letter-spacing:-.08em;white-space:nowrap}
+.bigscore small{font:17px var(--mono);color:#63856c;letter-spacing:0}
+.score-intro>div>span{font:10px var(--mono);color:#57705c}
+.score-intro>div>strong{display:block;font:650 21px/1.25 var(--display);margin:10px 0}
+.score-intro>div>p{font-size:13px;line-height:1.5;color:#58715e}
+.radar-block{display:grid;grid-template-columns:.95fr 1.05fr;gap:5%;align-items:center;padding:29px 0;border-bottom:1px solid #c3d6c6}
+.radar-wrap{min-width:0;max-width:420px;margin:auto}
+.radar-wrap svg{display:block;width:100%;height:auto;overflow:visible}
 .bars{display:flex;flex-direction:column;gap:15px}
 .metric-line{display:flex;justify-content:space-between;gap:10px;align-items:center;font:12px var(--mono)}
 .metric-line b{color:#247b4d}
-.bar{background:#e0ebe1;height:5px;margin-top:8px}.bar span{background:#247b4d;height:100%;display:block}
-.block-title{font:700 clamp(21px,2.5vw,35px)/1.15 var(--display);letter-spacing:-.05em;margin:38px 0 21px}
-.gap-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
-.gap-card{background:#e8f1e8;border-top:3px solid #317f4b;padding:22px 17px}
-.gap-card small{font:10px var(--mono);color:#537e5b}.gap-card strong{display:block;font:650 17px var(--display);margin:14px 0 8px}.gap-card p{font-size:12px;line-height:1.55;color:#506755;margin:0}
-.levels{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.bar{background:#e0ebe1;height:5px;margin-top:8px}
+.bar span{background:#247b4d;height:100%;display:block}
+.mini-note{font:11px/1.7 var(--mono);color:#67806f}
+.levels{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
 .level{padding:14px 10px;border:1px solid #c8daca;background:#f4f8f2;min-width:0}
 .level.current{background:#143726;color:#f4fff3;border-color:#143726}
 .level b{font:11px var(--mono);display:block;color:#4a8c5a}
 .level.current b{color:#b9ffcf}
-.level strong{display:block;font:600 13px/1.3 var(--display);margin:14px 0 6px}
+.level strong{display:block;font:600 12px/1.3 var(--display);margin:14px 0 6px}
 .level span{font-size:10px;line-height:1.4;color:#6c816f;display:block}
 .level.current span{color:#b4d2bc}
-.next{margin-top:35px;padding:33px;background:#d9ecdb;border:1px solid #9cbea4}
+.focus-select{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:24px 0}
+.focus-select button{text-align:left;border:1px solid #b9d1bd;background:#f1f8f1;padding:14px 11px;color:#34533e;font:11px/1.4 var(--mono)}
+.focus-select button[aria-pressed="true"]{background:#153c2b;border-color:#153c2b;color:#eaffee}
+.focus-card{background:#e8f2e8;border:1px solid #b8d3bd;padding:24px}
+.focus-card h4{font:650 clamp(18px,2vw,28px)/1.2 var(--display);letter-spacing:-.035em;margin:0 0 14px}
+.focus-card p{font-size:13px;line-height:1.6;color:#3d5f48}
+.focus-card b{color:#1c6b3b}
+.action-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.action-list article{padding:20px 15px;border-top:2px solid #397e51;background:#e8f1e8}
+.action-list small{font:11px var(--mono);color:#387b4b}
+.action-list p{font-size:13px;line-height:1.55;color:#405b48}
+.next{margin-top:38px;padding:30px;background:#d9ecdb;border:1px solid #9cbea4}
 .next>span{font:10px var(--mono);color:#2e7547}
-.next h3{font:700 clamp(23px,3vw,42px)/1.1 var(--display);letter-spacing:-.04em;margin:13px 0}
-.next p{max-width:780px;font-size:14px;line-height:1.7;color:#45634d}
-.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}
-.disclaimer{font:10px/1.7 var(--mono);color:#617a66;margin-top:22px}
-.foot{background:#0a1616;color:#a8cbb2;padding:27px 5.5%;display:flex;justify-content:space-between;gap:15px;font:10px var(--mono)}
-.hide{display:none!important}
-@media(max-width:950px){
- .intro-inner{grid-template-columns:1fr}.intro-side{border-left:0;border-top:1px solid #58785e;padding:20px 0 0;margin-top:20px}
- .form-layout{grid-template-columns:1fr}.sidebar{position:static;display:block;margin-bottom:15px}
- .progress-steps{flex-direction:row;border-left:0;border-top:1px solid #b1c7b5}.progress-item{flex:1;padding:12px 5px}.progress-item:before{left:0;right:0;top:-2px;bottom:auto;width:auto;height:3px}
- .progress-item b{font-size:12px}.progress-item small{font-size:9px}.sidebar-note{display:none}
- .radar-block{grid-template-columns:1fr 1fr}
-}
-@media(max-width:630px){
- .topbar{height:65px;padding:0 5%}.brand{font-size:16px}.topbar-right span{display:none}.topbar-right a{font-size:9px;padding:10px}
- .intro{padding:42px 5%}.intro h1{font-size:clamp(35px,10vw,60px)}.intro p{font-size:14px}
- .shell{padding:30px 4% 65px}.stage-label{font-size:9px}.stage-label span:last-child{display:none}
- .progress-steps{gap:0}.progress-item{display:block}.progress-item .n{font-size:9px}.progress-item b{font-size:10px}.progress-item small{display:none}
- .start{padding:29px 19px}.start h2,.chapter-head h2{font-size:clamp(29px,8vw,42px)}
- .start-feature{grid-template-columns:1fr;gap:8px}.start-feature>div{min-height:0;padding:12px}.start-feature b{margin:5px 0}.start-feature small{font-size:11px}
- .chapter-head{padding:26px 19px}.question-list{padding:0 18px}.question{padding:25px 0}
- .question h3{font-size:18px}.option{padding:12px 11px}.option span{font-size:12px}
- .form-bottom{padding:22px 18px;display:block}.validation{margin-bottom:12px}.form-actions{justify-content:space-between}.form-actions>*{flex:1}.form-actions .primary,.form-actions .secondary{font-size:10px;padding:13px 12px}
- .results-header{padding:31px 19px}.report-body{padding:25px 19px}.score-intro{display:block}.score-intro>div+div{margin-top:20px}
- .radar-block{grid-template-columns:1fr}.radar-wrap{max-width:330px}.gap-cards{grid-template-columns:1fr}
- .levels{grid-template-columns:1fr}.level{display:grid;grid-template-columns:30px 1fr;gap:7px}.level b{grid-row:1/3}.level strong{margin:0}.level span{grid-column:2}
- .next{padding:23px 17px}.report-actions .primary,.report-actions .secondary{width:100%}.foot{flex-direction:column}
-}
-@media print{
- .topbar,.intro,.sidebar,.stage-label,.start,.quiz,.form-bottom,.report-actions,.foot{display:none!important}
- body{background:#fff}.shell{padding:0}.form-layout{display:block}.main-panel{border:0;box-shadow:none}
- .results{display:block!important}.results-header{print-color-adjust:exact;-webkit-print-color-adjust:exact}
- .gap-cards,.levels{break-inside:avoid}.level,.gap-card{break-inside:avoid}
-}
+.next h3{font:700 clamp(23px,2.8vw,40px)/1.13 var(--display);letter-spacing:-.04em;margin:16px 0}
+.next p{max-width:850px;font-size:13px;line-height:1.65;color:#45634d}
+.report-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:25px}
+.disclaimer{font:10px/1.7 var(--mono);color:#62796a;margin-top:22px}
+.contact{border-top:1px solid #aec9b0;margin-top:22px;padding-top:20px}
+.contact p{font-size:13px;line-height:1.65;color:#4b6b54}
+.contact-actions{display:flex;gap:8px;flex-wrap:wrap}
+.foot{background:#0a1616;color:#a8cbb2;padding:25px 5.5%;display:flex;justify-content:space-between;gap:16px;font:10px var(--mono)}
+@media(max-width:850px){.intro-inner{grid-template-columns:1fr;gap:25px}.intro-panel{padding:20px 0 0;border-left:0;border-top:1px solid #648a6c}.radar-block{grid-template-columns:1fr}.radar-wrap{max-width:380px}}
+@media(max-width:600px){.topbar{height:65px;padding:0 5%}.brand{font-size:16px}.topbar-right span{display:none}.topbar-right a{padding:9px;font-size:9px}.intro{padding:42px 5%}.intro h1{font-size:clamp(35px,9vw,55px)}.intro p{font-size:14px}.shell{padding:23px 4% 65px}.start{padding:25px 17px}.start h2{font-size:31px}.start-feature{grid-template-columns:1fr;gap:7px}.start-feature>div{min-height:0;padding:12px}.start-feature strong{margin:5px 0}.chapter-head{padding:23px 17px 10px}.chapter-head h2{font-size:25px}.phase-head{padding:20px 17px}.question-list{padding:18px 17px}.question h3{font-size:25px}.question p{font-size:12px}.option{padding:12px}.option span{font-size:12px}.form-bottom{padding:18px 17px;display:block}.validation{margin-bottom:12px}.form-actions{justify-content:space-between}.form-actions>*{flex:1}.form-actions .primary,.form-actions .secondary{padding:13px 10px;font-size:10px}.insight{padding:29px 18px}.insight h2{font-size:30px}.results-header{padding:30px 18px}.report-body{padding:25px 17px}.gap-cards,.action-list{grid-template-columns:1fr}.score-intro{display:block}.score-intro>div+div{margin-top:18px}.levels{grid-template-columns:1fr}.level{display:grid;grid-template-columns:30px 1fr;gap:6px}.level b{grid-row:1/3}.level strong{margin:0}.level span{grid-column:2}.focus-select{grid-template-columns:repeat(2,1fr)}.next{padding:20px 16px}.report-actions .primary,.report-actions .secondary{width:100%}.foot{flex-direction:column}}
+@media print{.topbar,.intro,.start,.quiz,.insight,.phase-head,.report-actions,.contact,.foot{display:none!important}body{background:white}.shell{max-width:none;padding:0}.main-panel{border:0;box-shadow:none}.results{display:block!important}.results-header{print-color-adjust:exact;-webkit-print-color-adjust:exact}.gap-cards,.levels,.action-list,.focus-card{break-inside:avoid}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
 <body>
-<header class="topbar"><a href="index.html#diagnostico" class="brand" aria-label="Voltar à landing Conhecimento Vivo">✳ conhecimento<b>/vivo</b></a><div class="topbar-right"><span>DIAGNÓSTICO DE PRONTIDÃO PARA IA</span><a href="index.html#diagnostico">← VOLTAR AO SITE</a></div></header>
-<section class="intro" aria-labelledby="page-title"><div class="intro-inner"><div><span class="eyebrow">CONHECIMENTO · CAPACIDADE · EVOLUÇÃO</span><h1 id="page-title">ONDE A SUA EMPRESA ESTÁ NA <em>JORNADA DA IA?</em></h1><p>Em vez de tentar acompanhar cada novidade, descubra o que sua organização já consegue fazer com IA e quais fundamentos faltam para transformar conhecimento em capacidade.</p></div><div class="intro-side"><span class="eyebrow">UMA LEITURA HONESTA</span><strong>Não é sobre quantas ferramentas vocês usam.</strong><p>É sobre adoção, expertise disponível, execução, autonomia, segurança e resultados observáveis.</p><small>12 perguntas · 3 etapas · aproximadamente 5–7 minutos · nenhum cadastro</small></div></div></section>
-<main class="shell"><div class="stage-label"><span>DIAGNÓSTICO EXPLORATÓRIO / 2026</span><span>SEUS DADOS FICAM NESTA SESSÃO DO NAVEGADOR</span></div>
-<div class="form-layout"><aside class="sidebar"><span class="small">SUA JORNADA DE AVALIAÇÃO</span><div class="progress-steps" id="progressSteps" aria-label="Etapas do diagnóstico">
-<div class="progress-item active" data-progress="0"><span class="n">00</span><div><b>Começar</b><small>Entenda a avaliação</small></div></div>
-<div class="progress-item" data-progress="1"><span class="n">01</span><div><b>Pessoas e valor</b><small>Como a IA é usada</small></div></div>
-<div class="progress-item" data-progress="2"><span class="n">02</span><div><b>Conhecimento e controle</b><small>O que a IA sabe</small></div></div>
-<div class="progress-item" data-progress="3"><span class="n">03</span><div><b>Operação e agentes</b><small>O que a IA faz</small></div></div>
-<div class="progress-item" data-progress="4"><span class="n">04</span><div><b>Seu relatório</b><small>Gargalos e prioridades</small></div></div>
-</div><div class="sidebar-note"><span>IMPORTANTE</span><p>Responda sobre o que já acontece de forma recorrente. Um piloto isolado não é necessariamente uma prática estabelecida.</p></div></aside>
-<div class="main-panel">
-<section class="start" id="startView"><span class="start-kicker">ANTES DE COMEÇAR / DIAGNÓSTICO DE MATURIDADE</span><h2>Descubra onde a IA já gera capacidade e o que ainda depende de improviso.</h2><p>Este diagnóstico olha para o que sustenta um agente especializado: pessoas, conhecimento da organização, processos, permissões, avaliação e evolução. O resultado mostrará as áreas mais desenvolvidas e os próximos pontos de atenção.</p>
-<div class="start-feature"><div><span>01 / LOCALIZE</span><b>Seu momento atual</b><small>Uma leitura de maturidade, sem comparação com concorrentes.</small></div><div><span>02 / ENTENDA</span><b>Seus gargalos</b><small>Radar em seis dimensões e prioridades de evolução.</small></div><div><span>03 / PLANEJE</span><b>Seu próximo movimento</b><small>Conexão com a jornada de construção de agentes.</small></div></div>
-<button id="begin" class="primary" type="button">INICIAR MEU DIAGNÓSTICO <span>↗</span></button><span class="fine">Sem login, sem e-mail e sem transmissão de respostas. O resultado é exploratório, não uma certificação.</span></section>
-<section class="quiz" id="quizView"><div class="top-progress" aria-hidden="true"><div id="fill"></div></div><div class="chapter-head"><span class="chapter-index" id="stepKicker">01 / 03</span><h2 id="chapterTitle"></h2><p id="chapterDescription"></p></div><form id="quizForm" novalidate><div id="questionList" class="question-list"></div><div class="form-bottom"><p class="validation" id="validation" role="alert" aria-live="polite"></p><div class="form-actions"><button type="button" id="back" class="secondary">← VOLTAR</button><button type="submit" id="next" class="primary">CONTINUAR <span>→</span></button></div></div></form></section>
-<section class="results" id="resultsView" aria-labelledby="resultsTitle"><div class="results-header"><span class="chapter-index">RELATÓRIO / SUA EMPRESA EM SEIS DIMENSÕES</span><h2 id="resultsTitle">SEU MAPA DE <em>MATURIDADE EM IA.</em></h2><p>A leitura abaixo é calculada exclusivamente a partir das suas respostas. Ela sugere prioridades para investigação, não garantias de resultado.</p></div><div class="report-body">
-<div class="score-intro"><div><span>ÍNDICE EXPLORATÓRIO / 0–100</span><div id="totalScore" class="bigscore">—<small>/100</small></div></div><div><span>ESTÁGIO INDICATIVO</span><strong id="stageName"></strong><p id="stageDescription"></p></div></div>
-<div class="radar-block"><div id="radar" class="radar-wrap" aria-label="Radar da maturidade da empresa"></div><div id="bars" class="bars" aria-label="Resultados por dimensão"></div></div>
-<h3 class="block-title">POR ONDE COMEÇAR.</h3><div id="gaps" class="gap-cards"></div>
-<h3 class="block-title">UMA JORNADA DE CINCO NÍVEIS.</h3><div id="levels" class="levels"></div>
-<div class="next"><span>O PRÓXIMO MOVIMENTO</span><h3>Uma capacidade real. Um primeiro piloto. Um plano de evolução.</h3><p id="nextDescription">Vamos conectar o diagnóstico às prioridades da sua organização, começando pelo conhecimento que já existe nela.</p><div class="report-actions"><a class="primary" href="index.html#conversa">CONVERSAR SOBRE UM PILOTO <span>↗</span></a><button type="button" class="secondary" id="print">SALVAR RELATÓRIO EM PDF ↗</button><button type="button" class="secondary" id="restart">REFAZER DIAGNÓSTICO</button></div></div>
-<p class="disclaimer">A pontuação não constitui auditoria, certificação de maturidade, análise jurídica ou projeção financeira. Não significa que todos os processos possam ser automatizados nem que agentes possam agir sem supervisão. Qualquer investimento depende de avaliação de viabilidade, segurança, especialistas e métricas reais. Nenhuma resposta é enviada ou armazenada remotamente por esta página.</p>
-</div></section>
-</div></div>
-</main><footer class="foot"><span>✳ CONHECIMENTO / VIVO · ESTUDO INTERATIVO</span><span>AVALIAÇÃO EXPLORATÓRIA · NÃO CERTIFICADA</span></footer>
+<header class="topbar"><a class="brand" href="index.html#diagnostico" aria-label="Conhecimento Vivo, voltar ao site">✳ conhecimento<b>/vivo</b></a><div class="topbar-right"><span>DIAGNÓSTICO DE MATURIDADE EM IA</span><a href="index.html#diagnostico">← VOLTAR AO SITE</a></div></header>
+<section class="intro" aria-labelledby="pageTitle"><div class="intro-inner"><div><span class="eyebrow">DIAGNÓSTICO DE MATURIDADE EM IA</span><h1 id="pageTitle">QUAL É O PRÓXIMO PASSO DA SUA EMPRESA <em>COM IA?</em></h1><p>Descubra o que já funciona, o que está limitando seus resultados e onde vale concentrar os próximos esforços.</p></div><div class="intro-panel"><span class="small-label">UMA AVALIAÇÃO COM PROPÓSITO</span><strong>Mais clareza para decidir. Menos suposições sobre o que fazer.</strong><p>Você terá um mapa das suas práticas e caminhos concretos para discutir com a equipe.</p><span class="mini">12 PERGUNTAS · CERCA DE 5 MINUTOS · SEM CADASTRO</span></div></div></section>
+<main class="shell"><div class="main-panel">
+<section class="start" id="startView" aria-labelledby="startTitle"><span class="start-kicker">UMA PRIMEIRA LEITURA DO SEU CENÁRIO</span><h2 id="startTitle">Entenda seu momento. Identifique o que limita resultados. Avance com critério.</h2><div class="start-feature"><div><span>01 / ENTENDA</span><strong>Seu momento atual</strong><small>Em seis dimensões.</small></div><div><span>02 / IDENTIFIQUE</span><strong>O que pode estar travando resultados</strong><small>Sem comparar sua empresa a outras.</small></div><div><span>03 / AVANCE</span><strong>Três passos para seu cenário</strong><small>Uma orientação inicial e prática.</small></div></div><p class="fine">12 perguntas · cerca de 5 minutos · resultado imediato · sem cadastro</p><button class="primary" id="begin" type="button">Descobrir meu próximo passo <span>↗</span></button><p class="fine">Sem respostas certas. Considere o que acontece hoje, não o que está nos planos.</p><p class="fine">Suas respostas ficam neste navegador enquanto você faz a avaliação. Nada é enviado à nossa equipe sem sua ação.</p><details class="method"><summary>Como funciona?</summary><p>Analisamos adoção, resultados, conhecimento, controles, processos e gestão. O relatório é uma orientação inicial baseada nas suas respostas — não uma auditoria ou certificação.</p></details></section>
+<section class="quiz" id="quizView" hidden aria-labelledby="chapterTitle"><div class="phase-head"><div class="phase-top"><span class="chapter-index" id="phaseLabel">ETAPA 1 DE 3</span><span class="chapter-index" id="questionCount">PERGUNTA 01 DE 12</span></div><div class="track" aria-hidden="true"><div class="track-fill" id="progressFill"></div></div></div><div class="chapter-head"><h2 id="chapterTitle"></h2><p id="chapterDescription"></p></div><form id="quizForm" novalidate><div class="question-list" id="questionList"></div><div class="form-bottom"><p class="validation" id="validation" aria-live="polite" role="alert"></p><div class="form-actions"><button class="secondary" id="back" type="button">← Voltar</button><button class="primary" id="next" type="submit">Continuar <span>→</span></button></div></div></form></section>
+<section class="insight" id="insightView" hidden aria-labelledby="insightTitle"><span class="small-label" id="insightLabel">UMA OBSERVAÇÃO PARA LEVAR ADIANTE</span><h2 id="insightTitle"></h2><p id="insightText"></p><div class="form-actions"><button class="secondary" id="insightBack" type="button">← Voltar</button><button class="primary" id="insightNext" type="button">Continuar <span>→</span></button></div></section>
+<section class="results" id="resultsView" hidden aria-labelledby="resultsTitle"><div class="results-header"><span class="chapter-index">SEU DIAGNÓSTICO · LEITURA INICIAL</span><h2 id="resultsTitle">SEU PRÓXIMO AVANÇO ESTÁ EM <em id="mainAction"></em></h2><p id="resultsIntro">O relatório transforma suas respostas em hipóteses práticas. Você pode revisá-las com a equipe, sem compartilhar seus dados.</p></div><div class="report-body">
+<div class="gap-cards" id="summaryCards" aria-label="Sua força, desafio e próximo passo"></div><div class="confidence" id="confidenceWarning" hidden></div>
+<h3 class="block-title">SEU MOMENTO EM IA</h3><p class="block-sub">Esta é uma referência inicial baseada nas práticas que você descreveu, não uma comparação de mercado.</p><div class="score-intro"><div><span>ÍNDICE EXPLORATÓRIO / 0–100</span><div class="bigscore" id="totalScore">—<small>/100</small></div></div><div><span>ESTÁGIO INDICATIVO</span><strong id="stageName"></strong><p id="stageDescription"></p></div></div><p class="mini-note">Maturidade não é automatizar tudo. O estágio mais adequado depende dos objetivos e dos riscos do negócio.</p>
+<h3 class="block-title">AS SEIS DIMENSÕES DO SEU CENÁRIO</h3><p class="block-sub">Um panorama para entender onde existem fundamentos consolidados e onde vale investigar antes de ampliar os usos.</p><div class="radar-block"><div class="radar-wrap" id="radar"></div><div class="bars" id="bars"></div></div><p class="mini-note">As pontuações refletem as respostas informadas. Uma nota alta não significa risco zero; uma nota baixa não significa que sua empresa precisa de agentes em todos os processos.</p>
+<h3 class="block-title">POR ONDE VALE COMEÇAR</h3><p class="block-sub">Não se trata de resolver tudo. Trata-se de escolher o que destrava o próximo resultado.</p><div class="gap-cards" id="priorityCards"></div><p class="mini-note" id="priorityReason"></p>
+<h3 class="block-title">ONDE VOCÊ GOSTARIA DE VER RESULTADO PRIMEIRO?</h3><p class="block-sub">Escolha uma frente para ver um exemplo de aplicação. Isso não altera sua pontuação.</p><div class="focus-select" id="focusSelect" role="group" aria-label="Frente de interesse"><button type="button" data-focus="analistas" aria-pressed="false">Rotina de analistas</button><button type="button" data-focus="gestao" aria-pressed="false">Gestão do time</button><button type="button" data-focus="clientes" aria-pressed="false">Atendimento a clientes</button><button type="button" data-focus="descobrir" aria-pressed="true">Ainda quero descobrir</button></div><div class="focus-card" id="focusCard" aria-live="polite"></div><p class="mini-note">Exemplos ilustrativos, não promessas de automação ou de economia. A viabilidade depende das fontes, integrações e limites de cada operação.</p>
+<h3 class="block-title">SEU PRÓXIMO PASSO NÃO PRECISA SER GRANDE. PRECISA SER CLARO.</h3><div class="action-list" id="actionList"></div><p class="mini-note" id="teamQuestion"></p>
+<h3 class="block-title">UMA JORNADA DE CINCO NÍVEIS</h3><div class="levels" id="levels"></div>
+<div class="next"><span>SE QUISER IR ALÉM DO DIAGNÓSTICO</span><h3>Quer uma segunda leitura para transformar esse mapa em uma decisão?</h3><p>Podemos conversar sobre o que suas respostas sugerem, identificar uma oportunidade concreta e discutir se vale testar um piloto — ou se primeiro precisamos organizar as bases.</p><div class="report-actions"><button class="primary" id="contactOpen" type="button">Conversar sobre meu próximo passo <span>↗</span></button><button class="secondary" type="button" id="print">Salvar meu relatório em PDF ↗</button><button class="secondary" type="button" id="copy">Copiar resumo para compartilhar</button><button class="secondary" type="button" id="restart">Refazer diagnóstico</button></div><p class="fine">O relatório já é seu. Compartilhá-lo e conversar conosco é opcional.</p><div class="contact" id="contactPanel" hidden><h4>Vamos conversar a partir do seu cenário?</h4><p>Você pode copiar o resumo e levá-lo à equipe. O envio de solicitações ainda não está disponível nesta versão de demonstração, pois não há um canal de contato configurado.</p><div class="contact-actions"><button class="secondary" type="button" id="copyContact">Copiar resumo do diagnóstico</button><button class="secondary" type="button" id="contactClose">Voltar ao relatório</button></div></div><p id="copyFeedback" class="mini-note" role="status" aria-live="polite"></p></div>
+<p class="disclaimer">Este diagnóstico é exploratório, baseado em respostas autodeclaradas, e não constitui auditoria, certificação ou projeção financeira. Indicadores e cortes não foram validados como benchmark de mercado. A viabilidade de qualquer aplicação exige avaliação técnica, participação de especialistas e análise dos riscos. As respostas não são enviadas a servidores por esta página.</p></div></section>
+</div></main><footer class="foot"><span>✳ CONHECIMENTO / VIVO · DIAGNÓSTICO EXPLORATÓRIO</span><span>SEM CERTIFICAÇÃO OU BENCHMARK</span></footer>
 <script>
 (function(){
 'use strict';
