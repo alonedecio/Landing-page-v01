@@ -74,6 +74,12 @@
 }
 @keyframes v14-aurora {0%{background-position:15% 50%}100%{background-position:95% 50%}}
 .cinematic-v14 .hero-copy {color:#c0d5d3}
+/* Quatro batidas de abertura: índice -> tese -> contexto -> decisão. */
+.cinematic-v14 .hero .eyebrow {animation:v14-hero-enter .8s .08s both cubic-bezier(.2,.7,.2,1)}
+.cinematic-v14 .hero h1 {animation:v14-hero-enter 1.06s .19s both cubic-bezier(.2,.7,.2,1)}
+.cinematic-v14 .hero-copy {animation:v14-hero-enter .94s .48s both cubic-bezier(.2,.7,.2,1)}
+.cinematic-v14 .hero-actions {animation:v14-hero-enter .88s .73s both cubic-bezier(.2,.7,.2,1)}
+@keyframes v14-hero-enter {from{opacity:0;transform:translate3d(0,24px,0);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
 .cinematic-v14 .hero-actions .primary {
   box-shadow:0 0 0 1px rgba(185,255,207,.07),0 13px 45px rgba(30,190,127,.13);
   transition:transform .3s ease,box-shadow .3s ease,background .3s;
@@ -231,6 +237,10 @@
  .cinematic-v14 .hero:after,
  .cinematic-v14 .art-graph:before,
  .cinematic-v14 .hero h1 em {animation:none!important}
+ .cinematic-v14 .hero .eyebrow,
+ .cinematic-v14 .hero h1,
+ .cinematic-v14 .hero-copy,
+ .cinematic-v14 .hero-actions {animation:none!important}
  .cinematic-v14 .v14-observe {opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
  .cinematic-v14 .story-message,
  .cinematic-v14 .journey-visual .mock-window,
