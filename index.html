@@ -382,8 +382,12 @@ html {scroll-padding-top:20px}
 .data-trust span {display:block;font:10px var(--mono);color:#4d795a;letter-spacing:.08em;margin-bottom:12px}
 .data-trust strong {font:650 clamp(18px,2.05vw,29px)/1.15 var(--display);letter-spacing:-.03em}
 .data-trust p {font-size:13px;line-height:1.6;color:#405948;margin:0}
+.org-stem {height:22px;margin-bottom:18px}
 .org-managers {position:relative}
-.org-managers:before {content:"";position:absolute;left:calc(50% - min(34%, 344px));right:calc(50% - min(34%, 344px));top:-1px;border-top:1px solid #5f9674;pointer-events:none}
+.org-managers:before {content:"";position:absolute;left:calc(50% - min(34%, 344px));right:calc(50% - min(34%, 344px));top:-18px;border-top:1px solid #5f9674;pointer-events:none}
+.org-managers:after {content:"";position:absolute;left:calc(50% - min(34%, 344px));right:calc(50% - min(34%, 344px));bottom:-22px;border-top:1px solid #5f9674;pointer-events:none}
+.org-managers .org-card:before {content:"";position:absolute;bottom:100%;left:50%;height:18px;border-left:1px solid #5f9674;pointer-events:none}
+.org-managers .org-card:after {content:"";position:absolute;top:100%;left:50%;height:22px;border-left:1px solid #5f9674;pointer-events:none}
 @media(max-width:1100px){
  .maturity-layout {grid-template-columns:1fr;gap:28px}
  .maturity-preview {min-height:390px}
