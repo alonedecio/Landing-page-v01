@@ -1,0 +1,252 @@
+/**
+ * CONHECIMENTO/VIVO · V14 CINEMATIC LAB
+ * Camada experimental isolada por .cinematic-v14.
+ * Não redefine o carrossel sticky nem a geometria dos grafos.
+ * Remoção: retirar os links cinematic-v14.css/js e a classe do html.
+ */
+.cinematic-v14 {
+  --v14-cosmos:#080d1a;
+  --v14-cosmos-deep:#060b15;
+  --v14-midnight:#111b2a;
+  --v14-mint:#b9ffcf;
+  --v14-orbit:#a9a7ff;
+  --v14-pulse:#f2a6c8;
+  --v14-paper:#eaf0ed;
+  --v14-serif:'Instrument Serif',Georgia,serif;
+}
+.cinematic-v14 body {background:var(--v14-cosmos-deep)}
+.cinematic-v14 .hero {
+  background:var(--v14-cosmos);
+  --v14-pointer-x:65%;
+  --v14-pointer-y:43%;
+}
+.cinematic-v14 .hero:before {
+  background:
+   radial-gradient(ellipse 38% 53% at var(--v14-pointer-x) var(--v14-pointer-y),rgba(91,116,231,.22),transparent 76%),
+   radial-gradient(ellipse 45% 47% at 83% 48%,rgba(21,132,122,.24),transparent 78%),
+   radial-gradient(ellipse 55% 55% at 46% 64%,rgba(19,43,82,.35),transparent 75%),
+   linear-gradient(133deg,#070d19 2%,#10192a 58%,#060b14 100%);
+  transition:background-color .4s;
+}
+.cinematic-v14 .hero:after {
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  opacity:.65;
+  background-image:
+    radial-gradient(1px 1px at 18px 34px,rgba(218,246,255,.86) 98%,transparent),
+    radial-gradient(1px 1px at 92px 110px,rgba(179,171,255,.77) 98%,transparent),
+    radial-gradient(2px 2px at 189px 86px,rgba(191,255,220,.67) 96%,transparent),
+    radial-gradient(1px 1px at 164px 159px,rgba(255,255,255,.55) 98%,transparent);
+  background-size:213px 171px,247px 199px,283px 213px,329px 253px;
+  mask-image:linear-gradient(to right,transparent 2%,#000 44%,#000 100%);
+  animation:v14-stardrift 38s linear infinite;
+}
+@keyframes v14-stardrift {from{background-position:0 0,0 0,0 0,0 0}to{background-position:-213px 171px,247px -199px,-283px 213px,329px 253px}}
+.cinematic-v14 .nav {border-bottom-color:rgba(172,187,255,.16)}
+.cinematic-v14 .mark b {text-shadow:0 0 19px rgba(185,255,207,.36)}
+.cinematic-v14 .hero-content {filter:drop-shadow(0 8px 36px rgba(0,0,0,.19))}
+.cinematic-v14 .hero .eyebrow {color:#c9c4ff;letter-spacing:.19em}
+.cinematic-v14 .hero h1 {text-wrap:balance;text-shadow:0 10px 54px rgba(0,0,0,.2)}
+/* Syne: estrutura, Instrument Serif: emoção, IBM Plex Mono: precisão. */
+.cinematic-v14 .hero h1 em,
+.cinematic-v14 .decision-copy h2 em,
+.cinematic-v14 .transformation .chapter-title em,
+.cinematic-v14 .journey-head h2 em,
+.cinematic-v14 .teams-intro .chapter-title em,
+.cinematic-v14 .governance-intro .chapter-title em,
+.cinematic-v14 .maturity-copy .chapter-title em,
+.cinematic-v14 .governance-value h3 em,
+.cinematic-v14 .closing .big i {
+  font-family:var(--v14-serif);
+  font-weight:400;
+  font-style:italic;
+  letter-spacing:-.037em;
+  line-height:.94;
+  text-transform:none;
+}
+.cinematic-v14 .hero h1 em {
+  font-size:1.065em;
+  color:#c2f7e4;
+  background:linear-gradient(112deg,#e5ffef 5%,#b9ffcf 41%,#b2c0ff 78%,#f0c7e8);
+  background-size:240% 100%;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:v14-aurora 12s ease-in-out infinite alternate;
+}
+@keyframes v14-aurora {0%{background-position:15% 50%}100%{background-position:95% 50%}}
+.cinematic-v14 .hero-copy {color:#c0d5d3}
+/* Quatro batidas de abertura: índice -> tese -> contexto -> decisão. */
+.cinematic-v14 .hero .eyebrow {animation:v14-hero-enter .8s .08s both cubic-bezier(.2,.7,.2,1)}
+.cinematic-v14 .hero h1 {animation:v14-hero-enter 1.06s .19s both cubic-bezier(.2,.7,.2,1)}
+.cinematic-v14 .hero-copy {animation:v14-hero-enter .94s .48s both cubic-bezier(.2,.7,.2,1)}
+.cinematic-v14 .hero-actions {animation:v14-hero-enter .88s .73s both cubic-bezier(.2,.7,.2,1)}
+@keyframes v14-hero-enter {from{opacity:0;transform:translate3d(0,24px,0);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+.cinematic-v14 .hero-actions .primary {
+  box-shadow:0 0 0 1px rgba(185,255,207,.07),0 13px 45px rgba(30,190,127,.13);
+  transition:transform .3s ease,box-shadow .3s ease,background .3s;
+}
+.cinematic-v14 .hero-actions .primary:hover {transform:translateY(-3px);box-shadow:0 0 0 1px rgba(185,255,207,.25),0 20px 60px rgba(76,223,146,.2)}
+.cinematic-v14 .underlink {text-decoration-color:rgba(185,255,207,.55);transition:color .25s,border-color .25s}
+.cinematic-v14 .underlink:hover {color:#e1caff;border-color:#c3b7ff}
+/* O universo acompanha o conteúdo sem esconder os pontos de conexão. */
+.cinematic-v14 .art-graph {filter:drop-shadow(0 0 32px rgba(104,137,255,.1))}
+.cinematic-v14 .art-graph:before {
+  content:"";position:absolute;z-index:0;inset:-10%;pointer-events:none;
+  background:
+   radial-gradient(ellipse at 53% 51%,rgba(86,95,194,.17),transparent 38%),
+   radial-gradient(ellipse at 72% 27%,rgba(44,179,146,.12),transparent 48%);
+  filter:blur(18px);
+  animation:v14-nebula 15s ease-in-out infinite alternate;
+}
+.cinematic-v14 #artGraphSvg {position:relative;z-index:1}
+@keyframes v14-nebula {from{opacity:.65;transform:scale(.97) rotate(-2deg)}to{opacity:1;transform:scale(1.05) rotate(3deg)}}
+.cinematic-v14 .art-edge.emphasized {stroke:#c9ceff;stroke-opacity:.5;filter:drop-shadow(0 0 3px rgba(126,132,255,.65))}
+.cinematic-v14 .art-dot {filter:drop-shadow(0 0 4px rgba(185,255,207,.57))}
+.cinematic-v14 .art-core {fill:#14283a;stroke:#b9ffcf;filter:drop-shadow(0 0 17px rgba(143,178,255,.48))}
+.cinematic-v14 .art-core-halo {stroke:#a9a7ff;stroke-opacity:.27}
+.cinematic-v14 .art-core-label {fill:#effff8}
+/* O quadro do problema permanece claro, mas com sombra de informação dispersa. */
+.cinematic-v14 .decision-story {
+  background:radial-gradient(ellipse 75% 68% at 86% 10%,#dbe7e6 0%,transparent 72%),#e9efea;
+}
+.cinematic-v14 .decision-copy h2 em {color:#667bd2;font-size:1.12em}
+.cinematic-v14 .decision-screen {
+  box-shadow:0 28px 80px rgba(12,28,39,.17),0 4px 16px rgba(27,54,54,.09);
+  border-color:rgba(66,102,97,.7);
+}
+.cinematic-v14 .story-message {
+  transition:transform .55s cubic-bezier(.2,.8,.2,1),box-shadow .55s ease,border-color .45s;
+}
+.cinematic-v14 .decision-story[data-scene="0"] .story-message.from-person,
+.cinematic-v14 .decision-story[data-scene="1"] .story-message.from-document,
+.cinematic-v14 .decision-story[data-scene="2"] .story-message.from-team {
+  transform:translateY(-3px);
+  box-shadow:0 12px 35px rgba(47,88,78,.11);
+}
+.cinematic-v14 .knowledge-satellite {
+  box-shadow:0 0 0 1px rgba(185,255,207,.08),0 0 22px rgba(103,104,224,.09);
+}
+.cinematic-v14 .decision-conclusion {
+  background:radial-gradient(ellipse at 73% 38%,rgba(85,110,210,.09),transparent 58%);
+}
+/* Estrutura do agente: constelação legível em vez de uma rede de neon invasiva. */
+.cinematic-v14 .transformation {
+  background:radial-gradient(ellipse 54% 55% at 76% 53%,rgba(68,62,138,.16),transparent 72%),linear-gradient(155deg,#091321,#0b181d 70%,#080e19);
+}
+.cinematic-v14 .transformation .chapter-title em {color:#c1beff}
+.cinematic-v14 .detail-graph-stage {
+  background:radial-gradient(ellipse at 50% 40%,rgba(33,99,103,.2),transparent 53%),radial-gradient(ellipse at 65% 40%,rgba(98,71,149,.15),transparent 65%),#0b1824;
+  border-color:rgba(165,169,249,.35);
+  box-shadow:0 15px 90px rgba(0,0,0,.2),inset 0 0 80px rgba(39,69,130,.07);
+}
+.cinematic-v14 .detail-graph-stage:before {
+  content:"";pointer-events:none;position:absolute;inset:0;
+  background-image:radial-gradient(1px 1px at 21px 31px,rgba(232,249,255,.64) 90%,transparent),radial-gradient(1px 1px at 135px 101px,rgba(193,178,255,.47) 90%,transparent);
+  background-size:191px 151px,239px 179px;
+  opacity:.42;
+}
+.cinematic-v14 .graph-edge {filter:drop-shadow(0 0 2px rgba(169,167,255,.23))}
+.cinematic-v14 .graph-major.is-active {box-shadow:0 0 0 1px rgba(195,192,255,.3),0 0 28px rgba(127,136,255,.26)}
+.cinematic-v14 .graph-info {backdrop-filter:blur(12px)}
+/* O carrossel recebe sensação de palco, não uma segunda rotina de scroll. */
+.cinematic-v14 .journey,
+.cinematic-v14 .journey-sticky {
+  background-color:#080f1c;
+}
+.cinematic-v14 .journey-sticky {
+  background:
+   radial-gradient(ellipse at 89% 72%,rgba(63,58,137,.22),transparent 52%),
+   radial-gradient(ellipse at 26% 85%,rgba(35,102,99,.15),transparent 66%),
+   #080f1c;
+}
+.cinematic-v14 .journey-head h2 em {color:#c6bbff;font-size:1.08em}
+.cinematic-v14 .journey-step {transition:color .3s,border-color .3s,background-color .3s}
+.cinematic-v14 .journey-step.is-active {border-color:rgba(184,194,255,.8)}
+.cinematic-v14 .journey-progress span {background:linear-gradient(90deg,#b9ffcf,#a9a7ff)}
+.cinematic-v14 .journey-visual {perspective:1400px;transform-style:preserve-3d}
+.cinematic-v14 .journey-visual .mock-window {
+  transform:perspective(1400px) rotateX(var(--v14-tilt-x,0deg)) rotateY(var(--v14-tilt-y,0deg));
+  transform-origin:center;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease;
+  box-shadow:0 25px 80px rgba(0,0,0,.42),0 0 0 1px rgba(151,157,245,.2),0 0 60px rgba(79,108,210,.07);
+  border-color:rgba(157,174,223,.63);
+}
+.cinematic-v14 .journey-card:hover .mock-window {
+  box-shadow:0 35px 92px rgba(0,0,0,.5),0 0 0 1px rgba(190,200,255,.3),0 0 75px rgba(95,115,218,.11);
+}
+.cinematic-v14 .journey-copy h3 span {color:var(--v14-orbit)}
+.cinematic-v14 .journey-number {color:#c2c1ff}
+.cinematic-v14 .mock-top {background:linear-gradient(90deg,#152b31,#1e2941)}
+.cinematic-v14 .mock-top b,.cinematic-v14 .mock-top small {color:#cceadd}
+.cinematic-v14 .journey-output {border-color:rgba(156,153,238,.33)}
+/* O organograma continua funcional. A luz apenas evidencia os grupos. */
+.cinematic-v14 .teams-section {background:radial-gradient(ellipse at 62% 44%,rgba(94,74,168,.13),transparent 65%),#0a121c}
+.cinematic-v14 .teams-intro .chapter-title em {color:#c9c1ff}
+.cinematic-v14 .org-card {
+  background:linear-gradient(155deg,#18332f,#14263a);
+  border-color:rgba(112,157,165,.65);
+  box-shadow:0 16px 48px rgba(0,0,0,.14);
+  transition:border-color .35s,box-shadow .35s,transform .35s;
+}
+.cinematic-v14 .org-card:hover {border-color:#a9a7ff;box-shadow:0 18px 56px rgba(70,75,145,.16);transform:translateY(-3px)}
+.cinematic-v14 .org-card.org-highlight {border-color:#c4baff;box-shadow:0 0 30px rgba(148,135,244,.12)}
+/* Clareza e confiabilidade governam o contraste dos quadros claros. */
+.cinematic-v14 .governance-v8 {background:linear-gradient(150deg,#e8eeed,#edf0ea 68%,#e1ebe7)}
+.cinematic-v14 .governance-intro .chapter-title em,
+.cinematic-v14 .governance-value h3 em {color:#6673bd}
+.cinematic-v14 .governance-pillars article {transition:background-color .32s,border-color .32s}
+.cinematic-v14 .governance-pillars article:hover {background:#eff1fc}
+.cinematic-v14 .maturity-section {background:linear-gradient(145deg,#e4ece9,#e8ede7)}
+.cinematic-v14 .maturity-copy .chapter-title em {color:#677dc2}
+.cinematic-v14 .maturity-preview {
+  background:radial-gradient(ellipse at 80% 13%,rgba(107,100,230,.2),transparent 54%),linear-gradient(135deg,#10212a,#102923);
+  border-color:rgba(145,143,228,.55);
+  box-shadow:0 30px 70px rgba(37,60,67,.16);
+}
+.cinematic-v14 .maturity-ladder>div {background:linear-gradient(0deg,#26483f,#273554);border-color:rgba(172,173,244,.6)}
+.cinematic-v14 .maturity-link {transition:transform .3s ease,box-shadow .3s ease}
+.cinematic-v14 .maturity-link:hover {transform:translateY(-3px)}
+.cinematic-v14 .closing {background:radial-gradient(ellipse at 50% 30%,#f0eefa,transparent 58%),#e8efec}
+.cinematic-v14 .closing .big i {color:#6472bb;font-size:1.02em}
+.cinematic-v14 .closing .primary {box-shadow:0 18px 55px rgba(35,73,82,.13)}
+/* Revelação só existe quando o JavaScript a habilita, garantindo leitura sem JS. */
+.cinematic-v14 .v14-observe {
+  opacity:0;
+  transform:translate3d(0,28px,0);
+  filter:blur(4px);
+  transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1),filter .9s ease;
+}
+.cinematic-v14 .v14-observe.v14-in {opacity:1;transform:none;filter:blur(0)}
+/* Pequenas linhas de interface ganham pulso no hover, sem animação permanente. */
+.cinematic-v14 .primary:focus-visible,
+.cinematic-v14 .maturity-link:focus-visible {outline:3px solid #a9a7ff;outline-offset:4px}
+@media(max-width:800px) {
+ .cinematic-v14 .hero:after {opacity:.4;mask-image:linear-gradient(to bottom,transparent 4%,#000 42%,#000 100%);animation:none}
+ .cinematic-v14 .art-graph:before {animation:none}
+ .cinematic-v14 .art-graph {filter:none}
+ .cinematic-v14 .journey-visual .mock-window {transform:none!important}
+ .cinematic-v14 .journey-card:hover .mock-window {box-shadow:0 22px 65px rgba(0,0,0,.28)}
+}
+@media(max-width:520px) {
+ .cinematic-v14 .hero h1 em {font-size:1.015em}
+ .cinematic-v14 .decision-copy h2 em {font-size:1.025em}
+ .cinematic-v14 .journey-head h2 em {font-size:1em}
+ .cinematic-v14 .closing .big i {font-size:.96em}
+ .cinematic-v14 .detail-graph-stage:before {opacity:.25}
+}
+@media(prefers-reduced-motion:reduce) {
+ .cinematic-v14 .hero:after,
+ .cinematic-v14 .art-graph:before,
+ .cinematic-v14 .hero h1 em {animation:none!important}
+ .cinematic-v14 .hero .eyebrow,
+ .cinematic-v14 .hero h1,
+ .cinematic-v14 .hero-copy,
+ .cinematic-v14 .hero-actions {animation:none!important}
+ .cinematic-v14 .v14-observe {opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
+ .cinematic-v14 .story-message,
+ .cinematic-v14 .journey-visual .mock-window,
+ .cinematic-v14 .org-card {transition:none!important;transform:none!important}
+}
+@media print {
+ .cinematic-v14 .hero:after,.cinematic-v14 .art-graph:before {display:none!important}
+ .cinematic-v14 .v14-observe {opacity:1!important;transform:none!important;filter:none!important}
+}
