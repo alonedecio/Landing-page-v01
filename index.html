@@ -63,24 +63,40 @@
 @media(max-width:950px){.hero-content{width:100%;max-width:630px}.hero h1{font-size:clamp(43px,7vw,75px)}.art-graph{top:505px;left:1%;right:1%;bottom:45px}}
 @media(max-width:520px){.hero h1{font-size:clamp(37px,10vw,51px)}.art-graph{top:545px;bottom:65px}.knowledge-constellation{min-height:190px}.knowledge-satellite{font-size:7px;padding:5px 7px}}
 @media(prefers-reduced-motion:reduce){.art-network{transition:none}}
+
+/* V7 creative-direction reset: shared visual language and protected content zones */
+:root{--ux-ink:#09141a;--ux-green:#b9ffcf;--ux-soft:#e7eee8;--ux-line:rgba(185,255,207,.24)}
+.hero{display:grid;grid-template-columns:minmax(0,45%) minmax(0,55%);min-height:800px;max-width:100%;padding:110px max(5.5vw,24px) 75px;gap:0;align-items:center;overflow:hidden}
+.hero-content{grid-column:1;position:relative;width:100%;max-width:570px;padding:40px 4% 35px 0;z-index:3}
+.hero h1{font-size:clamp(43px,4.25vw,73px);line-height:1.065;letter-spacing:-.068em;margin:25px 0 24px;text-wrap:balance;overflow-wrap:normal}
+.hero-copy{font-size:clamp(14px,1.24vw,17px);line-height:1.68;max-width:435px}
+.hero-graph,.art-graph{grid-column:2;position:relative;inset:auto;width:100%;height:min(680px,72svh);min-height:510px;align-self:center;border:1px solid var(--ux-line);border-radius:18px;background:radial-gradient(ellipse at 50% 50%,#183f346b,#07131b 72%);overflow:hidden;pointer-events:auto;mask-image:none}
+#artGraphSvg{width:100%;height:100%;display:block}.mesh-layer{transform-origin:center;transition:transform .22s}.mesh-link{stroke:#92e6bb;stroke-opacity:.3;stroke-width:1.2;transition:stroke-opacity .2s,stroke-width .2s}.mesh-bridge{stroke-opacity:.46;stroke-width:1.5}.mesh-link.is-near{stroke-opacity:1;stroke-width:2.2}.mesh-dot{fill:#c0ffd9;opacity:.8;transition:filter .2s,opacity .2s}.mesh-dot.is-near{filter:drop-shadow(0 0 9px #caffde);opacity:1}
+.hero-footer{position:absolute;bottom:28px;left:5.5%;right:5.5%;z-index:6;display:flex;justify-content:space-between;pointer-events:none}
+.decision-story{isolation:isolate}.decision-stage{grid-template-columns:minmax(0,40%) minmax(0,58%);gap:2%;padding-top:88px;padding-bottom:45px}.decision-copy{min-width:0;padding-right:7%}.decision-copy h2{font-size:clamp(37px,3.8vw,65px);line-height:1.08;text-wrap:balance}.decision-copy>p{font-size:15px;line-height:1.65}.decision-screen{height:min(665px,75svh);min-height:505px;max-width:100%;border-radius:14px}.decision-split .split-stage{grid-template-columns:49% 51%}.split-messages,.split-knowledge{padding:23px 20px}.split-messages .story-message{position:relative;width:100%;margin:0;max-width:none;box-sizing:border-box;flex:0 0 auto}.split-messages .story-message p{font-size:13px;line-height:1.48}.split-knowledge{overflow:hidden}.knowledge-constellation{height:100%;min-height:280px;position:relative}.knowledge-satellite{font-size:9px;line-height:1.1;padding:9px 10px;max-width:45%;text-align:center;z-index:3}.knowledge-constellation svg{opacity:.24;pointer-events:none}.knowledge-note{position:relative;z-index:4}.decision-conclusion{padding:95px 5.5%;}.decision-conclusion p{max-width:1080px}
+.transformation{background:#09141a}.transformation-copy{max-width:990px}.transformation .chapter-title{font-size:clamp(43px,5.3vw,83px);line-height:1.05;margin-bottom:24px}.transformation .chapter-lead{font-size:17px;line-height:1.6;max-width:760px}.detail-graph-stage{height:690px;max-width:1070px;padding:0;background:radial-gradient(ellipse at 52% 45%,#153f337d,#09171a 78%);border:1px solid var(--ux-line);border-radius:18px;overflow:hidden}.detail-graph-stage .hero-graph{inset:0!important;position:absolute!important;width:100%;height:100%;min-height:0;border:0;background:transparent;display:block;overflow:hidden}.detail-graph-stage .graph-info{bottom:16px;left:20px;max-width:390px;width:50%;background:#0a1b1de8;border-radius:7px}.detail-graph-stage .graph-caption{bottom:24px;right:22px;max-width:145px}
+.narrative-chapter{overflow:clip}.chapter-title{text-wrap:balance}.chapter-grid>*{min-width:0}.chapter-index{align-items:center}
+@media(max-width:1050px){.hero{grid-template-columns:1fr;min-height:unset;padding-top:120px;padding-bottom:92px}.hero-content{grid-column:1;max-width:700px;padding:10px 0 30px}.hero h1{font-size:clamp(45px,7vw,78px)}.art-graph{grid-column:1;height:520px;min-height:0;max-width:800px;width:100%;margin:0 auto}.hero-footer{bottom:22px}.decision-stage{grid-template-columns:1fr;position:relative;min-height:unset;gap:30px;padding:75px 5%}.decision-copy{padding:0;max-width:760px}.decision-copy h2{font-size:clamp(40px,6vw,70px)}.decision-screen{height:540px;min-height:0;max-width:850px;width:100%;margin:auto}.scene-scroll-track{height:0;display:none}.decision-story .decision-conclusion{position:relative}.decision-split .split-stage{height:calc(100% - 54px)}.detail-graph-stage{height:640px}}
+@media(max-width:650px){.hero{padding:100px 5% 85px}.hero h1{font-size:clamp(38px,10vw,56px);line-height:1.08}.hero-copy{font-size:15px}.art-graph{height:360px;border-radius:12px}.hero-footer{left:5%;right:5%;font-size:9px}.hero-footer span:first-child{display:none}.decision-stage{padding:60px 5% 35px}.decision-copy h2{font-size:clamp(36px,9vw,50px)}.decision-screen{height:auto;min-height:0}.screen-head{height:42px}.decision-split .split-stage{height:auto;grid-template-columns:1fr}.split-messages{border-right:0;border-bottom:1px solid #385348;padding:18px}.split-messages .story-message{padding:12px}.split-messages .story-message p{font-size:12px}.split-knowledge{padding:18px;min-height:240px}.knowledge-constellation{min-height:190px;height:210px}.knowledge-satellite{font-size:9px;padding:7px}.knowledge-note{font-size:9px}.detail-graph-stage{height:570px;border-radius:12px}.detail-graph-stage .graph-major{font-size:9px;padding:7px 9px}.detail-graph-stage .graph-minor{font-size:9px;padding:5px}.detail-graph-stage .graph-info{bottom:10px;left:10px;width:calc(100% - 20px);max-width:none;min-height:48px;padding:9px;font-size:10px}.detail-graph-stage .graph-caption{display:none}.transformation .chapter-title{font-size:clamp(36px,9vw,54px)}}
+@media(prefers-reduced-motion:reduce){.mesh-link,.mesh-dot,.mesh-layer{transition:none}}
 </style></head><body>
 <div class="grain" aria-hidden="true"></div><header class="nav"><a href="#inicio" class="mark" aria-label="Conhecimento Vivo, início">✳ conhecimento<b>/vivo</b></a><nav class="navlinks" id="navlinks" aria-label="Menu principal"><a href="#ideia">A ideia</a><a href="#metodo">O método</a><a href="#aplicacoes">Aplicações</a><a href="#diagnostico">Diagnóstico</a></nav><a class="action" href="#diagnostico">Conheça o diagnóstico ↗</a><button class="hamburger" id="menuToggle" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button></header>
-<main><section class="hero" id="inicio"><div class="art-graph" id="artGraph" aria-label="Constelação abstrata de conexões que representa a arquitetura de um agente"><svg id="artGraphSvg" viewBox="0 0 800 760" role="img" aria-label="Um núcleo de agente conectado a uma rede complexa de capacidades sem rótulos"></svg></div><div class="hero-content"><div class="eyebrow">AGENTES ESPECIALISTAS A PARTIR DA SUA EXPERTISE</div><h1>CONSTRUA AGENTES<br>ESPECIALISTAS<br>COM <em>O QUE SUA<br>EMPRESA SABE</em><span class="outline">.</span></h1><p class="hero-copy">Transformamos expertise, critérios e processos em agentes que apoiam pessoas, executam tarefas autorizadas e evoluem com o negócio.</p><div class="hero-actions"><a class="primary" href="#ideia">Veja como ganha forma <span>↗</span></a><a class="underlink" href="#diagnostico">Explorar diagnóstico ↗</a></div></div><div class="hero-footer"><span>CONHECIMENTO · CAPACIDADE · EVOLUÇÃO</span><span>SCROLL PARA DESCOBRIR ↓</span></div></section>
+<main><section class="hero" id="inicio"><div class="art-graph" id="artGraph" aria-label="Grafo de conhecimento inspirado no Obsidian"><svg id="artGraphSvg" viewBox="0 0 800 760" role="img" aria-label="Rede de conhecimento conectada com agrupamentos e ligações entre nós"></svg></div><div class="hero-content"><div class="eyebrow">AGENTES ESPECIALISTAS A PARTIR DA SUA EXPERTISE</div><h1>O QUE SUA EMPRESA<br><em>SABE</em> PODE SE TORNAR<br>UM AGENTE<span class="outline">.</span></h1><p class="hero-copy">Transformamos expertise, critérios e processos em agentes que apoiam pessoas, executam tarefas autorizadas e evoluem com o negócio.</p><div class="hero-actions"><a class="primary" href="#ideia">Veja como ganha forma <span>↗</span></a><a class="underlink" href="#diagnostico">Explorar diagnóstico ↗</a></div></div><div class="hero-footer"><span>CONHECIMENTO · CAPACIDADE · EVOLUÇÃO</span><span>SCROLL PARA DESCOBRIR ↓</span></div></section>
 <section class="decision-story" id="ideia" aria-labelledby="decision-title">
 <div class="decision-stage">
 <div class="decision-copy"><div class="section-top"><span>02 / O PATRIMÔNIO INVISÍVEL</span><span>O QUE A EMPRESA SABE</span></div>
 <div class="decision-overline">ALÉM DOS DOCUMENTOS</div>
 <h2 id="decision-title">SUA EMPRESA SABE A RESPOSTA. <em>MAS ONDE ELA ESTÁ?</em></h2>
 <p>Está nos critérios, nas decisões e nas exceções que só a experiência ensina.</p>
-<div class="decision-status"><span class="status-dot"></span><span id="sceneStatus"> / A DÚVIDA</span></div>
+<div class="decision-status"><span class="status-dot"></span><span id="sceneStatus">A DÚVIDA</span></div>
 <div class="scene-selector" role="group" aria-label="Navegue pela situação">
-<button class="scene-tab active" data-scene="0" type="button" aria-pressed="true">01 · A dúvida</button><button class="scene-tab" data-scene="1" type="button" aria-pressed="false">02 · O manual</button><button class="scene-tab" data-scene="2" type="button" aria-pressed="false">03 · A ausência</button></div></div>
+<button class="scene-tab active" data-scene="0" type="button" aria-pressed="true">01 · A dúvida</button><button class="scene-tab" data-scene="1" type="button" aria-pressed="false">02 · O manual</button><button class="scene-tab" data-scene="2" type="button" aria-pressed="false">03 · O contexto</button></div></div>
 <div class="decision-screen decision-split" aria-label="Cenário demonstrativo de uma decisão e do conhecimento disperso">
 <div class="screen-head"><div class="screen-lights"><i></i><i></i><i></i></div><span>OPERAÇÃO / CASO #014</span><span class="screen-clock">DECISÃO ESPECIALIZADA</span></div>
 <div class="split-stage"><div class="split-messages"><span class="mini-heading">O PROBLEMA NA OPERAÇÃO</span>
-<article class="story-message from-person"><span>ANALISTA · </span><p>“Este caso foge da regra. Como devemos proceder?”</p></article>
-<article class="story-message from-document"><span>PROCEDIMENTO · </span><p>“Aplicar a regra A.”</p><small>A regra não cobre a exceção.</small></article>
-<article class="story-message from-team"><span>EQUIPE · </span><p>“Esse caso exige mais contexto para decidir.”</p><small>Os critérios estão dispersos.</small></article></div>
+<article class="story-message from-person"><span>ANALISTA</span><p>“Este caso foge da regra. Como devemos proceder?”</p></article>
+<article class="story-message from-document"><span>PROCEDIMENTO</span><p>“Aplicar a regra A.”</p><small>A regra não cobre a exceção.</small></article>
+<article class="story-message from-team"><span>LEITURA DO CASO</span><p>“Esse caso exige mais contexto para decidir.”</p><small>Os critérios estão dispersos.</small></article></div>
 <div class="split-knowledge"><span class="mini-heading">O CONHECIMENTO QUE JÁ EXISTE</span>
 <div class="knowledge-constellation" id="knowledgeConstellation" aria-label="Fragmentos do conhecimento que surgem durante a cena">
 <span class="knowledge-satellite" data-reveal="0" style="--x:20%;--y:20%">CRITÉRIOS</span><span class="knowledge-satellite" data-reveal="1" style="--x:78%;--y:18%">CASOS</span><span class="knowledge-satellite" data-reveal="1" style="--x:50%;--y:47%">EXCEÇÕES</span><span class="knowledge-satellite" data-reveal="2" style="--x:20%;--y:80%">DECISÕES</span><span class="knowledge-satellite" data-reveal="2" style="--x:79%;--y:80%">EXPERIÊNCIA</span>
@@ -164,10 +180,9 @@ function renderGraph(){
 function setActive(i){active=i;major.forEach((e,j)=>{e.classList.toggle('is-active',i===j);e.classList.toggle('dim',i>=0&&i!==j);e.setAttribute('aria-expanded',i===j?'true':'false')});
 info.textContent=i<0?'Selecione uma dimensão para explorar a arquitetura.':dims[i][0]+' — '+dims[i][4];renderGraph()}
 if(graph){renderGraph();window.addEventListener('resize',renderGraph);
- const parent=graph.closest('.transformation');let manualUntil=0,frame=false;
- major.forEach(button=>button.addEventListener('click',()=>{manualUntil=Date.now()+5000}));
- function advance(){if(!parent||Date.now()<manualUntil)return;const rect=parent.getBoundingClientRect(),height=innerHeight;if(rect.bottom<0||rect.top>height)return;const progress=Math.max(0,Math.min(.999,(height-rect.top)/(rect.height+height*.25)));const step=Math.min(6,Math.floor(progress*7));if(active!==step)setActive(step)}
- window.addEventListener('scroll',()=>{if(!frame){frame=true;requestAnimationFrame(()=>{frame=false;advance()})}},{passive:true});advance();
+ const section=graph.closest('.transformation');
+ if(section&&'IntersectionObserver' in window){const watch=new IntersectionObserver(entries=>{if(entries[0].isIntersecting&&active<0){setActive(2);watch.disconnect()}},{threshold:.32});watch.observe(section)}
+
 }
 
 const story=document.querySelector('.decision-story');
@@ -197,18 +212,19 @@ if(switcher){
 }
 
 
+
 const art=document.getElementById('artGraphSvg');
 if(art){
- const ns='http://www.w3.org/2000/svg',pts=[],links=[],N=96,anchors=[[170,170],[440,135],[650,310],[570,570],[310,605],[140,390]];
- function elem(tag,cls){const e=document.createElementNS(ns,tag);e.setAttribute('class',cls);art.append(e);return e}
- const layer=elem('g','art-network');
- for(let i=0;i<N;i++){let c=i%6,k=Math.floor(i/6),a=k*2.4+c*.39,r=20+Math.sqrt(k)*40;pts.push({x:Math.max(25,Math.min(775,anchors[c][0]+Math.cos(a)*r)),y:Math.max(25,Math.min(735,anchors[c][1]+Math.sin(a)*r*.8))})}
- const used=new Set();
- pts.forEach((p,i)=>{const nearest=pts.map((q,j)=>({j,d:Math.hypot(q.x-p.x,q.y-p.y)})).filter(v=>v.j!==i).sort((u,v)=>u.d-v.d);nearest.slice(0,i%5===0?5:3).forEach(q=>{const key=[i,q.j].sort((u,v)=>u-v).join('-');if(used.has(key))return;used.add(key);const line=document.createElementNS(ns,'line');line.setAttribute('x1',p.x);line.setAttribute('y1',p.y);line.setAttribute('x2',pts[q.j].x);line.setAttribute('y2',pts[q.j].y);line.setAttribute('class','art-edge'+(i%7===0?' emphasized':''));layer.append(line);links.push({line,a:i,b:q.j})})});
- const dots=pts.map((p,i)=>{const c=document.createElementNS(ns,'circle');c.setAttribute('cx',p.x);c.setAttribute('cy',p.y);c.setAttribute('r',i%15===0?8:i%5===0?5:2.7);c.setAttribute('class','art-dot');layer.append(c);return c});
- const surface=document.getElementById('artGraph');surface.style.pointerEvents='auto';
- surface.addEventListener('pointermove',e=>{const r=art.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*800,y=(e.clientY-r.top)/r.height*760;let nearest=-1,d=75;pts.forEach((p,i)=>{const v=Math.hypot(x-p.x,y-p.y);if(v<d){d=v;nearest=i}});dots.forEach((c,i)=>c.classList.toggle('near',i===nearest));links.forEach(k=>k.line.classList.toggle('near',k.a===nearest||k.b===nearest));if(e.pointerType==='mouse')layer.style.transform='translate('+((x-400)*-.014)+'px,'+((y-380)*-.014)+'px)'});
- surface.addEventListener('pointerleave',()=>{dots.forEach(c=>c.classList.remove('near'));links.forEach(k=>k.line.classList.remove('near'));layer.style.transform='translate(0,0)'});
+ const ns='http://www.w3.org/2000/svg',clusters=[[170,200],[410,130],[615,260],[575,530],[310,605],[125,445]];
+ const points=[],edgeSet=new Set(),segments=[],circles=[],stage=document.getElementById('artGraph'),group=document.createElementNS(ns,'g');
+ group.setAttribute('class','mesh-layer');art.append(group);
+ function addLine(a,b,long=false){if(a===b)return;const key=[a,b].sort((x,y)=>x-y).join('-');if(edgeSet.has(key))return;edgeSet.add(key);const p=points[a],q=points[b];const e=document.createElementNS(ns,'line');[['x1',p.x],['y1',p.y],['x2',q.x],['y2',q.y]].forEach(([k,v])=>e.setAttribute(k,v));e.setAttribute('class','mesh-link'+(long?' mesh-bridge':''));group.append(e);segments.push({el:e,a,b})}
+ for(let c=0;c<clusters.length;c++){for(let j=0;j<9;j++){const angle=j*2.39996+c*.35,dist=16+Math.sqrt(j)*31+(j%3)*9;points.push({x:clusters[c][0]+Math.cos(angle)*dist,y:clusters[c][1]+Math.sin(angle)*dist*.84,cluster:c,size:j===0?8:j%4===0?5:3})}}
+ points.forEach((p,i)=>{const neighbors=points.map((q,j)=>({j,d:Math.hypot(p.x-q.x,p.y-q.y)})).filter(v=>v.j!==i&&points[v.j].cluster===p.cluster).sort((a,b)=>a.d-b.d);neighbors.slice(0,3).forEach(v=>addLine(i,v.j))});
+ [[0,9],[9,18],[18,27],[27,36],[36,45],[45,0],[4,22],[13,39],[29,49],[7,35]].forEach(([a,b])=>addLine(a,b,true));
+ points.forEach((p,i)=>{const e=document.createElementNS(ns,'circle');e.setAttribute('cx',p.x);e.setAttribute('cy',p.y);e.setAttribute('r',p.size);e.setAttribute('class','mesh-dot');group.append(e);circles.push(e)});
+ let raf=0;stage.addEventListener('pointermove',e=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=0;const r=art.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*800,y=(e.clientY-r.top)/r.height*760;let nearest=-1,best=105;points.forEach((p,i)=>{const d=Math.hypot(x-p.x,y-p.y);if(d<best){best=d;nearest=i}});circles.forEach((n,i)=>n.classList.toggle('is-near',i===nearest));segments.forEach(v=>v.el.classList.toggle('is-near',v.a===nearest||v.b===nearest))})});
+ stage.addEventListener('pointerleave',()=>{circles.forEach(n=>n.classList.remove('is-near'));segments.forEach(v=>v.el.classList.remove('is-near'))});
 }
 
 })();
