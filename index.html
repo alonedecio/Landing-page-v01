@@ -352,6 +352,27 @@ html {scroll-padding-top:20px}
 .journey-progress span {transition:none}
 }
 
+
+/* V8 / garantias de layout, scroll e estágios acessíveis */
+.knowledge-satellite {width:clamp(52px,6vw,87px);height:clamp(52px,6vw,87px);display:grid;place-items:center;text-align:center;border-radius:50%;white-space:normal;font-size:clamp(7px,.7vw,10px);padding:5px;line-height:1.2}
+.detail-graph-stage .graph-info {z-index:7}
+.detail-graph-stage .graph-major {z-index:4}
+.detail-graph-stage .graph-major.is-active {z-index:5}
+.journey.is-static {height:auto}
+.journey.is-static .journey-sticky {height:auto;min-height:0;position:relative;overflow:visible}
+.journey.is-static .journey-viewport {overflow:visible}
+.journey.is-static .journey-track {display:block;transform:none!important;will-change:auto}
+.journey.is-static .journey-card {width:100%;height:auto;min-height:550px;padding:55px 0;border-bottom:1px solid #355343}
+@media(max-width:760px){
+.journey.is-static .journey-sticky {padding:70px 6% 45px}
+.journey.is-static .journey-card {min-height:0}
+.knowledge-satellite {width:55px;height:55px;font-size:7px}
+.detail-graph-stage {height:710px}
+}
+@media(max-width:530px){
+.knowledge-satellite {width:43px;height:43px;font-size:6px;border-width:1px}
+}
+
 </style></head><body>
 <div class="grain" aria-hidden="true"></div><header class="nav"><a href="#inicio" class="mark" aria-label="Conhecimento Vivo, início">✳ conhecimento<b>/vivo</b></a><nav class="navlinks" id="navlinks" aria-label="Menu principal"><a href="#ideia">A ideia</a><a href="#metodo">O método</a><a href="#aplicacoes">Aplicações</a><a href="#diagnostico">Diagnóstico</a></nav><a class="action" href="#diagnostico">Conheça o diagnóstico ↗</a><button class="hamburger" id="menuToggle" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button></header>
 <main><section class="hero" id="inicio"><div class="art-graph" id="artGraph" aria-label="Constelação abstrata de conexões que representa a arquitetura de um agente"><svg id="artGraphSvg" viewBox="0 0 800 760" role="img" aria-label="Um núcleo de agente conectado a uma rede complexa de capacidades sem rótulos"></svg></div><div class="hero-content"><div class="eyebrow">AGENTES ESPECIALISTAS A PARTIR DA SUA EXPERTISE</div><h1>CONSTRUA AGENTES<br>ESPECIALISTAS<br>COM <em>O QUE SUA<br>EMPRESA SABE</em><span class="outline">.</span></h1><p class="hero-copy">Transformamos expertise, critérios e processos em agentes que apoiam pessoas, executam tarefas autorizadas e evoluem com o negócio.</p><div class="hero-actions"><a class="primary" href="#ideia">Veja como ganha forma <span>↗</span></a><a class="underlink" href="#diagnostico">Explorar diagnóstico ↗</a></div></div><div class="hero-footer"><span>CONHECIMENTO · CAPACIDADE · EVOLUÇÃO</span><span>SCROLL PARA DESCOBRIR ↓</span></div></section>
@@ -483,49 +504,59 @@ const major=dims.map((d,i)=>{let e=make(d[0],'graph-major',d[5]);e.setAttribute(
 const leaves=Array.from({length:5},()=>{let e=make('','graph-minor','#b9ffcf');e.hidden=true;e.tabIndex=-1;return e});
 function edge(x,y,u,v,isLeaf){let e=document.createElementNS(ns,'line');e.setAttribute('x1',x);e.setAttribute('y1',y);e.setAttribute('x2',u);e.setAttribute('y2',v);e.setAttribute('class',isLeaf?'graph-edge minor-edge':'graph-edge');svg.append(e)}
 function place(el,x,y){el.style.left=x+'px';el.style.top=y+'px'}
+
 function renderGraph(){
- const W=graph.clientWidth,H=graph.clientHeight;if(!W||!H)return;
- svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.replaceChildren();
- const small=W<650, cx=W*.50,cy=H*.38,rx=W*.34,ry=H*.27;
- const top=44, bottom=H*.73, left=55,right=W-55;
- place(core,cx,cy);
- const points=dims.map(d=>{const ang=d[1]*Math.PI/180;return {x:cx+Math.cos(ang)*rx*d[2],y:cy+Math.sin(ang)*ry*d[2],ang}});
- points.forEach((p,i)=>{place(major[i],p.x,p.y);edge(cx,cy,p.x,p.y,false)});
- leaves.forEach(e=>e.hidden=true);
- if(active<0)return;
- const d=dims[active],p=points[active],n=d[3].length;
- // Lay out labels on the tangent of the parent, avoiding both core and peer nodes.
- const placed=[{x:cx,y:cy,w:small?112:152,h:small?112:148},...points.map((q,i)=>({x:q.x,y:q.y,w:major[i].offsetWidth+16,h:major[i].offsetHeight+16}))];
- const tangent=p.ang+Math.PI/2;
- const outward=p.ang;
- const labelW=small?88:108,labelH=small?27:32;
- const candidates=[];
- for(let side of [1,-1])for(let radius of [small?95:125,small?132:169,small?169:215]){
-   const base=outward+(side===-1?Math.PI:0);
-   for(let swing of [0,.28,-.28,.52,-.52,.78,-.78]){
-     const aa=base+swing;
-     candidates.push({x:p.x+Math.cos(aa)*radius,y:p.y+Math.sin(aa)*radius});
-   }
- }
- function fits(q,w,h){if(q.x-w/2<left-20||q.x+w/2>right+20||q.y-h/2<top||q.y+h/2>bottom)return false;
- return placed.every(z=>Math.abs(q.x-z.x)>(w+z.w)/2+8||Math.abs(q.y-z.y)>(h+z.h)/2+9)}
- d[3].forEach((name,j)=>{
-   const el=leaves[j];el.hidden=false;el.textContent=name;el.style.setProperty('--node-color',d[5]);
-   const w=Math.max(labelW,el.offsetWidth+8),h=Math.max(labelH,el.offsetHeight+7);
-   let viable=candidates.filter(q=>fits(q,w,h));
-   // Prefer a spaced fan (staggered tangential positions), not a collapsed stack.
-   let q=viable.sort((u,v)=>{
-      const target=j-(n-1)/2;
-      const fu=(u.x-p.x)*Math.cos(tangent)+(u.y-p.y)*Math.sin(tangent);
-      const fv=(v.x-p.x)*Math.cos(tangent)+(v.y-p.y)*Math.sin(tangent);
-      return Math.abs(fu-target*(small?44:60))-Math.abs(fv-target*(small?44:60));
-   })[0];
-   if(!q){q={x:Math.max(left,Math.min(right,p.x+(j-(n-1)/2)*(small?70:105))),y:Math.min(bottom-28,Math.max(top+24,p.y+(j%2?95:-95)))}}
-   place(el,q.x,q.y);placed.push({x:q.x,y:q.y,w,h});edge(p.x,p.y,q.x,q.y,true);
- });
+  if(!graph)return;
+  const W=graph.clientWidth,H=graph.clientHeight;
+  if(!W||!H)return;
+  svg.setAttribute('viewBox','0 0 '+W+' '+H);
+  svg.replaceChildren();
+  const isCompact=W<730;
+  const cx=W*.5,cy=H*(isCompact?.225:.395);
+  place(core,cx,cy);
+  let points;
+  if(isCompact){
+    const cols=[.235,.765],rows=[.405,.505,.605,.705];
+    points=dims.map((d,i)=>({x:W*cols[i%2],y:H*rows[Math.floor(i/2)]}));
+  }else{
+    points=dims.map(d=>{
+      const angle=d[1]*Math.PI/180;
+      return{x:cx+Math.cos(angle)*W*.35*d[2],y:cy+Math.sin(angle)*H*.27*d[2]};
+    });
+  }
+  points.forEach((p,i)=>{
+    place(major[i],p.x,p.y);
+    const connection=document.createElementNS(ns,'path');
+    const middleY=isCompact?cy+(p.y-cy)*.45:(cy+p.y)/2;
+    const bend=isCompact?0:(p.y>cy?15:-15);
+    connection.setAttribute('d','M '+cx+' '+cy+' Q '+((cx+p.x)/2)+' '+(middleY+bend)+' '+p.x+' '+p.y);
+    connection.setAttribute('class','graph-edge');
+    svg.append(connection);
+  });
+  leaves.forEach(e=>e.hidden=true);
 }
-function setActive(i){active=i;major.forEach((e,j)=>{e.classList.toggle('is-active',i===j);e.classList.toggle('dim',i>=0&&i!==j);e.setAttribute('aria-expanded',i===j?'true':'false')});
-info.textContent=i<0?'Selecione uma dimensão para explorar a arquitetura.':dims[i][0]+' — '+dims[i][4];renderGraph()}
+function setActive(i){
+  active=i;
+  major.forEach((e,j)=>{
+    e.classList.toggle('is-active',i===j);
+    e.classList.toggle('dim',i>=0&&i!==j);
+    e.setAttribute('aria-expanded',String(i===j));
+  });
+  if(i<0){
+    info.innerHTML='<span class="detail-title">Explore a arquitetura do agente</span><span class="detail-desc">Selecione uma dimensão para revelar suas capacidades, critérios e limites.</span>';
+  }else{
+    const d=dims[i];
+    const heading=document.createElement('span');
+    heading.className='detail-title';heading.textContent=d[0];
+    const paragraph=document.createElement('span');
+    paragraph.className='detail-desc';paragraph.textContent=d[4];
+    const pills=document.createElement('div');
+    pills.className='detail-pills';
+    d[3].forEach(label=>{const chip=document.createElement('span');chip.textContent=label;pills.append(chip)});
+    info.replaceChildren(heading,paragraph,pills);
+  }
+  renderGraph();
+}
 if(graph){renderGraph();window.addEventListener('resize',renderGraph)}
 
 const story=document.querySelector('.decision-story');
@@ -554,16 +585,171 @@ if(switcher){
  }));
 }
 
+
 const art=document.getElementById('artGraphSvg');
 if(art){
- const nsArt='http://www.w3.org/2000/svg',cx=405,cy=375;
- function el(tag,attrs){const e=document.createElementNS(nsArt,tag);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,String(v)));art.append(e);return e}
- const rings=[{n:11,r:145},{n:19,r:252},{n:26,r:340}];const nodes=[{x:cx,y:cy,r:55,ring:-1}];
- rings.forEach((ring,level)=>{for(let i=0;i<ring.n;i++){const angle=(i/ring.n)*Math.PI*2+level*.35;const variance=Math.sin(i*9.1+level*13)*29;nodes.push({x:cx+Math.cos(angle)*(ring.r+variance),y:cy+Math.sin(angle)*(ring.r+variance)*.86,r:level===0?8:level===1?4.5:2.5,ring:level})}});
- const edges=[];nodes.forEach((n,i)=>{if(!i)return;const candidates=nodes.map((m,j)=>({j,d:Math.hypot(m.x-n.x,m.y-n.y)})).filter(x=>x.j!==i&&x.d>30&&x.d<330).sort((a,b)=>a.d-b.d);const connections=n.ring===0?4:n.ring===1?3:2;for(let k=0;k<Math.min(connections,candidates.length);k++){const j=candidates[k].j;if(j<i||j===0||n.ring===0)edges.push([i,j])}if(i%3===0)edges.push([i,0])});
- const unique=new Set();edges.forEach(([a,b],i)=>{const key=[a,b].sort((x,y)=>x-y).join(':');if(unique.has(key))return;unique.add(key);const p=nodes[a],q=nodes[b];const line=el('line',{x1:p.x,y1:p.y,x2:q.x,y2:q.y,class:'art-edge'+(i%5===0?' emphasized':'')});line.style.animationDelay='-'+(i%13)+'s'});
- nodes.slice(1).forEach((n,i)=>{const circle=el('circle',{cx:n.x,cy:n.y,r:n.r,class:'art-dot'});circle.style.animationDelay='-'+(i%17)+'s'});
- el('circle',{cx,cy,r:71,class:'art-core-halo'});el('circle',{cx,cy,r:54,class:'art-core'});const t=el('text',{x:cx,y:cy+5,'text-anchor':'middle',class:'art-core-label'});t.textContent='AGENTE';
+  const nsArt='http://www.w3.org/2000/svg',cx=410,cy=377;
+  function el(tag,attrs){
+    const node=document.createElementNS(nsArt,tag);
+    Object.entries(attrs).forEach(([name,value])=>node.setAttribute(name,String(value)));
+    art.append(node);return node;
+  }
+  const clusters=[
+    {x:242,y:204,r:27,leaves:[[188,132,8],[157,233,6],[290,135,7]]},
+    {x:522,y:195,r:25,leaves:[[552,116,7],[613,183,8],[569,255,6]]},
+    {x:616,y:381,r:27,leaves:[[704,348,8],[691,434,7],[623,492,5]]},
+    {x:507,y:543,r:25,leaves:[[480,643,7],[582,612,8],[588,510,6]]},
+    {x:253,y:550,r:26,leaves:[[195,638,7],[149,529,8],[261,472,6]]}
+  ];
+  el('circle',{cx,cy,r:91,fill:'none',stroke:'#b9ffcf','stroke-opacity':'.12','stroke-width':2});
+  el('circle',{cx,cy,r:76,fill:'none',stroke:'#b9ffcf','stroke-opacity':'.10','stroke-width':9});
+  const path=(x1,y1,x2,y2,emphasis=false)=>{
+    const controlX=(x1+x2)/2+(y2-y1)*.05;
+    const controlY=(y1+y2)/2+(x2-x1)*.05;
+    return el('path',{d:'M '+x1+' '+y1+' Q '+controlX+' '+controlY+' '+x2+' '+y2,class:'art-edge'+(emphasis?' emphasized':'')});
+  };
+  clusters.forEach((c,i)=>{
+    path(cx,cy,c.x,c.y,true);
+    c.leaves.forEach((p,j)=>{
+      path(c.x,c.y,p[0],p[1],j===0);
+      const dot=el('circle',{cx:p[0],cy:p[1],r:p[2],class:'art-dot'});
+      dot.style.animationDelay='-'+(i*3+j)+'s';
+    });
+    el('circle',{cx:c.x,cy:c.y,r:c.r+9,fill:'none',stroke:'#b9ffcf','stroke-opacity':'.13','stroke-width':1});
+    el('circle',{cx:c.x,cy:c.y,r:c.r,fill:i%2===0?'#214f3e':'#173c35',stroke:'#b9ffcf','stroke-width':1.5});
+    el('circle',{cx:c.x,cy:c.y,r:5,fill:'#b9ffcf','fill-opacity':'.8'});
+  });
+  [
+    [[80,300,7],[130,320,9],[98,371,6]],
+    [[695,211,7],[751,253,8],[724,300,6]],
+    [[710,557,7],[754,590,6]],
+    [[74,474,5],[106,443,7]]
+  ].forEach((group,i)=>{
+    for(let j=1;j<group.length;j++)path(group[j-1][0],group[j-1][1],group[j][0],group[j][1]);
+    group.forEach((p,j)=>{const dot=el('circle',{cx:p[0],cy:p[1],r:p[2],class:'art-dot'});dot.style.animationDelay='-'+(i+j+5)+'s'});
+  });
+  el('circle',{cx,cy,r:58,class:'art-core-halo'});
+  el('circle',{cx,cy,r:55,class:'art-core'});
+  const text=el('text',{x:cx,y:cy+5,'text-anchor':'middle',class:'art-core-label'});
+  text.textContent='AGENTE';
+}
+
+
+/* V8 / carrossel narrativo por scroll, com controles clicáveis e fallback mobile */
+const journey=document.getElementById('metodo');
+if(journey){
+  const track=document.getElementById('journeyTrack');
+  const viewport=document.getElementById('journeyViewport');
+  const fill=document.getElementById('journeyFill');
+  const counter=document.getElementById('journeyCount');
+  const buttons=[...document.querySelectorAll('.journey-step')];
+  const slides=[...document.querySelectorAll('.journey-card')];
+  const compact=window.matchMedia('(max-width:760px)');
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+  let scheduled=false;
+  function setCurrent(index,progress){
+    buttons.forEach((b,i)=>{
+      const isActive=i===index;
+      b.classList.toggle('is-active',isActive);
+      if(isActive)b.setAttribute('aria-current','step');
+      else b.removeAttribute('aria-current');
+    });
+    counter.textContent='0'+(index+1)+' / 05';
+    fill.style.width=(progress*100)+'%';
+  }
+  function syncJourney(){
+    scheduled=false;
+    const isStatic=compact.matches||reduced.matches;
+    journey.classList.toggle('is-static',isStatic);
+    if(isStatic){
+      track.style.transform='none';
+      const visible=slides.reduce((best,slide,i)=>{
+        const d=Math.abs(slide.getBoundingClientRect().top-window.innerHeight*.28);
+        return d<best.distance?{index:i,distance:d}:best;
+      },{index:0,distance:Infinity});
+      setCurrent(visible.index,visible.index/4);
+      return;
+    }
+    const distance=Math.max(1,journey.offsetHeight-window.innerHeight);
+    const progress=Math.max(0,Math.min(1,-journey.getBoundingClientRect().top/distance));
+    const x=progress*4*viewport.clientWidth;
+    track.style.transform='translate3d('+(-x)+'px,0,0)';
+    const index=Math.min(4,Math.round(progress*4));
+    setCurrent(index,progress);
+  }
+  function requestSync(){
+    if(!scheduled){scheduled=true;requestAnimationFrame(syncJourney)}
+  }
+  buttons.forEach((button,index)=>button.addEventListener('click',()=>{
+    if(compact.matches||reduced.matches){
+      slides[index].scrollIntoView({behavior:reduced.matches?'auto':'smooth',block:'start'});
+    }else{
+      const sectionTop=window.scrollY+journey.getBoundingClientRect().top;
+      const target=sectionTop+index/4*Math.max(1,journey.offsetHeight-window.innerHeight);
+      window.scrollTo({top:target,behavior:'smooth'});
+    }
+  }));
+  window.addEventListener('scroll',requestSync,{passive:true});
+  window.addEventListener('resize',requestSync);
+  if(compact.addEventListener)compact.addEventListener('change',requestSync);
+  if(reduced.addEventListener)reduced.addEventListener('change',requestSync);
+  syncJourney();
+}
+/* V8 / autodiagnóstico exploratório em quatro dimensões */
+const maturityArea=document.getElementById('maturityArea');
+if(maturityArea){
+  const questions=[
+    {topic:'CONHECIMENTO',title:'Onde vivem os critérios que orientam decisões importantes?',options:['Na experiência de algumas pessoas.','Em conversas e documentos dispersos.','Em procedimentos conhecidos e parcialmente organizados.','Em bases revisadas, com fontes, exceções e responsáveis claros.']},
+    {topic:'PROCESSOS',title:'Como a IA participa das rotinas da sua empresa hoje?',options:['Quase não é utilizada.','Pessoas usam ferramentas por iniciativa própria.','Existem casos de uso delimitados e algum processo definido.','IA apoia processos com objetivos, responsáveis e integração planejados.']},
+    {topic:'QUALIDADE',title:'Como vocês verificam a qualidade do que a IA produz?',options:['Ainda não verificamos de forma consistente.','Conferimos quando algo parece errado.','Especialistas revisam casos e critérios conhecidos.','Mantemos testes repetíveis, indicadores e revisão de falhas.']},
+    {topic:'GOVERNANÇA',title:'Quem define os limites e acompanha a evolução dessas soluções?',options:['Não há responsabilidades definidas.','Cada equipe decide por conta própria.','Existem donos, aprovações e regras para parte dos usos.','Há gestão de acessos, supervisão, versões e plano de evolução.']}
+  ];
+  const answers=[];
+  let step=0;
+  const label=document.getElementById('maturityStepLabel');
+  const progress=document.getElementById('maturityProgress');
+  const back=document.getElementById('maturityBack');
+  function renderMaturity(){
+    const done=step>=questions.length;
+    label.textContent=done?'RESULTADO':'0'+(step+1)+' / 04';
+    progress.style.width=(done?100:(step+1)*25)+'%';
+    back.disabled=step===0||done;
+    if(done){
+      const total=answers.reduce((sum,value)=>sum+value,0);
+      const stage=total<=4?0:total<=8?1:2;
+      const titles=['A oportunidade começa pela base.','Sua empresa já está em movimento.','Há fundamentos para ir além.'];
+      const descs=[
+        'Suas respostas sugerem que organizar conhecimento, definir responsáveis e escolher um piloto podem ser os passos mais úteis antes de ampliar o uso de IA.',
+        'Já existem práticas importantes. A próxima oportunidade é conectar processos, critérios de qualidade e governança em capacidades mais consistentes.',
+        'Sua empresa relata práticas relativamente estruturadas. O próximo passo pode ser testar uma capacidade especializada com indicadores, supervisão e evolução planejada.'
+      ];
+      const card=document.createElement('div');card.className='maturity-result';
+      card.innerHTML='<span class="maturity-result-badge">LEITURA EXPLORATÓRIA / PRONTIDÃO PARA IA</span><h3>'+titles[stage]+'</h3><p>'+descs[stage]+'</p><div class="maturity-score">SINAL INDICATIVO: '+total+' / 12 · BASEADO EM RESPOSTAS AUTODECLARADAS</div><p>Este questionário não mede maturidade certificada nem garante resultados. Um diagnóstico real exige evidências, entrevistas e avaliação técnica.</p><a href="#conversa">CONVERSAR SOBRE O PRÓXIMO PASSO ↗</a><button type="button" id="maturityRestart">REFAZER</button>';
+      maturityArea.replaceChildren(card);
+      document.getElementById('maturityRestart').addEventListener('click',()=>{answers.length=0;step=0;renderMaturity()});
+      return;
+    }
+    const q=questions[step];
+    const content=document.createElement('div');
+    const kicker=document.createElement('div');kicker.className='maturity-question-kicker';kicker.textContent='DIMENSÃO '+(step+1)+' · '+q.topic;
+    const h=document.createElement('h3');h.className='maturity-question';h.textContent=q.title;
+    const options=document.createElement('div');options.className='maturity-options';
+    q.options.forEach((option,index)=>{
+      const btn=document.createElement('button');
+      btn.type='button';btn.className='maturity-choice';
+      const code=document.createElement('b');code.textContent='0'+(index+1);
+      const sentence=document.createElement('span');sentence.textContent=option;
+      btn.append(code,sentence);
+      btn.addEventListener('click',()=>{answers[step]=index;step++;renderMaturity()});
+      options.append(btn);
+    });
+    content.append(kicker,h,options);
+    maturityArea.replaceChildren(content);
+  }
+  back.addEventListener('click',()=>{
+    if(step>0&&step<=4){step--;answers.splice(step);renderMaturity()}
+  });
+  renderMaturity();
 }
 
 })();
