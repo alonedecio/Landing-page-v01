@@ -52,6 +52,327 @@
 @media(max-width:900px){.art-graph{inset:490px -7% 52px -7%;opacity:.83}.hero-content{width:100%}.detail-graph-stage{height:610px}.detail-graph-stage .graph-major{font-size:11px}}
 @media(max-width:520px){.art-graph{top:530px;bottom:62px}.hero h1{font-size:clamp(37px,10vw,51px)}.detail-graph-stage{height:500px}.detail-graph-stage .hero-graph{inset:0}.detail-graph-stage .graph-major{font-size:9px;padding:6px}.detail-graph-stage .graph-core{width:86px;height:86px;font-size:12px}.detail-graph-stage .graph-info{width:88%;max-width:none;font-size:10px}.knowledge-agent{height:56px;width:56px;font-size:9px}}
 @media(prefers-reduced-motion:reduce){.art-edge,.art-dot{animation:none}}
+
+/* V8 / Linguagem de experiência: narrativa, método, times e prontidão */
+:root {--accent:#b9ffcf;--panel:#0d1819;--panel-border:#33584b}
+html {scroll-padding-top:20px}
+.journey {height:600svh;position:relative;background:#081115;color:#e9f7ef}
+.journey-sticky {position:sticky;top:0;height:100svh;min-height:620px;display:flex;flex-direction:column;overflow:hidden;padding:clamp(24px,3.7vh,42px) 5.5% 17px;background:radial-gradient(ellipse at 90% 80%,#173b3230,transparent 60%),#081115}
+.journey-head {display:flex;justify-content:space-between;gap:4vw;align-items:end;padding-bottom:23px}
+.journey-header-copy {max-width:850px}
+.journey-kicker,.journey-number,.journey-bottom,.journey-output>span,.mock-top,.mock-foot,.journey-step {font-family:var(--mono)}
+.journey-kicker {display:block;color:#a4d9b4;font-size:10px;letter-spacing:.14em;margin-bottom:14px}
+.journey-head h2 {font:700 clamp(30px,3.25vw,56px)/1.03 var(--display);letter-spacing:-.06em;margin:0}
+.journey-head h2 em {font-style:normal;color:#a4e2b9}
+.journey-head>p {margin:0;max-width:255px;font-size:13px;line-height:1.6;color:#a1b9ad}
+.journey-navigation {margin:0 0 22px}
+.journey-steps {display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.journey-step {text-align:left;padding:10px 4px 13px;border:0;background:transparent;color:#749287;display:flex;align-items:baseline;gap:12px;cursor:pointer;transition:color .2s}
+.journey-step b {font-size:11px;font-weight:500}
+.journey-step span {font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+.journey-step.is-active,.journey-step:hover {color:#b9ffcf}
+.journey-progress {height:2px;background:#395148}
+.journey-progress span {display:block;width:0;height:100%;background:#b9ffcf;transition:width .15s linear}
+.journey-viewport {flex:1;min-height:0;overflow:hidden;border-top:1px solid #294b3d;border-bottom:1px solid #294b3d}
+.journey-track {display:flex;width:100%;height:100%;will-change:transform}
+.journey-card {flex:0 0 100%;min-width:0;height:100%;display:grid;grid-template-columns:minmax(0,.43fr) minmax(0,.57fr);gap:4%;align-items:stretch;padding:clamp(20px,3.1vh,36px) 0}
+.journey-copy {min-width:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding-right:4%}
+.journey-number {font-size:12px;color:#b9ffcf;letter-spacing:.08em;display:flex;gap:17px}
+.journey-number span {color:#88a99b;font-size:9px}
+.journey-copy h3 {font:700 clamp(50px,6vw,110px)/.92 var(--display);letter-spacing:-.085em;margin:24px 0 22px}
+.journey-copy h3 span {color:#b9ffcf}
+.journey-claim {font:500 clamp(18px,1.75vw,27px)/1.27 var(--display);letter-spacing:-.035em;color:#e6f5e9;max-width:510px;margin:0 0 18px}
+.journey-copy>p:not(.journey-claim) {font-size:clamp(12px,1.02vw,15px);line-height:1.65;color:#aec2b9;max-width:500px}
+.journey-output {width:100%;border-top:1px solid #416558;padding-top:14px;margin-top:auto;display:flex;flex-direction:column;gap:7px}
+.journey-output>span {font-size:10px;color:#a5e8bc;letter-spacing:.09em}
+.journey-output strong {font-size:clamp(14px,1.3vw,19px);font-weight:600}
+.journey-output small {font-size:11px;color:#9cb2aa;line-height:1.4}
+.journey-visual {min-width:0;min-height:0;display:flex;align-items:stretch}
+.mock-window {width:100%;height:100%;min-height:0;background:#dfe9de;color:#0d2018;box-shadow:0 22px 65px #0005;border:1px solid #668775;display:flex;flex-direction:column;overflow:hidden}
+.mock-top {flex:0 0 39px;padding:0 18px;display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid #91a99a;background:#d2dfd3;font-size:9px;letter-spacing:.09em}
+.mock-top b {font-weight:500}
+.mock-top small {font-size:9px}
+.mock-dots {color:#619677;font-size:11px;letter-spacing:.3em;white-space:nowrap}
+.mock-foot {margin-top:auto;border-top:1px solid #aabfaf;background:#d6e4d8;padding:14px 20px;display:flex;justify-content:space-between;gap:16px;align-items:center;font-size:10px}
+.mock-foot>span {color:#507361;letter-spacing:.07em}
+.mock-foot strong {font-size:11px;font-weight:600;text-align:right}
+.mock-foot strong span {color:#237948}
+.discover-upper {padding:clamp(19px,3vh,36px) clamp(16px,2vw,30px) 12px}
+.discover-upper>span,.evals-title>span,.roadmap-top>span {font:10px var(--mono);letter-spacing:.14em;color:#4f8264}
+.discover-upper strong {display:block;margin:16px 0 8px;font:650 clamp(22px,2.5vw,43px)/1.06 var(--display);letter-spacing:-.05em;max-width:560px}
+.discover-upper p {font-size:12px;color:#5e776a;margin:0}
+.discover-flow {display:grid;grid-template-columns:repeat(3,1fr);gap:7px;padding:7px clamp(16px,2vw,30px) 16px}
+.discover-flow>div {display:flex;justify-content:space-between;gap:4px;align-items:center;border:1px solid #a6bca9;background:#ecf3e9;padding:13px 9px;font:9px var(--mono)}
+.discover-flow b {color:#238352;font-size:17px}
+.mock-list {padding:0 clamp(16px,2vw,30px) 16px}
+.mock-list>div {display:grid;grid-template-columns:25px 1fr auto;align-items:center;gap:9px;padding:12px 0;border-top:1px solid #adc3b4;font-size:12px}
+.mock-list i {font:10px var(--mono);font-style:normal;color:#587364}
+.mock-list b {font:9px var(--mono);color:#1b7745;white-space:nowrap}
+.files-layout {flex:1;min-height:0;display:grid;grid-template-columns:34% 66%}
+.file-tree {padding:24px 10px;background:#172821;color:#acccb7;font:11px/1.7 var(--mono);overflow:hidden}
+.file-tree>span {display:block;color:#b9ffcf;font-size:10px;margin:0 0 20px 10px}
+.file-tree>div {padding:8px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.file-tree .selected {background:#345541;color:#eaffec;border-left:2px solid #b9ffcf}
+.file-editor {padding:25px clamp(13px,2vw,32px);overflow:hidden;display:flex;flex-direction:column;gap:15px}
+.file-editor small {font:10px var(--mono);color:#55836b}
+.file-editor strong {font:700 clamp(19px,2vw,34px) var(--display);letter-spacing:-.05em}
+.file-editor p {font:600 14px var(--display);margin:0}
+.file-editor div {border-left:2px solid #72b489;padding:8px 10px;background:#cadfd0;font:11px/1.5 Inter,sans-serif}
+.file-editor>span {font:9px var(--mono);color:#36734f;margin-top:auto}
+.agent-topology {flex:1;min-height:0;display:grid;grid-template-columns:43% 57%;gap:18px;padding:clamp(20px,4vh,44px) 20px 12px;align-items:center}
+.topology-core {aspect-ratio:1;border-radius:50%;border:1px solid #5c9b75;background:radial-gradient(circle,#376d50,#153b2d);box-shadow:0 0 0 15px #68a87c1b;color:#f3fff3;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:13px}
+.topology-core small,.topology-core span {font:9px var(--mono);color:#a3c7ae}
+.topology-core b {font-size:53px;color:#b9ffcf;margin:7px 0}
+.topology-core strong {font:600 clamp(11px,1.1vw,18px) var(--display)}
+.topology-satellites {display:flex;flex-direction:column;gap:10px}
+.topology-satellites>div {background:#eaf3e7;border:1px solid #aac7b1;padding:13px;display:grid;grid-template-columns:24px 1fr;column-gap:8px;align-items:center;font:19px var(--display)}
+.topology-satellites strong {font:650 12px var(--display)}
+.topology-satellites span {grid-column:2;font:10px var(--mono);color:#4f7961}
+.agent-interaction {margin:0 20px 14px;background:#132b21;color:#e6ffea;padding:13px 18px;font-size:11px}
+.agent-interaction small {font:9px var(--mono);color:#b4f8c7}
+.agent-interaction p {padding:8px 0;margin:5px 0;border-bottom:1px solid #436956}
+.agent-interaction div {color:#b6dfbf;line-height:1.55}
+.evals-title {padding:clamp(16px,3vh,28px) 22px 9px}
+.evals-title strong {display:block;font:600 clamp(18px,2.1vw,31px)/1.1 var(--display);letter-spacing:-.05em;margin-top:11px}
+.evals-stats {display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:7px 20px 13px}
+.evals-stats>div {background:#e9f3e7;border:1px solid #abc4ad;padding:14px 12px;min-width:0}
+.evals-stats small,.evals-stats span {display:block;font:9px var(--mono);color:#557968}
+.evals-stats strong {display:block;font:700 clamp(18px,2.4vw,34px) var(--display);letter-spacing:-.05em;margin:10px 0}
+.evals-stats span {line-height:1.3}
+.eval-table {margin:0 20px 18px;border-top:1px solid #a5bda9}
+.eval-table>div {display:grid;grid-template-columns:1.1fr 1.1fr .6fr;gap:6px;padding:11px 5px;border-bottom:1px solid #adc3b1;font-size:10px}
+.eval-table .thead {font:9px var(--mono);color:#528068}
+.eval-table b {color:#24764b;font-size:10px;font-weight:500}
+.eval-table b.pending {color:#906c29}
+.roadmap-top {padding:clamp(17px,3vh,30px) 22px 9px}
+.roadmap-top h4 {font:650 clamp(24px,2.65vw,42px)/1.03 var(--display);letter-spacing:-.055em;margin:13px 0 0}
+.roadmap-line {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:18px 22px}
+.roadmap-line>div {border-top:2px solid #68a87a;padding-top:13px}
+.roadmap-line i {font:10px var(--mono);color:#58956a;font-style:normal}
+.roadmap-line strong {display:block;margin:15px 0 10px;font:600 12px var(--display)}
+.roadmap-line small {font-size:10px;line-height:1.35;color:#597262}
+.cycle-diagram {margin:10px 22px 20px;padding:15px 13px;background:#193d2d;color:#cdf7d5;display:flex;align-items:center;justify-content:space-between;gap:5px;font:10px var(--mono)}
+.cycle-diagram b {color:#7ddba4}
+.journey-bottom {display:flex;justify-content:space-between;gap:12px;padding-top:14px;color:#7ea292;font-size:9px;letter-spacing:.09em}
+.journey-bottom b {color:#b9ffcf}
+.journey-bottom span:last-child {color:#b9ffcf}
+.teams-intro {display:grid;grid-template-columns:1.35fr .65fr;gap:5%;align-items:end}
+.teams-intro .chapter-title {font-size:clamp(40px,5.2vw,85px)}
+.teams-intro .chapter-lead {font-size:16px;line-height:1.6}
+.org-chart {border:1px solid #456b54;background:radial-gradient(circle at 50% 5%,#1d4a3440,transparent 70%),#0b1a18;padding:45px clamp(20px,3vw,45px) 20px;margin-top:70px}
+.org-level {display:flex;justify-content:center}
+.org-card {background:#173229;border:1px solid #527b63;padding:23px 24px;color:#f0fff2;display:flex;flex-direction:column;gap:8px;position:relative}
+.org-card>span,.org-card small {font:10px/1.5 var(--mono);color:#92c8a5}
+.org-card strong {font:650 clamp(15px,1.7vw,23px) var(--display);letter-spacing:-.035em}
+.org-lead {text-align:center;min-width:min(100%,370px);background:#25553c;border-color:#b1f0bf}
+.org-stem {height:40px;width:1px;background:#5f9674;margin:auto}
+.org-managers {display:flex;justify-content:center;gap:24px}
+.org-managers .org-card {width:min(34%,320px)}
+.org-fork {height:60px;max-width:67%;margin:0 auto;position:relative;border-bottom:1px solid #5f9674}
+.org-fork:before {content:"";width:1px;height:100%;background:#5f9674;position:absolute;left:50%}
+.org-teams {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;padding-top:27px}
+.org-team:before {content:"";position:absolute;height:27px;width:1px;background:#5f9674;bottom:100%;left:50%}
+.org-team {min-height:260px}
+.org-team>span {letter-spacing:.08em}
+.org-avatar-line {display:flex;gap:7px;margin:18px 0 13px}
+.org-avatar-line i {display:grid;place-items:center;width:34px;height:34px;background:#234638;border:1px solid #8dbb9b;border-radius:50%;font-size:13px;font-style:normal;color:#daffe0}
+.org-avatar-line i.ai {background:#b9ffcf;color:#0f2b1c;font-size:22px}
+.org-team small {color:#acd5b5}
+.org-team p {font-size:12px;color:#a5c2ad;line-height:1.55;margin-top:auto}
+.org-highlight {border-color:#b9ffcf;background:#1c4532;box-shadow:0 0 70px #77ffc011}
+.org-foot {margin-top:29px;padding-top:17px;border-top:1px solid #446c54;display:flex;justify-content:space-between;gap:15px;font:10px var(--mono);color:#a4c4b0}
+.org-foot strong {color:#b9ffcf;font-weight:500}
+.governance-v8 {background:#e4ece4}
+.governance-intro {display:grid;grid-template-columns:1.25fr .75fr;gap:8%;align-items:end}
+.governance-intro>div:last-child p {font:500 clamp(18px,1.75vw,26px)/1.35 var(--display);letter-spacing:-.03em}
+.governance-intro>div:last-child span {font:10px/1.7 var(--mono);color:#518166}
+.governance-pillars {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:#a4baaa;border:1px solid #a4baaa;margin-top:70px}
+.governance-pillars article {background:#e5eee6;padding:30px 22px 37px}
+.governance-pillars small {font:10px var(--mono);color:#477357}
+.governance-pillars strong {display:block;font:650 clamp(19px,2vw,29px)/1.12 var(--display);letter-spacing:-.04em;margin:52px 0 18px}
+.governance-pillars p {font-size:13px;line-height:1.6;color:#4b6253}
+.governance-value {background:#0d2520;color:#f1fff2;display:grid;grid-template-columns:1.15fr .85fr;gap:6%;padding:clamp(26px,4vw,70px);margin-top:28px}
+.governance-value>div>span {font:10px var(--mono);color:#9edab4}
+.governance-value h3 {font:650 clamp(30px,3vw,52px)/1.08 var(--display);letter-spacing:-.06em;margin:25px 0}
+.governance-value h3 em {font-style:normal;color:#b9ffcf}
+.value-metrics {border-top:1px solid #547361}
+.value-metrics p {margin:0;padding:16px 0;border-bottom:1px solid #547361;font-size:13px;line-height:1.5;color:#d2e9d7;display:flex;gap:17px}
+.value-metrics b {font:10px var(--mono);color:#b9ffcf;white-space:nowrap}
+.maturity-section {background:#e6efe8}
+.maturity-layout {display:grid;grid-template-columns:1fr 1.05fr;gap:6%;align-items:start}
+.maturity-overline {display:block;font:10px var(--mono);color:#4a8064;margin-bottom:30px}
+.maturity-copy .chapter-title {font-size:clamp(37px,4.75vw,76px)}
+.maturity-copy>p {max-width:520px;font-size:17px;line-height:1.7;color:#425a4a}
+.maturity-aside {display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid #a4bcaa;padding-top:22px;margin-top:60px;font:10px var(--mono);color:#47805f}
+.maturity-aside small {display:block;width:100%;font-size:10px;color:#748e7b;margin-top:8px}
+.maturity-panel {background:#0e211b;color:#f0fff0;border:1px solid #426b52;box-shadow:0 28px 90px #25422a25;padding:clamp(22px,3vw,42px);min-height:505px;display:flex;flex-direction:column}
+.maturity-panel-top {display:flex;justify-content:space-between;gap:14px;font:10px var(--mono);color:#a4d3b2;letter-spacing:.1em}
+.maturity-progress {height:2px;background:#456253;margin:22px 0 34px}
+.maturity-progress span {display:block;background:#b9ffcf;height:100%;width:25%;transition:width .3s}
+#maturityArea {flex:1}
+.maturity-question-kicker {font:10px var(--mono);color:#9fd3ab}
+.maturity-question {font:600 clamp(23px,2.65vw,39px)/1.15 var(--display);letter-spacing:-.05em;margin:15px 0 25px}
+.maturity-options {display:grid;gap:9px}
+.maturity-choice {border:1px solid #507561;background:#172f24;color:#dbf3e0;padding:14px 16px;text-align:left;display:flex;gap:13px;align-items:flex-start;font-size:13px;line-height:1.5;cursor:pointer;transition:background .2s,border-color .2s}
+.maturity-choice:hover,.maturity-choice:focus-visible {background:#24543b;border-color:#b9ffcf}
+.maturity-choice b {font:10px var(--mono);color:#b9ffcf;margin-top:3px}
+.maturity-controls {display:flex;justify-content:space-between;gap:15px;border-top:1px solid #405b49;padding-top:18px;margin-top:25px;align-items:center}
+.maturity-controls button {background:transparent;border:0;color:#d8f7dc;font:11px var(--mono);cursor:pointer}
+.maturity-controls button:disabled {opacity:.3;cursor:not-allowed}
+.maturity-controls span {font:9px/1.5 var(--mono);color:#83a38d;max-width:280px;text-align:right}
+.maturity-result-badge {font:10px var(--mono);letter-spacing:.09em;color:#b9ffcf}
+.maturity-result h3 {font:600 clamp(27px,3vw,47px)/1.08 var(--display);letter-spacing:-.05em;margin:19px 0}
+.maturity-result p {font-size:14px;line-height:1.6;color:#c1ddc8}
+.maturity-score {font:11px var(--mono);color:#a1d5b1;padding:12px 0;border-top:1px solid #416b51;border-bottom:1px solid #416b51}
+.maturity-result a,.maturity-result button {display:inline-block;margin:20px 8px 0 0;padding:14px 17px;background:#b9ffcf;color:#082017;font:11px var(--mono);text-decoration:none;border:1px solid #b9ffcf;cursor:pointer}
+.maturity-result button {background:transparent;color:#b9ffcf}
+.graph-info .detail-title {font:600 15px var(--display);color:#dcffe7;display:block;margin-bottom:5px}
+.graph-info .detail-desc {font:11px/1.45 Inter,sans-serif;color:#bbddc7;display:block}
+.graph-info .detail-pills {display:flex;gap:6px;flex-wrap:wrap;margin-top:11px}
+.graph-info .detail-pills span {display:inline-flex;align-items:center;border:1px solid #78b998;border-radius:20px;padding:5px 8px;color:#d5ffdf;font:9px var(--mono);white-space:nowrap}
+.detail-graph-stage .graph-info {left:4%;right:4%;width:auto;bottom:2%;min-height:104px;background:#0c2422ef;border:1px solid #406c52;padding:16px 18px;pointer-events:none}
+.detail-graph-stage .graph-caption {bottom:24%;right:3%;font-size:9px}
+.detail-graph-stage .hero-graph {overflow:hidden}
+.detail-graph-stage .graph-core {width:124px;height:124px}
+.detail-graph-stage .graph-major {white-space:nowrap}
+.knowledge-agent {display:none}
+.knowledge-constellation svg {opacity:.38}
+.knowledge-satellite {background:#173b30;border-color:#95c9a5;box-shadow:0 4px 18px #0003}
+.knowledge-note {padding-top:9px;border-top:1px solid #345849}
+.decision-story[data-scene="0"] .knowledge-constellation svg {opacity:.08}
+.decision-story[data-scene="1"] .knowledge-constellation svg {opacity:.2}
+.decision-story[data-scene="2"] .knowledge-constellation svg {opacity:.52}
+@media(max-width:1100px){
+.journey-head h2 {font-size:clamp(26px,3.8vw,42px)}
+.journey-card {grid-template-columns:.45fr .55fr;gap:2%}
+.journey-copy h3 {font-size:clamp(43px,5vw,76px)}
+.journey-copy>p:not(.journey-claim) {font-size:12px}
+.journey-output small {display:none}
+.mock-foot {padding:11px 13px}
+.teams-intro,.governance-intro {grid-template-columns:1fr;gap:18px}
+.governance-pillars {grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px){
+.journey,.journey.is-static {height:auto}
+.journey-sticky {position:relative;height:auto;min-height:0;overflow:visible;padding:70px 6% 48px}
+.journey-head {display:block}
+.journey-head h2 {font-size:clamp(36px,7vw,58px)}
+.journey-head>p {margin-top:17px;max-width:460px}
+.journey-navigation {position:sticky;top:0;z-index:9;background:#081115;padding:11px 0;margin:0}
+.journey-steps {gap:3px}
+.journey-step {padding:7px 2px;justify-content:center}
+.journey-step b {font-size:9px}
+.journey-step span {display:none}
+.journey-viewport {overflow:visible;border:0}
+.journey-track {display:flex;flex-direction:column;transform:none!important;will-change:auto}
+.journey-card {flex:none;width:100%;height:auto;display:grid;grid-template-columns:1fr;gap:28px;padding:48px 0 60px;border-top:1px solid #3a5f4a;scroll-margin-top:70px}
+.journey-copy h3 {font-size:clamp(53px,12vw,85px);margin:18px 0}
+.journey-claim {font-size:clamp(21px,5vw,30px)}
+.journey-copy>p:not(.journey-claim) {font-size:14px}
+.journey-output {margin-top:18px}
+.journey-output small {display:block}
+.journey-visual {height:auto;min-height:400px}
+.mock-window {min-height:400px}
+.journey-bottom {flex-wrap:wrap}
+.journey-bottom span:last-child {display:none}
+.teams-intro {grid-template-columns:1fr}
+.org-chart {padding:25px 14px}
+.org-managers {gap:10px}
+.org-managers .org-card {width:50%;padding:15px 10px}
+.org-managers .org-card strong {font-size:13px}
+.org-managers .org-card small {font-size:9px}
+.org-fork {max-width:70%}
+.org-teams {gap:12px}
+.org-team {padding:18px 9px;min-height:245px}
+.org-team strong {font-size:14px}
+.org-team>span,.org-team small {font-size:8px}
+.org-avatar-line {gap:3px}
+.org-avatar-line i {width:25px;height:25px;font-size:9px}
+.org-avatar-line i.ai {font-size:16px}
+.org-foot {flex-direction:column}
+.governance-value {grid-template-columns:1fr;gap:14px}
+.maturity-layout {grid-template-columns:1fr;gap:35px}
+.maturity-aside {margin-top:25px}
+}
+@media(max-width:520px){
+.org-fork {max-width:82%;height:40px}
+.org-teams {grid-template-columns:1fr;gap:15px;padding-top:22px}
+.org-team {min-height:unset}
+.org-team:before {display:none}
+.org-avatar-line {margin:5px 0}
+.org-avatar-line i {width:30px;height:30px}
+.org-team small,.org-team>span {font-size:10px}
+.org-team p {margin:10px 0 0}
+.org-card strong {font-size:16px}
+.org-managers .org-card strong {font-size:12px}
+.org-fork {border-bottom:0}
+.governance-pillars {grid-template-columns:1fr}
+.governance-pillars strong {margin-top:20px}
+.journey-visual {min-height:350px}
+.mock-window {min-height:350px}
+.mock-top {padding:0 11px}
+.mock-top small,.mock-foot>span {display:none}
+.mock-foot {font-size:9px}
+.mock-list>div {font-size:10px}
+.discover-flow>div {font-size:8px;padding:9px 5px}
+.files-layout {grid-template-columns:32% 68%}
+.file-tree {font-size:8px;padding:15px 4px}
+.file-tree>span {font-size:7px}
+.file-tree>div {padding:8px 4px}
+.file-editor {padding:16px 10px;gap:10px}
+.file-editor div {font-size:10px;padding:5px}
+.topology-core {min-height:140px}
+.topology-core small,.topology-core span {display:none}
+.topology-core b {font-size:35px}
+.agent-topology {gap:10px;padding:20px 9px}
+.topology-satellites>div {padding:8px 5px;grid-template-columns:17px 1fr;font-size:13px}
+.topology-satellites strong {font-size:9px}
+.topology-satellites span {font-size:8px}
+.agent-interaction {margin:0 9px 12px;font-size:10px}
+.evals-stats {padding:7px 10px}
+.evals-stats>div {padding:11px 6px}
+.evals-stats small,.evals-stats span {font-size:8px}
+.eval-table {margin:0 10px}
+.eval-table>div {font-size:8px;gap:3px}
+.eval-table b {font-size:8px}
+.roadmap-line {padding:12px 10px;gap:6px}
+.roadmap-line strong {font-size:10px}
+.roadmap-line small {font-size:9px}
+.cycle-diagram {margin:8px 10px 14px;font-size:8px;padding:9px}
+.maturity-panel {padding:23px 17px}
+.maturity-choice {font-size:12px;padding:12px}
+.detail-graph-stage .graph-info {left:2%;right:2%;bottom:1%;padding:10px}
+.detail-graph-stage .graph-caption {display:none}
+.detail-graph-stage .graph-core {width:76px;height:76px}
+.detail-graph-stage .graph-major {font-size:10px;padding:7px}
+.graph-info .detail-pills span {font-size:8px;padding:4px 6px}
+}
+@media(prefers-reduced-motion:reduce){
+.journey-track {will-change:auto}
+.journey-progress span {transition:none}
+}
+
+
+/* V8 / garantias de layout, scroll e estágios acessíveis */
+.knowledge-satellite {width:clamp(52px,6vw,87px);height:clamp(52px,6vw,87px);display:grid;place-items:center;text-align:center;border-radius:50%;white-space:normal;font-size:clamp(7px,.7vw,10px);padding:5px;line-height:1.2}
+.detail-graph-stage .graph-info {z-index:7}
+.detail-graph-stage .graph-major {z-index:4}
+.detail-graph-stage .graph-major.is-active {z-index:5}
+.journey.is-static {height:auto}
+.journey.is-static .journey-sticky {height:auto;min-height:0;position:relative;overflow:visible}
+.journey.is-static .journey-viewport {overflow:visible}
+.journey.is-static .journey-track {display:block;transform:none!important;will-change:auto}
+.journey.is-static .journey-card {width:100%;height:auto;min-height:550px;padding:55px 0;border-bottom:1px solid #355343}
+@media(max-width:760px){
+.journey.is-static .journey-sticky {padding:70px 6% 45px}
+.journey.is-static .journey-card {min-height:0}
+.knowledge-satellite {width:55px;height:55px;font-size:7px}
+.detail-graph-stage {height:710px}
+}
+@media(max-width:530px){
+.knowledge-satellite {width:43px;height:43px;font-size:6px;border-width:1px}
+}
+
 </style></head><body>
 <div class="grain" aria-hidden="true"></div><header class="nav"><a href="#inicio" class="mark" aria-label="Conhecimento Vivo, início">✳ conhecimento<b>/vivo</b></a><nav class="navlinks" id="navlinks" aria-label="Menu principal"><a href="#ideia">A ideia</a><a href="#metodo">O método</a><a href="#aplicacoes">Aplicações</a><a href="#diagnostico">Diagnóstico</a></nav><a class="action" href="#diagnostico">Conheça o diagnóstico ↗</a><button class="hamburger" id="menuToggle" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button></header>
 <main><section class="hero" id="inicio"><div class="art-graph" id="artGraph" aria-label="Constelação abstrata de conexões que representa a arquitetura de um agente"><svg id="artGraphSvg" viewBox="0 0 800 760" role="img" aria-label="Um núcleo de agente conectado a uma rede complexa de capacidades sem rótulos"></svg></div><div class="hero-content"><div class="eyebrow">AGENTES ESPECIALISTAS A PARTIR DA SUA EXPERTISE</div><h1>CONSTRUA AGENTES<br>ESPECIALISTAS<br>COM <em>O QUE SUA<br>EMPRESA SABE</em><span class="outline">.</span></h1><p class="hero-copy">Transformamos expertise, critérios e processos em agentes que apoiam pessoas, executam tarefas autorizadas e evoluem com o negócio.</p><div class="hero-actions"><a class="primary" href="#ideia">Veja como ganha forma <span>↗</span></a><a class="underlink" href="#diagnostico">Explorar diagnóstico ↗</a></div></div><div class="hero-footer"><span>CONHECIMENTO · CAPACIDADE · EVOLUÇÃO</span><span>SCROLL PARA DESCOBRIR ↓</span></div></section>
@@ -79,13 +400,87 @@
 <div class="decision-conclusion"><div class="decision-conclusion-inner"><span class="eyebrow">O PONTO DE VIRADA</span><p>O conhecimento existe.<br><strong>O que falta é transformá-lo em capacidade.</strong></p><span class="tiny-note">CONSTRUÍMOS AGENTES ESPECIALISTAS.</span></div></div>
 </section>
 <section class="narrative-chapter chapter-dark transformation" id="transformacao"><div class="chapter-index">03 / CONHECIMENTO EM EVOLUÇÃO <span>DA EXPERIÊNCIA AO AGENTE</span></div><div class="transformation-copy"><h2 class="chapter-title">CONHECIMENTO QUE DEIXA DE ESTAR NA GAVETA. <em>E COMEÇA A EVOLUIR.</em></h2><p class="chapter-lead">Critérios, casos, exceções, decisões e experiência ganham estrutura. O que antes estava disperso passa a compor um agente especializado — capaz de orientar pessoas, executar tarefas autorizadas e evoluir com o negócio.</p></div><div class="detail-graph-stage"><div class="hero-graph" id="agentGraph" aria-label="Mapa interativo de um agente com conhecimento, habilidades, personalidade, ferramentas, governança e evolução"><svg id="graphLines" aria-hidden="true"></svg><div class="graph-nodes" id="graphNodes"></div><div class="graph-caption"><span class="status-dot"></span> EXPLORE AS CAPACIDADES</div><div class="graph-info" id="graphInfo" aria-live="polite">Selecione uma dimensão para conhecer o agente.</div></div></div></section>
-<section class="narrative-chapter chapter-light build-section" id="metodo"><div class="chapter-index">04 / COMO CONSTRUÍMOS <span>UM ATIVO NÃO NASCE PRONTO</span></div><div class="chapter-grid"><div><h2 class="chapter-title">UM AGENTE NÃO NASCE PRONTO. <em>ELE É CONSTRUÍDO.</em></h2><p>Começamos pela expertise, não pelas ferramentas. Estruturamos o conhecimento, damos habilidades ao agente e testamos seus resultados.</p></div><div class="build-list"><article class="build-item"><span>01</span><div><h3>DESCOBRIR</h3><p>Identificar uma oportunidade real.</p></div><b>↗</b></article><article class="build-item"><span>02</span><div><h3>ESTRUTURAR</h3><p>Organizar critérios, casos e exceções.</p></div><b>↗</b></article><article class="build-item"><span>03</span><div><h3>CONSTRUIR</h3><p>Configurar habilidades e ferramentas.</p></div><b>↗</b></article><article class="build-item"><span>04</span><div><h3>VALIDAR E EVOLUIR</h3><p>Avaliar, revisar e desenvolver o ativo.</p></div><b>↗</b></article></div></div></section>
-<section class="narrative-chapter chapter-dark teams-section" id="equipes"><div class="chapter-index">05 / OS TIMES DO FUTURO <span>PESSOAS + AGENTES</span></div><h2 class="chapter-title">OS PRÓXIMOS TIMES <em>NÃO SERÃO FORMADOS APENAS POR PESSOAS.</em></h2><p class="chapter-lead">Agentes podem apoiar decisões ou executar atividades com autonomia definida. Pessoas seguem dirigindo objetivos, responsabilidades e resultados.</p><div class="hybrid-team"><div class="team-leader">DIREÇÃO HUMANA<span>OBJETIVOS · RESPONSABILIDADE · SUPERVISÃO</span></div><div class="hybrid-lines"></div><div class="hybrid-workers"><div>◉<strong>PESSOAS</strong><span>JULGAMENTO · CONTEXTO · DECISÃO</span></div><div>✳<strong>AGENTES</strong><span>CONHECIMENTO · HABILIDADES · AÇÕES</span></div></div></div></section>
-<section class="narrative-chapter chapter-light evolution-section" id="governanca"><div class="chapter-index">06 / GESTÃO E CONTROLE <span>INTELIGÊNCIA SOB SUA DIREÇÃO</span></div><h2 class="chapter-title">CAPACIDADES DIGITAIS <em>TAMBÉM PRECISAM DE GESTÃO.</em></h2><p class="chapter-lead">Objetivos, acesso, qualidade e evolução. E uma arquitetura que procure preservar o conhecimento da empresa, mesmo quando modelos e fornecedores mudam.</p><div class="evolution-roadmap"><div class="evolution-step"><small>01</small><strong>DIREÇÃO</strong><p>Objetivos e limites de autonomia.</p></div><div class="evolution-step"><small>02</small><strong>AVALIAÇÃO</strong><p>Evals, feedback e acompanhamento.</p></div><div class="evolution-step"><small>03</small><strong>EVOLUÇÃO</strong><p>Novas habilidades e revisões.</p></div><div class="evolution-step"><small>04</small><strong>CONTROLE</strong><p>Permissões e escolhas tecnológicas.</p></div></div><p class="chapter-footnote">Portabilidade e autonomia dependem das integrações e das condições técnicas de cada projeto.</p></section>
-<section class="narrative-chapter chapter-dark value-section" id="aplicacoes"><div class="chapter-index">07 / O VALOR DE COMEÇAR <span>DO CONHECIMENTO À OPERAÇÃO</span></div><h2 class="chapter-title">O VALOR NÃO É TER MAIS TECNOLOGIA. <em>É AMPLIAR O QUE SUA EMPRESA CONSEGUE FAZER.</em></h2><div class="value-grid"><article><small>01 / VALOR POTENCIAL</small><h3>EXPERTISE COMPARTILHADA</h3><p>O que poucos sabem pode apoiar mais pessoas.</p></article><article><small>02 / VALOR POTENCIAL</small><h3>CAPACIDADE DE EXECUÇÃO</h3><p>Agentes aplicam conhecimento em tarefas delimitadas.</p></article><article><small>03 / VALOR POTENCIAL</small><h3>CONSISTÊNCIA</h3><p>Critérios e qualidade acompanhados.</p></article><article><small>04 / VALOR POTENCIAL</small><h3>EVOLUÇÃO</h3><p>Um ativo aprimorado conforme o negócio muda.</p></article></div><div class="value-next"><strong>UM PROBLEMA REAL. UM PRIMEIRO AGENTE. UM PLANO DE EVOLUÇÃO.</strong><p>Começamos pela oportunidade que faz sentido construir e medir.</p></div></section>
-<section class="narrative-chapter chapter-light diagnostic-invite" id="diagnostico"><div class="chapter-index">08 / SEU PRIMEIRO AGENTE <span>DIAGNÓSTICO GUIADO</span></div><div class="chapter-grid"><div><h2 class="chapter-title">QUAL SERÁ O <em>PRIMEIRO AGENTE</em> DA SUA EMPRESA?</h2><p>Vamos descobrir onde sua expertise pode se tornar uma capacidade digital útil, viável e avaliável.</p></div><div class="diagnostic-cta"><span>COMECE PELO CONHECIMENTO QUE JÁ É SEU.</span><p>Uma conversa para identificar oportunidades e desenhar um primeiro piloto. O diagnóstico online está em desenvolvimento.</p><a class="primary" href="#conversa">Solicitar diagnóstico guiado ↗</a></div></div></section>
-<section class="closing section" id="conversa"><div class="section-top">05 / SEU PRÓXIMO MOVIMENTO</div><h2 class="big reveal">O FUTURO DA SUA IA<br><i>COMEÇA COM O QUE VOCÊ JÁ SABE.</i></h2><p>Não é preciso transformar a empresa inteira de uma vez. Vamos identificar uma oportunidade, definir um piloto e testar com critério.</p><a class="primary" href="mailto:contato@exemplo.com?subject=Quero%20conversar%20sobre%20um%20piloto%20de%20IA">Conversar sobre um piloto ↗</a><small>CONTATO DEMONSTRATIVO — CONFIGURAR ANTES DE PUBLICAR</small></section></main>
-<footer><b>✳ conhecimento<span>/vivo</span></b><span>CONCEITO VISUAL V2 · 2026</span><a href="#inicio">VOLTAR AO INÍCIO ↑</a></footer>
+
+<section class="journey" id="metodo" aria-labelledby="journey-title">
+  <div class="journey-sticky">
+    <div class="journey-head">
+      <div class="journey-header-copy">
+        <span class="journey-kicker">04 / COMO CONSTRUÍMOS · DO CONHECIMENTO AO ATIVO</span>
+        <h2 id="journey-title">UM AGENTE NÃO NASCE PRONTO. <em>ELE É CONSTRUÍDO.</em></h2>
+      </div>
+      <p>Uma jornada completa. Cinco etapas. Entregáveis reais em cada passo.</p>
+    </div>
+    <div class="journey-navigation" aria-label="Etapas de construção">
+      <div class="journey-steps" id="journeySteps">
+        <button type="button" class="journey-step is-active" data-slide="0" aria-current="step"><b>01</b><span>Descobrir</span></button>
+        <button type="button" class="journey-step" data-slide="1"><b>02</b><span>Estruturar</span></button>
+        <button type="button" class="journey-step" data-slide="2"><b>03</b><span>Construir</span></button>
+        <button type="button" class="journey-step" data-slide="3"><b>04</b><span>Validar</span></button>
+        <button type="button" class="journey-step" data-slide="4"><b>05</b><span>Evoluir</span></button>
+      </div>
+      <div class="journey-progress" aria-hidden="true"><span id="journeyFill"></span></div>
+    </div>
+    <div class="journey-viewport" id="journeyViewport">
+      <div class="journey-track" id="journeyTrack">
+        <article class="journey-card" id="etapa-descobrir" data-step="0">
+          <div class="journey-copy"><div class="journey-number">01 <span>/ 05 · ENTENDER ANTES DE AUTOMATIZAR</span></div><h3>DESCOBRIR<span>.</span></h3><p class="journey-claim">Tudo começa com a inteligência que já existe na sua empresa.</p><p>Entrevistamos especialistas, investigamos decisões recorrentes, processos e exceções. Identificamos onde a expertise gera valor e quais habilidades um agente realmente precisa dominar.</p><div class="journey-output"><span>ENTREGÁVEL / 01</span><strong>Mapa de oportunidades e habilidades do agente</strong><small>Escopo, especialistas, decisões, critérios de sucesso e prioridades.</small></div></div>
+          <div class="journey-visual"><div class="mock-window mock-discover"><div class="mock-top"><span class="mock-dots">● ● ●</span><b>MAPEAMENTO / EXPERTISE</b><small>WORKSPACE 01</small></div><div class="discover-upper"><span>01 / DESCOBERTA</span><strong>O que só os especialistas sabem fazer?</strong><p>Da entrevista ao mapa de capacidades.</p></div><div class="discover-flow"><div>ENTREVISTAS <b>↗</b></div><div>CASOS REAIS <b>↗</b></div><div>HABILIDADES <b>✳</b></div></div><div class="mock-list"><div><i>01</i><span>Analisar situações fora do padrão</span><b>MAPEADA</b></div><div><i>02</i><span>Aplicar critérios de negócio</span><b>MAPEADA</b></div><div><i>03</i><span>Priorizar caminhos de decisão</span><b>MAPEADA</b></div></div><div class="mock-foot"><span>ARTEFATO GERADO</span><strong>mapa_habilidades.md <span>↗</span></strong></div></div></div>
+        </article>
+        <article class="journey-card" id="etapa-estruturar" data-step="1">
+          <div class="journey-copy"><div class="journey-number">02 <span>/ 05 · TRANSFORMAR EXPERIÊNCIA EM ESTRUTURA</span></div><h3>ESTRUTURAR<span>.</span></h3><p class="journey-claim">O conhecimento deixa de depender de onde — ou de quem — ele está.</p><p>Organizamos critérios, casos, exceções e fontes. Definimos identidade, personalidade, limites, permissões e governança. O resultado é documentação clara, rastreável e pronta para orientar a IA.</p><div class="journey-output"><span>ENTREGÁVEL / 02</span><strong>Base estruturada de conhecimento em Markdown</strong><small>Arquivos .md organizados, revisáveis e sob controle da empresa.</small></div></div>
+          <div class="journey-visual"><div class="mock-window mock-files"><div class="mock-top"><span class="mock-dots">● ● ●</span><b>CONHECIMENTO / AGENTE</b><small>EDITOR DE CONTEXTO</small></div><div class="files-layout"><div class="file-tree"><span>▾ AGENTE-ESPECIALISTA</span><div>◇ identidade.md</div><div>◇ criterios.md</div><div class="selected">◇ casos_e_excecoes.md</div><div>◇ habilidades.md</div><div>◇ governanca.md</div><div>◇ fontes.md</div></div><div class="file-editor"><small>casos_e_excecoes.md</small><strong># Casos e exceções</strong><p>## Caso 014 — Situação fora do padrão</p><div><b>Contexto:</b> identificar sinais relevantes antes de decidir.</div><div><b>Critério:</b> consultar política vigente e exceções autorizadas.</div><div><b>Limite:</b> encaminhar ao especialista quando não houver evidência suficiente.</div><span>✓ fonte vinculada &nbsp; ✓ revisão humana</span></div></div><div class="mock-foot"><span>ENTREGA AO CLIENTE</span><strong>Base própria · editável · versionável</strong></div></div></div>
+        </article>
+        <article class="journey-card" id="etapa-construir" data-step="2">
+          <div class="journey-copy"><div class="journey-number">03 <span>/ 05 · DAR FORMA À CAPACIDADE</span></div><h3>CONSTRUIR<span>.</span></h3><p class="journey-claim">Conhecimento organizado se transforma em um agente que pode atuar.</p><p>Montamos o ambiente, configuramos habilidades, memória e ferramentas. Definimos como o agente será acessado — chat, fluxo interno ou integração com sistemas — e o que poderá executar, sempre com autorizações explícitas.</p><div class="journey-output"><span>ENTREGÁVEL / 03</span><strong>Agente funcional em ambiente controlado</strong><small>Arquitetura, interfaces, integrações e limites de atuação definidos.</small></div></div>
+          <div class="journey-visual"><div class="mock-window mock-agent"><div class="mock-top"><span class="mock-dots">● ● ●</span><b>AGENTE / AMBIENTE DE TRABALHO</b><small>VERSÃO PILOTO</small></div><div class="agent-topology"><div class="topology-core"><small>INSTÂNCIA ATIVA</small><b>✳</b><strong>AGENTE ESPECIALISTA</strong><span>CONHECIMENTO + HABILIDADES</span></div><div class="topology-satellites"><div>▧ <strong>MEMÓRIA</strong><span>Critérios / casos</span></div><div>⌘ <strong>FERRAMENTAS</strong><span>APIs / sistemas</span></div><div>◎ <strong>GOVERNANÇA</strong><span>Acessos / limites</span></div></div></div><div class="agent-interaction"><small>CHAT / AMBIENTE DE TESTE</small><p>Como devemos analisar esta exceção?</p><div>✳ Primeiro, vou consultar os critérios aprovados e identificar os pontos que exigem revisão humana.</div></div><div class="mock-foot"><span>PRONTO PARA TESTAR</span><strong>Interface · integrações · permissões</strong></div></div></div>
+        </article>
+        <article class="journey-card" id="etapa-validar" data-step="3">
+          <div class="journey-copy"><div class="journey-number">04 <span>/ 05 · CONFIANÇA SE CONSTRÓI COM EVIDÊNCIA</span></div><h3>VALIDAR<span>.</span></h3><p class="journey-claim">Não basta o agente responder. Ele precisa demonstrar qualidade.</p><p>Criamos casos de teste com os especialistas, comparamos resultados esperados e obtidos, acompanhamos erros, limites e indicadores. Avaliações repetíveis (evals) orientam a decisão de liberar ou corrigir cada capacidade.</p><div class="journey-output"><span>ENTREGÁVEL / 04</span><strong>Suite de evals e critérios de aceitação</strong><small>Casos de referência, evidências, métricas e recomendações de melhoria.</small></div></div>
+          <div class="journey-visual"><div class="mock-window mock-evals"><div class="mock-top"><span class="mock-dots">● ● ●</span><b>QUALITY LAB / EVALS</b><small>HOMOLOGAÇÃO</small></div><div class="evals-title"><span>PAINEL DE VALIDAÇÃO</span><strong>Qualidade observável. Decisões fundamentadas.</strong></div><div class="evals-stats"><div><small>COBERTURA</small><strong>12</strong><span>cenários de referência</span></div><div><small>REVISÃO</small><strong>HUMANA</strong><span>critérios aprovados</span></div><div><small>DECISÃO</small><strong>ITERAR</strong><span>antes de publicar</span></div></div><div class="eval-table"><div class="thead"><span>CASO</span><span>CRITÉRIO</span><span>STATUS</span></div><div><span>Exceção operacional</span><span>Resposta fundamentada</span><b>✓ Revisado</b></div><div><span>Fonte desatualizada</span><span>Sinalizar incerteza</span><b>✓ Revisado</b></div><div><span>Limite de autonomia</span><span>Encaminhar aprovação</span><b class="pending">↻ Ajustar</b></div></div><div class="mock-foot"><span>ARTEFATO GERADO</span><strong>evals/criterios_aceitacao.md</strong></div></div></div>
+        </article>
+        <article class="journey-card" id="etapa-evoluir" data-step="4">
+          <div class="journey-copy"><div class="journey-number">05 <span>/ 05 · UM ATIVO QUE NÃO PARA NO PILOTO</span></div><h3>EVOLUIR<span>.</span></h3><p class="journey-claim">O agente aprende com a operação — sob direção da empresa.</p><p>Feedback, novos casos, testes e mudanças no negócio alimentam ciclos de revisão. Atualizamos conhecimento e habilidades, ampliamos autonomia quando justificado e preservamos histórico, versões e governança.</p><div class="journey-output"><span>ENTREGÁVEL / 05</span><strong>Plano de evolução e gestão do ativo</strong><small>Backlog de capacidades, rotina de avaliação e governança contínua.</small></div></div>
+          <div class="journey-visual"><div class="mock-window mock-roadmap"><div class="mock-top"><span class="mock-dots">● ● ●</span><b>GESTÃO / ROADMAP DO AGENTE</b><small>CICLO CONTÍNUO</small></div><div class="roadmap-top"><span>DO PILOTO À CAPACIDADE ORGANIZACIONAL</span><h4>Versões. Aprendizado.<br>Novas possibilidades.</h4></div><div class="roadmap-line"><div><i>01</i><strong>VERSÃO INICIAL</strong><small>Critérios e casos base</small></div><div><i>02</i><strong>FEEDBACK + EVALS</strong><small>Correções fundamentadas</small></div><div><i>03</i><strong>CAPACIDADE AMPLIADA</strong><small>Novas habilidades autorizadas</small></div></div><div class="cycle-diagram"><span>OBSERVAR</span><b>↗</b><span>AVALIAR</span><b>↗</b><span>ATUALIZAR</span><b>↗</b><span>MEDIR</span></div><div class="mock-foot"><span>ATIVO EM EVOLUÇÃO</span><strong>Roadmap + gestão + histórico de versões</strong></div></div></div>
+        </article>
+      </div>
+    </div>
+    <div class="journey-bottom"><span>UM MÉTODO · CINCO ENTREGÁVEIS</span><span>CONTINUE ROLANDO PARA AVANÇAR <b>→</b></span><span id="journeyCount">01 / 05</span></div>
+  </div>
+</section>
+
+<section class="narrative-chapter chapter-dark teams-section" id="equipes">
+ <div class="chapter-index">05 / OS TIMES DO FUTURO <span>PESSOAS + AGENTES · MESMA DIREÇÃO</span></div>
+ <div class="teams-intro"><div><h2 class="chapter-title">OS PRÓXIMOS TIMES <em>NÃO SERÃO FORMADOS APENAS POR PESSOAS.</em></h2></div><p class="chapter-lead">A gestão continua humana. O que muda é a composição de quem executa: equipes de pessoas, equipes híbridas e operações conduzidas por agentes com supervisão definida.</p></div>
+ <div class="org-chart" aria-label="Organograma funcional demonstrativo com liderança e gestão humanas supervisionando três modelos de equipes">
+  <div class="org-level"><div class="org-card org-lead"><span>ESTRATÉGIA</span><strong>GESTÃO DA EMPRESA</strong><small>Visão · objetivos · responsabilidade</small></div></div>
+  <div class="org-stem" aria-hidden="true"></div>
+  <div class="org-managers"><div class="org-card"><span>GESTÃO HUMANA</span><strong>GESTOR DE OPERAÇÕES</strong><small>Prioridades · performance</small></div><div class="org-card"><span>GESTÃO HUMANA</span><strong>GESTOR DE CONHECIMENTO</strong><small>Critérios · qualidade · evolução</small></div></div>
+  <div class="org-fork" aria-hidden="true"></div>
+  <div class="org-teams"><div class="org-card org-team"><span>MODELO 01 / HUMANO</span><div class="org-avatar-line"><i>●</i><i>●</i><i>●</i></div><strong>TIMES DE PESSOAS</strong><small>Colaboração · julgamento · relacionamento</small><p>Profissionais conduzem as atividades.</p></div><div class="org-card org-team org-highlight"><span>MODELO 02 / HÍBRIDO</span><div class="org-avatar-line"><i>●</i><i>●</i><i class="ai">✳</i></div><strong>PESSOAS + AGENTES</strong><small>Conhecimento · execução · supervisão</small><p>Agentes apoiam e ampliam as equipes.</p></div><div class="org-card org-team"><span>MODELO 03 / DIGITAL</span><div class="org-avatar-line"><i class="ai">✳</i><i class="ai">✳</i><i class="ai">✳</i></div><strong>TIMES DE AGENTES</strong><small>Fluxos autorizados · avaliação contínua</small><p>Agentes executam tarefas delimitadas sob gestão humana.</p></div></div>
+  <div class="org-foot"><span>UMA ÚNICA ESTRUTURA DE DIREÇÃO.</span><strong>DIFERENTES FORMAS DE PRODUZIR CAPACIDADE.</strong></div>
+ </div>
+</section>
+
+<section class="narrative-chapter chapter-light evolution-section governance-v8" id="governanca">
+ <div class="chapter-index">06 / GESTÃO E VALOR <span>CAPACIDADES QUE EVOLUEM COM O NEGÓCIO</span></div>
+ <div class="governance-intro"><div><h2 class="chapter-title">CAPACIDADES DIGITAIS <em>TAMBÉM PRECISAM DE GESTÃO.</em></h2></div><div><p>O futuro não será definido apenas por quem adota mais ferramentas de IA, mas por quem aprende a dirigir, avaliar e desenvolver capacidades digitais próprias.</p><span>QUEM TRANSFORMA EXPERTISE EM ATIVO CRIA CONDIÇÕES PARA EVOLUIR.</span></div></div>
+ <div class="governance-pillars">
+  <article><small>01 / DIREÇÃO</small><strong>Objetivos e autonomia</strong><p>Definir donos, resultados esperados, responsabilidades e até onde cada agente pode agir.</p></article>
+  <article><small>02 / QUALIDADE</small><strong>Evals e supervisão</strong><p>Testar casos reais, acompanhar qualidade, evidências e limites antes de ampliar a atuação.</p></article>
+  <article><small>03 / EVOLUÇÃO</small><strong>Versões e conhecimento</strong><p>Atualizar fontes, incorporar feedback e desenvolver habilidades com governança.</p></article>
+  <article><small>04 / CONTROLE</small><strong>Arquitetura sob sua direção</strong><p>Priorizar portabilidade de conhecimento e escolhas tecnológicas conscientes, quando viável.</p></article>
+ </div>
+ <div class="governance-value" id="aplicacoes"><div><span>O QUE ISSO DESBLOQUEIA</span><h3>NÃO É SOBRE TER MAIS IA.<br><em>É SOBRE AMPLIAR O QUE A EMPRESA CONSEGUE FAZER.</em></h3></div><div class="value-metrics"><p><b>01 ↗</b> Expertise disponível para mais pessoas.</p><p><b>02 ↗</b> Processos assistidos ou executados dentro de limites claros.</p><p><b>03 ↗</b> Mais consistência, rastreabilidade e aprendizagem.</p><p><b>04 ↗</b> Conhecimento preservado como ativo da organização.</p></div></div>
+ <p class="chapter-footnote">Os benefícios são potenciais e devem ser validados em pilotos. Portabilidade e autonomia dependem das condições técnicas e contratuais de cada projeto.</p>
+</section>
+
+<section class="narrative-chapter chapter-light diagnostic-invite maturity-section" id="diagnostico">
+ <div class="chapter-index">07 / MATURIDADE EM IA <span>UMA PRIMEIRA LEITURA, NÃO UM VEREDITO</span></div>
+ <div class="maturity-layout"><div class="maturity-copy"><span class="maturity-overline">A PRÓXIMA TRANSFORMAÇÃO JÁ COMEÇOU</span><h2 class="chapter-title">O QUANTO SUA EMPRESA ESTÁ <em>PREPARADA PARA SER IA FIRST?</em></h2><p>Usar IA ocasionalmente é diferente de construir uma organização capaz de trabalhar com ela. Explore quatro dimensões: conhecimento, processos, qualidade e governança.</p><div class="maturity-aside">AUTODIAGNÓSTICO EXPLORATÓRIO <b>↗</b><small>Quatro perguntas · respostas locais · sem envio de dados</small></div></div>
+ <div class="maturity-panel" id="maturityPanel"><div class="maturity-panel-top"><span>DIAGNÓSTICO / PRONTIDÃO PARA IA</span><span id="maturityStepLabel">01 / 04</span></div><div class="maturity-progress" aria-hidden="true"><span id="maturityProgress"></span></div><div id="maturityArea" aria-live="polite"></div><div class="maturity-controls"><button type="button" id="maturityBack" disabled>← VOLTAR</button><span>UMA HIPÓTESE INICIAL, NÃO UMA AVALIAÇÃO CERTIFICADA.</span></div></div></div>
+</section>
+<section class="closing section" id="conversa"><div class="section-top">08 / SEU PRÓXIMO MOVIMENTO</div><h2 class="big reveal">O FUTURO DA SUA IA<br><i>COMEÇA COM O QUE VOCÊ JÁ SABE.</i></h2><p>Não é preciso transformar a empresa inteira de uma vez. Vamos identificar uma oportunidade, definir um piloto e testar com critério.</p><a class="primary" href="mailto:contato@exemplo.com?subject=Quero%20conversar%20sobre%20um%20piloto%20de%20IA">Conversar sobre um piloto ↗</a><small>CONTATO DEMONSTRATIVO — CONFIGURAR ANTES DE PUBLICAR</small></section></main>
+<footer><b>✳ conhecimento<span>/vivo</span></b><span>ESTUDO VISUAL · DIREÇÃO V8 / 2026</span><a href="#inicio">VOLTAR AO INÍCIO ↑</a></footer>
 <script>
 (function(){
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -109,49 +504,59 @@ const major=dims.map((d,i)=>{let e=make(d[0],'graph-major',d[5]);e.setAttribute(
 const leaves=Array.from({length:5},()=>{let e=make('','graph-minor','#b9ffcf');e.hidden=true;e.tabIndex=-1;return e});
 function edge(x,y,u,v,isLeaf){let e=document.createElementNS(ns,'line');e.setAttribute('x1',x);e.setAttribute('y1',y);e.setAttribute('x2',u);e.setAttribute('y2',v);e.setAttribute('class',isLeaf?'graph-edge minor-edge':'graph-edge');svg.append(e)}
 function place(el,x,y){el.style.left=x+'px';el.style.top=y+'px'}
+
 function renderGraph(){
- const W=graph.clientWidth,H=graph.clientHeight;if(!W||!H)return;
- svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.replaceChildren();
- const small=W<650, cx=W*.50,cy=H*.38,rx=W*.34,ry=H*.27;
- const top=44, bottom=H*.73, left=55,right=W-55;
- place(core,cx,cy);
- const points=dims.map(d=>{const ang=d[1]*Math.PI/180;return {x:cx+Math.cos(ang)*rx*d[2],y:cy+Math.sin(ang)*ry*d[2],ang}});
- points.forEach((p,i)=>{place(major[i],p.x,p.y);edge(cx,cy,p.x,p.y,false)});
- leaves.forEach(e=>e.hidden=true);
- if(active<0)return;
- const d=dims[active],p=points[active],n=d[3].length;
- // Lay out labels on the tangent of the parent, avoiding both core and peer nodes.
- const placed=[{x:cx,y:cy,w:small?112:152,h:small?112:148},...points.map((q,i)=>({x:q.x,y:q.y,w:major[i].offsetWidth+16,h:major[i].offsetHeight+16}))];
- const tangent=p.ang+Math.PI/2;
- const outward=p.ang;
- const labelW=small?88:108,labelH=small?27:32;
- const candidates=[];
- for(let side of [1,-1])for(let radius of [small?95:125,small?132:169,small?169:215]){
-   const base=outward+(side===-1?Math.PI:0);
-   for(let swing of [0,.28,-.28,.52,-.52,.78,-.78]){
-     const aa=base+swing;
-     candidates.push({x:p.x+Math.cos(aa)*radius,y:p.y+Math.sin(aa)*radius});
-   }
- }
- function fits(q,w,h){if(q.x-w/2<left-20||q.x+w/2>right+20||q.y-h/2<top||q.y+h/2>bottom)return false;
- return placed.every(z=>Math.abs(q.x-z.x)>(w+z.w)/2+8||Math.abs(q.y-z.y)>(h+z.h)/2+9)}
- d[3].forEach((name,j)=>{
-   const el=leaves[j];el.hidden=false;el.textContent=name;el.style.setProperty('--node-color',d[5]);
-   const w=Math.max(labelW,el.offsetWidth+8),h=Math.max(labelH,el.offsetHeight+7);
-   let viable=candidates.filter(q=>fits(q,w,h));
-   // Prefer a spaced fan (staggered tangential positions), not a collapsed stack.
-   let q=viable.sort((u,v)=>{
-      const target=j-(n-1)/2;
-      const fu=(u.x-p.x)*Math.cos(tangent)+(u.y-p.y)*Math.sin(tangent);
-      const fv=(v.x-p.x)*Math.cos(tangent)+(v.y-p.y)*Math.sin(tangent);
-      return Math.abs(fu-target*(small?44:60))-Math.abs(fv-target*(small?44:60));
-   })[0];
-   if(!q){q={x:Math.max(left,Math.min(right,p.x+(j-(n-1)/2)*(small?70:105))),y:Math.min(bottom-28,Math.max(top+24,p.y+(j%2?95:-95)))}}
-   place(el,q.x,q.y);placed.push({x:q.x,y:q.y,w,h});edge(p.x,p.y,q.x,q.y,true);
- });
+  if(!graph)return;
+  const W=graph.clientWidth,H=graph.clientHeight;
+  if(!W||!H)return;
+  svg.setAttribute('viewBox','0 0 '+W+' '+H);
+  svg.replaceChildren();
+  const isCompact=W<730;
+  const cx=W*.5,cy=H*(isCompact?.225:.395);
+  place(core,cx,cy);
+  let points;
+  if(isCompact){
+    const cols=[.235,.765],rows=[.405,.505,.605,.705];
+    points=dims.map((d,i)=>({x:W*cols[i%2],y:H*rows[Math.floor(i/2)]}));
+  }else{
+    points=dims.map(d=>{
+      const angle=d[1]*Math.PI/180;
+      return{x:cx+Math.cos(angle)*W*.35*d[2],y:cy+Math.sin(angle)*H*.27*d[2]};
+    });
+  }
+  points.forEach((p,i)=>{
+    place(major[i],p.x,p.y);
+    const connection=document.createElementNS(ns,'path');
+    const middleY=isCompact?cy+(p.y-cy)*.45:(cy+p.y)/2;
+    const bend=isCompact?0:(p.y>cy?15:-15);
+    connection.setAttribute('d','M '+cx+' '+cy+' Q '+((cx+p.x)/2)+' '+(middleY+bend)+' '+p.x+' '+p.y);
+    connection.setAttribute('class','graph-edge');
+    svg.append(connection);
+  });
+  leaves.forEach(e=>e.hidden=true);
 }
-function setActive(i){active=i;major.forEach((e,j)=>{e.classList.toggle('is-active',i===j);e.classList.toggle('dim',i>=0&&i!==j);e.setAttribute('aria-expanded',i===j?'true':'false')});
-info.textContent=i<0?'Selecione uma dimensão para explorar a arquitetura.':dims[i][0]+' — '+dims[i][4];renderGraph()}
+function setActive(i){
+  active=i;
+  major.forEach((e,j)=>{
+    e.classList.toggle('is-active',i===j);
+    e.classList.toggle('dim',i>=0&&i!==j);
+    e.setAttribute('aria-expanded',String(i===j));
+  });
+  if(i<0){
+    info.innerHTML='<span class="detail-title">Explore a arquitetura do agente</span><span class="detail-desc">Selecione uma dimensão para revelar suas capacidades, critérios e limites.</span>';
+  }else{
+    const d=dims[i];
+    const heading=document.createElement('span');
+    heading.className='detail-title';heading.textContent=d[0];
+    const paragraph=document.createElement('span');
+    paragraph.className='detail-desc';paragraph.textContent=d[4];
+    const pills=document.createElement('div');
+    pills.className='detail-pills';
+    d[3].forEach(label=>{const chip=document.createElement('span');chip.textContent=label;pills.append(chip)});
+    info.replaceChildren(heading,paragraph,pills);
+  }
+  renderGraph();
+}
 if(graph){renderGraph();window.addEventListener('resize',renderGraph)}
 
 const story=document.querySelector('.decision-story');
@@ -180,16 +585,171 @@ if(switcher){
  }));
 }
 
+
 const art=document.getElementById('artGraphSvg');
 if(art){
- const nsArt='http://www.w3.org/2000/svg',cx=405,cy=375;
- function el(tag,attrs){const e=document.createElementNS(nsArt,tag);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,String(v)));art.append(e);return e}
- const rings=[{n:11,r:145},{n:19,r:252},{n:26,r:340}];const nodes=[{x:cx,y:cy,r:55,ring:-1}];
- rings.forEach((ring,level)=>{for(let i=0;i<ring.n;i++){const angle=(i/ring.n)*Math.PI*2+level*.35;const variance=Math.sin(i*9.1+level*13)*29;nodes.push({x:cx+Math.cos(angle)*(ring.r+variance),y:cy+Math.sin(angle)*(ring.r+variance)*.86,r:level===0?8:level===1?4.5:2.5,ring:level})}});
- const edges=[];nodes.forEach((n,i)=>{if(!i)return;const candidates=nodes.map((m,j)=>({j,d:Math.hypot(m.x-n.x,m.y-n.y)})).filter(x=>x.j!==i&&x.d>30&&x.d<330).sort((a,b)=>a.d-b.d);const connections=n.ring===0?4:n.ring===1?3:2;for(let k=0;k<Math.min(connections,candidates.length);k++){const j=candidates[k].j;if(j<i||j===0||n.ring===0)edges.push([i,j])}if(i%3===0)edges.push([i,0])});
- const unique=new Set();edges.forEach(([a,b],i)=>{const key=[a,b].sort((x,y)=>x-y).join(':');if(unique.has(key))return;unique.add(key);const p=nodes[a],q=nodes[b];const line=el('line',{x1:p.x,y1:p.y,x2:q.x,y2:q.y,class:'art-edge'+(i%5===0?' emphasized':'')});line.style.animationDelay='-'+(i%13)+'s'});
- nodes.slice(1).forEach((n,i)=>{const circle=el('circle',{cx:n.x,cy:n.y,r:n.r,class:'art-dot'});circle.style.animationDelay='-'+(i%17)+'s'});
- el('circle',{cx,cy,r:71,class:'art-core-halo'});el('circle',{cx,cy,r:54,class:'art-core'});const t=el('text',{x:cx,y:cy+5,'text-anchor':'middle',class:'art-core-label'});t.textContent='AGENTE';
+  const nsArt='http://www.w3.org/2000/svg',cx=410,cy=377;
+  function el(tag,attrs){
+    const node=document.createElementNS(nsArt,tag);
+    Object.entries(attrs).forEach(([name,value])=>node.setAttribute(name,String(value)));
+    art.append(node);return node;
+  }
+  const clusters=[
+    {x:242,y:204,r:27,leaves:[[188,132,8],[157,233,6],[290,135,7]]},
+    {x:522,y:195,r:25,leaves:[[552,116,7],[613,183,8],[569,255,6]]},
+    {x:616,y:381,r:27,leaves:[[704,348,8],[691,434,7],[623,492,5]]},
+    {x:507,y:543,r:25,leaves:[[480,643,7],[582,612,8],[588,510,6]]},
+    {x:253,y:550,r:26,leaves:[[195,638,7],[149,529,8],[261,472,6]]}
+  ];
+  el('circle',{cx,cy,r:91,fill:'none',stroke:'#b9ffcf','stroke-opacity':'.12','stroke-width':2});
+  el('circle',{cx,cy,r:76,fill:'none',stroke:'#b9ffcf','stroke-opacity':'.10','stroke-width':9});
+  const path=(x1,y1,x2,y2,emphasis=false)=>{
+    const controlX=(x1+x2)/2+(y2-y1)*.05;
+    const controlY=(y1+y2)/2+(x2-x1)*.05;
+    return el('path',{d:'M '+x1+' '+y1+' Q '+controlX+' '+controlY+' '+x2+' '+y2,class:'art-edge'+(emphasis?' emphasized':'')});
+  };
+  clusters.forEach((c,i)=>{
+    path(cx,cy,c.x,c.y,true);
+    c.leaves.forEach((p,j)=>{
+      path(c.x,c.y,p[0],p[1],j===0);
+      const dot=el('circle',{cx:p[0],cy:p[1],r:p[2],class:'art-dot'});
+      dot.style.animationDelay='-'+(i*3+j)+'s';
+    });
+    el('circle',{cx:c.x,cy:c.y,r:c.r+9,fill:'none',stroke:'#b9ffcf','stroke-opacity':'.13','stroke-width':1});
+    el('circle',{cx:c.x,cy:c.y,r:c.r,fill:i%2===0?'#214f3e':'#173c35',stroke:'#b9ffcf','stroke-width':1.5});
+    el('circle',{cx:c.x,cy:c.y,r:5,fill:'#b9ffcf','fill-opacity':'.8'});
+  });
+  [
+    [[80,300,7],[130,320,9],[98,371,6]],
+    [[695,211,7],[751,253,8],[724,300,6]],
+    [[710,557,7],[754,590,6]],
+    [[74,474,5],[106,443,7]]
+  ].forEach((group,i)=>{
+    for(let j=1;j<group.length;j++)path(group[j-1][0],group[j-1][1],group[j][0],group[j][1]);
+    group.forEach((p,j)=>{const dot=el('circle',{cx:p[0],cy:p[1],r:p[2],class:'art-dot'});dot.style.animationDelay='-'+(i+j+5)+'s'});
+  });
+  el('circle',{cx,cy,r:58,class:'art-core-halo'});
+  el('circle',{cx,cy,r:55,class:'art-core'});
+  const text=el('text',{x:cx,y:cy+5,'text-anchor':'middle',class:'art-core-label'});
+  text.textContent='AGENTE';
+}
+
+
+/* V8 / carrossel narrativo por scroll, com controles clicáveis e fallback mobile */
+const journey=document.getElementById('metodo');
+if(journey){
+  const track=document.getElementById('journeyTrack');
+  const viewport=document.getElementById('journeyViewport');
+  const fill=document.getElementById('journeyFill');
+  const counter=document.getElementById('journeyCount');
+  const buttons=[...document.querySelectorAll('.journey-step')];
+  const slides=[...document.querySelectorAll('.journey-card')];
+  const compact=window.matchMedia('(max-width:760px)');
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+  let scheduled=false;
+  function setCurrent(index,progress){
+    buttons.forEach((b,i)=>{
+      const isActive=i===index;
+      b.classList.toggle('is-active',isActive);
+      if(isActive)b.setAttribute('aria-current','step');
+      else b.removeAttribute('aria-current');
+    });
+    counter.textContent='0'+(index+1)+' / 05';
+    fill.style.width=(progress*100)+'%';
+  }
+  function syncJourney(){
+    scheduled=false;
+    const isStatic=compact.matches||reduced.matches;
+    journey.classList.toggle('is-static',isStatic);
+    if(isStatic){
+      track.style.transform='none';
+      const visible=slides.reduce((best,slide,i)=>{
+        const d=Math.abs(slide.getBoundingClientRect().top-window.innerHeight*.28);
+        return d<best.distance?{index:i,distance:d}:best;
+      },{index:0,distance:Infinity});
+      setCurrent(visible.index,visible.index/4);
+      return;
+    }
+    const distance=Math.max(1,journey.offsetHeight-window.innerHeight);
+    const progress=Math.max(0,Math.min(1,-journey.getBoundingClientRect().top/distance));
+    const x=progress*4*viewport.clientWidth;
+    track.style.transform='translate3d('+(-x)+'px,0,0)';
+    const index=Math.min(4,Math.round(progress*4));
+    setCurrent(index,progress);
+  }
+  function requestSync(){
+    if(!scheduled){scheduled=true;requestAnimationFrame(syncJourney)}
+  }
+  buttons.forEach((button,index)=>button.addEventListener('click',()=>{
+    if(compact.matches||reduced.matches){
+      slides[index].scrollIntoView({behavior:reduced.matches?'auto':'smooth',block:'start'});
+    }else{
+      const sectionTop=window.scrollY+journey.getBoundingClientRect().top;
+      const target=sectionTop+index/4*Math.max(1,journey.offsetHeight-window.innerHeight);
+      window.scrollTo({top:target,behavior:'smooth'});
+    }
+  }));
+  window.addEventListener('scroll',requestSync,{passive:true});
+  window.addEventListener('resize',requestSync);
+  if(compact.addEventListener)compact.addEventListener('change',requestSync);
+  if(reduced.addEventListener)reduced.addEventListener('change',requestSync);
+  syncJourney();
+}
+/* V8 / autodiagnóstico exploratório em quatro dimensões */
+const maturityArea=document.getElementById('maturityArea');
+if(maturityArea){
+  const questions=[
+    {topic:'CONHECIMENTO',title:'Onde vivem os critérios que orientam decisões importantes?',options:['Na experiência de algumas pessoas.','Em conversas e documentos dispersos.','Em procedimentos conhecidos e parcialmente organizados.','Em bases revisadas, com fontes, exceções e responsáveis claros.']},
+    {topic:'PROCESSOS',title:'Como a IA participa das rotinas da sua empresa hoje?',options:['Quase não é utilizada.','Pessoas usam ferramentas por iniciativa própria.','Existem casos de uso delimitados e algum processo definido.','IA apoia processos com objetivos, responsáveis e integração planejados.']},
+    {topic:'QUALIDADE',title:'Como vocês verificam a qualidade do que a IA produz?',options:['Ainda não verificamos de forma consistente.','Conferimos quando algo parece errado.','Especialistas revisam casos e critérios conhecidos.','Mantemos testes repetíveis, indicadores e revisão de falhas.']},
+    {topic:'GOVERNANÇA',title:'Quem define os limites e acompanha a evolução dessas soluções?',options:['Não há responsabilidades definidas.','Cada equipe decide por conta própria.','Existem donos, aprovações e regras para parte dos usos.','Há gestão de acessos, supervisão, versões e plano de evolução.']}
+  ];
+  const answers=[];
+  let step=0;
+  const label=document.getElementById('maturityStepLabel');
+  const progress=document.getElementById('maturityProgress');
+  const back=document.getElementById('maturityBack');
+  function renderMaturity(){
+    const done=step>=questions.length;
+    label.textContent=done?'RESULTADO':'0'+(step+1)+' / 04';
+    progress.style.width=(done?100:(step+1)*25)+'%';
+    back.disabled=step===0||done;
+    if(done){
+      const total=answers.reduce((sum,value)=>sum+value,0);
+      const stage=total<=4?0:total<=8?1:2;
+      const titles=['A oportunidade começa pela base.','Sua empresa já está em movimento.','Há fundamentos para ir além.'];
+      const descs=[
+        'Suas respostas sugerem que organizar conhecimento, definir responsáveis e escolher um piloto podem ser os passos mais úteis antes de ampliar o uso de IA.',
+        'Já existem práticas importantes. A próxima oportunidade é conectar processos, critérios de qualidade e governança em capacidades mais consistentes.',
+        'Sua empresa relata práticas relativamente estruturadas. O próximo passo pode ser testar uma capacidade especializada com indicadores, supervisão e evolução planejada.'
+      ];
+      const card=document.createElement('div');card.className='maturity-result';
+      card.innerHTML='<span class="maturity-result-badge">LEITURA EXPLORATÓRIA / PRONTIDÃO PARA IA</span><h3>'+titles[stage]+'</h3><p>'+descs[stage]+'</p><div class="maturity-score">SINAL INDICATIVO: '+total+' / 12 · BASEADO EM RESPOSTAS AUTODECLARADAS</div><p>Este questionário não mede maturidade certificada nem garante resultados. Um diagnóstico real exige evidências, entrevistas e avaliação técnica.</p><a href="#conversa">CONVERSAR SOBRE O PRÓXIMO PASSO ↗</a><button type="button" id="maturityRestart">REFAZER</button>';
+      maturityArea.replaceChildren(card);
+      document.getElementById('maturityRestart').addEventListener('click',()=>{answers.length=0;step=0;renderMaturity()});
+      return;
+    }
+    const q=questions[step];
+    const content=document.createElement('div');
+    const kicker=document.createElement('div');kicker.className='maturity-question-kicker';kicker.textContent='DIMENSÃO '+(step+1)+' · '+q.topic;
+    const h=document.createElement('h3');h.className='maturity-question';h.textContent=q.title;
+    const options=document.createElement('div');options.className='maturity-options';
+    q.options.forEach((option,index)=>{
+      const btn=document.createElement('button');
+      btn.type='button';btn.className='maturity-choice';
+      const code=document.createElement('b');code.textContent='0'+(index+1);
+      const sentence=document.createElement('span');sentence.textContent=option;
+      btn.append(code,sentence);
+      btn.addEventListener('click',()=>{answers[step]=index;step++;renderMaturity()});
+      options.append(btn);
+    });
+    content.append(kicker,h,options);
+    maturityArea.replaceChildren(content);
+  }
+  back.addEventListener('click',()=>{
+    if(step>0&&step<=4){step--;answers.splice(step);renderMaturity()}
+  });
+  renderMaturity();
 }
 
 })();
