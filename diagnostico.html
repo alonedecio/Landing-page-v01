@@ -39,7 +39,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{o
 .main-panel{background:#fafcf8;border:1px solid #c8d9ca;box-shadow:0 28px 70px #1d3e271b;min-width:0}
 .start{padding:clamp(27px,4.5vw,64px)}
 .start-kicker,.chapter-index{font:10px var(--mono);letter-spacing:.1em;color:#327449}
-.start h2,.chapter-head h2{font:700 clamp(30px,4vw,55px)/1.08 var(--display);letter-spacing:-.058em;margin:20px 0 16px}
+.chapter-head h2{font:700 clamp(30px,4vw,55px)/1.08 var(--display);letter-spacing:-.058em;margin:20px 0 16px}
 .start>p{max-width:730px;font-size:16px;line-height:1.6;color:#47604e}
 .start-feature{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:31px 0 24px}
 .start-feature>div{border-top:2px solid #5b9271;background:#e9f2e9;padding:18px;min-height:125px}
@@ -152,8 +152,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{o
 <main class="shell"><div class="main-panel">
 <section class="start" id="startView" aria-labelledby="startTitle"><span class="start-kicker">O QUE VOCÊ VAI RECEBER</span><div class="start-feature"><div><span>01 / ENTENDA</span><strong>Seu momento atual</strong><small>Em seis dimensões.</small></div><div><span>02 / IDENTIFIQUE</span><strong>O que pode estar travando resultados</strong><small>Sem comparar sua empresa a outras.</small></div><div><span>03 / AVANCE</span><strong>Três passos para seu cenário</strong><small>Uma orientação inicial e prática.</small></div></div><p class="fine">12 perguntas · cerca de 5 minutos · resultado imediato · sem cadastro</p><button class="primary" id="begin" type="button">Descobrir meu próximo passo <span>↗</span></button><p class="fine">Sem respostas certas. Considere o que acontece hoje, não o que está nos planos.</p><p class="fine">Suas respostas ficam neste navegador enquanto você faz a avaliação. Nada é enviado à nossa equipe sem sua ação.</p><details class="method"><summary>Como funciona?</summary><p>Analisamos adoção, resultados, conhecimento, controles, processos e gestão. O relatório é uma orientação inicial baseada nas suas respostas — não uma auditoria ou certificação.</p></details></section>
 <section class="quiz" id="quizView" hidden aria-labelledby="chapterTitle"><div class="phase-head"><div class="phase-top"><span class="chapter-index" id="phaseLabel">ETAPA 1 DE 3</span><span class="chapter-index" id="questionCount">PERGUNTA 01 DE 12</span></div><div class="track" aria-hidden="true"><div class="track-fill" id="progressFill"></div></div></div><div class="chapter-head"><h2 id="chapterTitle"></h2><p id="chapterDescription"></p></div><form id="quizForm" novalidate><div class="question-list" id="questionList"></div><div class="form-bottom"><p class="validation" id="validation" aria-live="polite" role="alert"></p><div class="form-actions"><button class="secondary" id="back" type="button">← Voltar</button><button class="primary" id="next" type="submit">Continuar <span>→</span></button></div></div></form></section>
-<section class="insight" id="insightView" hidden aria-labelledby="insightTitle"><span class="small-label" id="insightLabel">UMA OBSERVAÇÃO PARA LEVAR ADIANTE</span><h2 id="insightTitle"></h2><p id="insightText"></p><div class="form-actions"><button class="secondary" id="insightBack" type="button">← Voltar</button><button class="primary" id="insightNext" type="button">Continuar <span>→</span></button></div></section>
-<section class="results" id="resultsView" hidden aria-labelledby="resultsTitle"><div class="results-header"><span class="chapter-index">SEU DIAGNÓSTICO · LEITURA INICIAL</span><h2 id="resultsTitle">SEU PRÓXIMO AVANÇO ESTÁ EM <em id="mainAction"></em></h2><p id="reportDate" class="mini-note"></p><p id="resultsIntro">O relatório transforma suas respostas em hipóteses práticas. Você pode revisá-las com a equipe, sem compartilhar seus dados.</p></div><div class="report-body">
+<section class="insight" id="insightView" hidden aria-labelledby="insightTitle"><span class="small-label" id="insightLabel">UMA OBSERVAÇÃO PARA LEVAR ADIANTE</span><h2 id="insightTitle" tabindex="-1"></h2><p id="insightText"></p><div class="form-actions"><button class="secondary" id="insightBack" type="button">← Voltar</button><button class="primary" id="insightNext" type="button">Continuar <span>→</span></button></div></section>
+<section class="results" id="resultsView" hidden aria-labelledby="resultsTitle"><div class="results-header"><span class="chapter-index">SEU DIAGNÓSTICO · LEITURA INICIAL</span><h2 id="resultsTitle" tabindex="-1">SEU PRÓXIMO AVANÇO ESTÁ EM <em id="mainAction"></em></h2><p id="reportDate" class="mini-note"></p><p id="resultsIntro">O relatório transforma suas respostas em hipóteses práticas. Você pode revisá-las com a equipe, sem compartilhar seus dados.</p></div><div class="report-body">
 <div class="gap-cards" id="summaryCards" aria-label="Sua força, desafio e próximo passo"></div><div class="confidence" id="confidenceWarning" hidden></div>
 <h3 class="block-title">SEU MOMENTO EM IA</h3><p class="block-sub">Esta é uma referência inicial baseada nas práticas que você descreveu, não uma comparação de mercado.</p><div class="score-intro"><div><span>ÍNDICE EXPLORATÓRIO / 0–100</span><div class="bigscore" id="totalScore">—<small>/100</small></div></div><div><span>ESTÁGIO INDICATIVO</span><strong id="stageName"></strong><p id="stageDescription"></p></div></div><p class="mini-note">Maturidade não é automatizar tudo. O estágio mais adequado depende dos objetivos e dos riscos do negócio.</p>
 <h3 class="block-title">AS SEIS DIMENSÕES DO SEU CENÁRIO</h3><p class="block-sub">Um panorama para entender onde existem fundamentos consolidados e onde vale investigar antes de ampliar os usos.</p><div class="radar-block"><div class="radar-wrap" id="radar"></div><div class="bars" id="bars"></div></div><p class="mini-note">As pontuações refletem as respostas informadas. Uma nota alta não significa risco zero; uma nota baixa não significa que sua empresa precisa de agentes em todos os processos.</p>
@@ -170,9 +170,9 @@ const dimensions=[
  {id:'adocao',label:'Adoção pela equipe',short:'Adoção',action:'transformar bons usos em práticas de equipe',strength:'Existem práticas relatadas que podem ser compartilhadas e consolidadas.',risk:'a repetição das boas práticas entre equipes',steps:['Escolha uma tarefa frequente e registre um modo de usar IA que funcionou.','Defina uma pessoa responsável por atualizar o exemplo e compartilhá-lo.','Veja se outra pessoa consegue repetir o resultado com qualidade.'],owner:'Liderança da equipe',proof:'Um exemplo reproduzido com qualidade'},
  {id:'resultados',label:'Resultados',short:'Resultados',action:'medir o valor do que vocês já fazem',strength:'Há relatos de critérios ou medições que ajudam a identificar valor.',risk:'a escolha de aplicações que geram impacto',steps:['Escolha um processo e registre tempo, retrabalho ou qualidade atuais.','Defina uma meta concreta para o teste.','Compare a execução antes e depois, incluindo revisão humana.'],owner:'Responsável pelo processo',proof:'Uma medida antes e depois'},
  {id:'conhecimento',label:'Conhecimento interno',short:'Conhecimento',action:'tornar a experiência da empresa acessível',strength:'Há critérios e fontes relatados que podem orientar aplicações mais consistentes.',risk:'o acesso a critérios e respostas confiáveis',steps:['Documente cinco dúvidas recorrentes e os critérios que especialistas usam.','Organize fontes, responsáveis e data de revisão.','Teste casos comuns e exceções com um especialista.'],owner:'Especialista da área',proof:'Fontes e casos revisados'},
- {id:'seguranca',label:'Segurança e qualidade',short:'Segurança e qualidade',action:'criar controles para avançar com confiança',strength:'Há práticas relatadas de proteção e avaliação a desenvolver com as equipes.',risk:'a ampliação segura das soluções',steps:['Identifique dados que não podem ser compartilhados sem avaliação.','Defina permissões e casos de teste com revisão humana.','Verifique falhas, fontes e limites antes de ampliar uso.'],owner:'Responsável pela solução e proteção de dados',proof:'Casos de teste e permissões revistos'},
+ {id:'seguranca',label:'Segurança e qualidade',short:'Segurança',action:'criar controles para avançar com confiança',strength:'Há práticas relatadas de proteção e avaliação a desenvolver com as equipes.',risk:'a ampliação segura das soluções',steps:['Identifique dados que não podem ser compartilhados sem avaliação.','Defina permissões e casos de teste com revisão humana.','Verifique falhas, fontes e limites antes de ampliar uso.'],owner:'Responsável pela solução e proteção de dados',proof:'Casos de teste e permissões revistos'},
  {id:'processos',label:'Processos e integrações',short:'Processos',action:'ligar a IA ao trabalho que precisa acontecer',strength:'Há iniciativas relatadas que ligam IA a etapas reais dos processos.',risk:'a execução consistente de tarefas e fluxos',steps:['Mapeie uma atividade repetitiva com início, fim e responsável.','Verifique sistemas, acessos e possibilidades de integração.','Teste execução limitada e acompanhe exceções.'],owner:'Responsável operacional',proof:'Um fluxo delimitado avaliado'},
- {id:'gestao',label:'Gestão de agentes',short:'Gestão de agentes',action:'definir como as soluções serão acompanhadas',strength:'Há iniciativas relatadas de supervisão e responsabilidade pelos agentes.',risk:'a supervisão e evolução das capacidades digitais',steps:['Defina o que a solução pode executar e o que exige aprovação.','Atribua donos de negócio e técnico, com forma de interromper a execução.','Revise ações, erros, versões e indicadores periodicamente.'],owner:'Gestor responsável e equipe técnica',proof:'Aprovações e revisões registradas'}
+ {id:'gestao',label:'Gestão de agentes',short:'Gestão',action:'definir como as soluções serão acompanhadas',strength:'Há iniciativas relatadas de supervisão e responsabilidade pelos agentes.',risk:'a supervisão e evolução das capacidades digitais',steps:['Defina o que a solução pode executar e o que exige aprovação.','Atribua donos de negócio e técnico, com forma de interromper a execução.','Revise ações, erros, versões e indicadores periodicamente.'],owner:'Gestor responsável e equipe técnica',proof:'Aprovações e revisões registradas'}
 ];
 const phases=[
  {title:'Pessoas e resultados',entry:'A IA já faz parte da rotina. Mas o que ela muda de verdade?',help:'Vamos olhar para o que as equipes fazem e para o que a empresa consegue comprovar.',questions:[
@@ -232,7 +232,7 @@ function renderQuestion(){
  $('validation').textContent='';
  const root=$('questionList');root.replaceChildren();
  const field=h('fieldset','question');const legend=h('legend','question-number','PERGUNTA '+String(index+1).padStart(2,'0')+' DE 12 · '+dimensions.find(d=>d.id===question.dim).label.toUpperCase());
- const title=h('h3','',question.q);title.id='activeQuestion';const hint=h('p','',question.help);const opts=h('div','options');
+ const title=h('h3','',question.q);title.id='activeQuestion';title.tabIndex=-1;const hint=h('p','',question.help);const opts=h('div','options');
  field.setAttribute('aria-labelledby','activeQuestion');
  field.append(legend,title,hint);
  question.options.forEach((option,i)=>{
@@ -250,6 +250,7 @@ function renderQuestion(){
   unknown.classList.add('active');unknown.setAttribute('aria-pressed','true');$('validation').textContent='';
  });
  root.append(unknown);
+ title.focus({preventScroll:true});
  $('next').textContent=index===11?'Ver meu diagnóstico →':'Continuar →';
  scrollContent();
 }
@@ -285,6 +286,7 @@ function renderInsight(number){
  $('insightLabel').textContent='UMA DESCOBERTA · ETAPA '+(number+1)+' DE 3';
  $('insightTitle').textContent=number===0?'O USO É UM COMEÇO. O RESULTADO É O QUE IMPORTA.':'O CONTEXTO E OS LIMITES FAZEM DIFERENÇA.';
  $('insightText').textContent=insightContent(number);
+ $('insightTitle').focus({preventScroll:true});
  $('insightNext').textContent=number===0?'Entender o que sustenta esses resultados →':'Ver o que já pode ganhar escala →';
  scrollContent();
 }
@@ -402,13 +404,15 @@ function renderReport(){
  $('stageDescription').textContent=stats.stage===null?'Responda aos itens que puder para ter um estágio indicativo. São necessárias pelo menos 9 respostas conhecidas e uma em cada dimensão.':levels[stats.stage][1];
  drawRadar(stats);
  const cards=$('priorityCards');cards.replaceChildren();
+ const prioritySteps=p.high?['Escolha uma aplicação existente com impacto observável.','Revise fontes, limites, testes e critérios de continuidade.','Teste robustez e valor com casos reais antes de expandir.']:p.dim.steps;
  ['FAZER AGORA','PREPARAR','VALIDAR'].forEach((label,i)=>{
-  const card=h('article','gap-card');card.append(h('small','',label),h('strong','',p.dim.label),h('p','',p.dim.steps[i]));
+  const card=h('article','gap-card');card.append(h('small','',label),h('strong','',p.high?'Validar robustez':p.dim.label),h('p','',prioritySteps[i]));
   if(i===0)card.append(h('p','','Responsável sugerido: '+p.dim.owner+'. Evidência: '+p.dim.proof+'.'));
   cards.append(card);
  });
  $('priorityReason').textContent='Por que esta recomendação apareceu: '+p.why+' Eixo relacionado: '+(p.answerRef||'respostas disponíveis')+'.';
  renderFocus();renderLevels(stats);
+ $('resultsTitle').focus({preventScroll:true});
  const plan=$('actionList');plan.replaceChildren();
  [['01 / ESCOLHER','Selecione um processo com dor real, dono claro e impacto observável.'],['02 / PREPARAR','Organize os conhecimentos e controles necessários para esse caso.'],['03 / TESTAR','Avalie com situações reais e compare resultado, qualidade e esforço.']].forEach(([label,copy])=>{
   const card=h('article');card.append(h('small','',label),h('p','',copy));plan.append(card);
