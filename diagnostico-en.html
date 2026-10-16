@@ -436,17 +436,56 @@ const phases=[
 ];
 const allQuestions=phases.flatMap(p=>p.questions);
 const levels=[
- ['Primeiros passos','A empresa ainda explora possibilidades e depende de iniciativas pontuais.'],
- ['Uso em expansão','A IA começa a circular entre pessoas e tarefas, mas ainda há pouca padronização.'],
- ['Aplicações estruturadas','Casos de uso, fontes e responsabilidades começam a dar consistência aos resultados.'],
- ['Operação supervisionada','Processos delimitados passam a contar com integrações, critérios e acompanhamento.'],
- ['Capacidades geridas','A empresa acompanha o desempenho das soluções e evolui suas capacidades com governança.']
+ [
+  "Getting started",
+  "The business is exploring possibilities and relies largely on individual initiatives."
+ ],
+ [
+  "Growing adoption",
+  "AI use is spreading across people and tasks, but common practices are still limited."
+ ],
+ [
+  "Structured applications",
+  "Use cases, knowledge sources and ownership are bringing greater consistency to results."
+ ],
+ [
+  "Supervised operations",
+  "Defined processes have integrations, operating criteria and oversight."
+ ],
+ [
+  "Managed capabilities",
+  "The business monitors its AI solutions and improves its capabilities under governance."
+ ]
 ];
 const focusData={
- analistas:{title:'Menos tempo reunindo informação. Mais tempo analisando.',potential:'Um agente pode consultar documentação, políticas e dados autorizados, apoiar relatórios, estruturar e-mails e recuperar argumentos comerciais revisados.',require:'Fontes atualizadas, exemplos de entregas boas e regras de acesso.',evaluate:'Tempo de preparação, correções necessárias e conferência de fontes.',question:'Qual relatório recorrente melhoraria se os analistas encontrassem as respostas certas mais rápido?'},
- gestao:{title:'Mais visibilidade das entregas. Menos trabalho para acompanhar.',potential:'Um agente pode organizar tarefas, consolidar andamento, sinalizar bloqueios e preparar feedback para revisão do gestor.',require:'Tarefas e responsáveis claros, acesso autorizado às ferramentas e limites para ações.',evaluate:'Atualização das tarefas, tempo de acompanhamento e qualidade do contexto para decisões.',question:'Qual rotina de acompanhamento mais consome o tempo dos gestores hoje?'},
- clientes:{title:'O cliente não deveria ficar sem contexto quando precisa de ajuda.',potential:'Um agente pode responder dúvidas frequentes fora do horário, consultar informações permitidas, acompanhar solicitações e encaminhar situações sensíveis à equipe.',require:'Base revisada, integração com histórico permitido, privacidade e critérios de encaminhamento.',evaluate:'Tempo até a primeira resposta, resolução adequada, transferências e satisfação.',question:'Em qual momento os clientes ficam esperando por uma informação que a empresa já tem?'},
- descobrir:{title:'A melhor primeira aplicação costuma surgir de um problema bem definido.',potential:'Busque tarefas recorrentes, critérios relativamente claros e pessoas dispostas a validar resultados.',require:'Uma conversa com quem executa a atividade e algumas amostras reais.',evaluate:'Tempo, qualidade, esforço de implementação e risco.',question:'Qual trabalho recorrente melhoraria se nossas pessoas encontrassem as respostas certas mais rápido?'}
+ "analistas": {
+  "title": "Less time gathering information. More time analysing.",
+  "potential": "An agent could consult authorised documentation, policies and data, support reports, draft emails and retrieve approved sales messaging.",
+  "require": "Current sources, examples of high-quality work and access rules.",
+  "evaluate": "Preparation time, corrections needed and source checking.",
+  "question": "Which recurring report would improve if analysts could find the right answers faster?"
+ },
+ "gestao": {
+  "title": "Better visibility of delivery. Less time spent chasing updates.",
+  "potential": "An agent could organise tasks, summarise progress, flag blockers and draft feedback for a manager to review.",
+  "require": "Clear tasks and owners, authorised tool access and operating limits.",
+  "evaluate": "Task updates, management time and the quality of context for decisions.",
+  "question": "Which status-update routine takes most of your managers' time today?"
+ },
+ "clientes": {
+  "title": "Customers should not lose context when they need help.",
+  "potential": "An agent could answer common questions out of hours, consult permitted information, track requests and escalate sensitive cases to your team.",
+  "require": "A reviewed knowledge base, permitted access to customer history, privacy safeguards and escalation criteria.",
+  "evaluate": "First response time, appropriate resolution, handovers and customer satisfaction.",
+  "question": "When are customers left waiting for information your business already has?"
+ },
+ "descobrir": {
+  "title": "The best first application often begins with a clearly defined problem.",
+  "potential": "Look for recurring tasks, reasonably clear criteria and people willing to validate results.",
+  "require": "A conversation with the people doing the work and a few real examples.",
+  "evaluate": "Time, quality, implementation effort and risk.",
+  "question": "Which recurring task would improve if people could find the right answers faster?"
+ }
 };
 const $=id=>document.getElementById(id);
 const dom={start:$('startView'),quiz:$('quizView'),insight:$('insightView'),results:$('resultsView')};
