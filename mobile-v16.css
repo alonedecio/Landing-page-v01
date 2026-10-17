@@ -96,6 +96,7 @@
   .journey-step b {font-size:12px}
   .journey-step.is-active {background:#18382a;border-color:#b9ffcf}
   .journey-viewport,.journey.is-static .journey-viewport {
+    flex:none;height:auto;min-height:0;
     overflow-x:auto;overflow-y:hidden;
     width:100%;max-width:100%;
     scroll-snap-type:x mandatory;scroll-padding-inline:0;
