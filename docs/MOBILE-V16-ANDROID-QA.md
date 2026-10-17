@@ -71,3 +71,28 @@ Correções pedidas pelo usuário após testar a V16 em dispositivo real:
 **Verificações concluídas:** scripts sintaticamente válidos, IDs/âncoras/estrutura e CSS inline preservados, geometria radial simulada para larguras mobile e confirmação de que o caminho desktop mantém seus cálculos e nós terciários. O carrossel V16 permanece inalterado.
 
 **Pendente:** validação visual no S23 FE, especialmente transição das três cenas, órbita completa e organograma nas larguras 360/390/412/430px, inclinação horizontal, PT/EN e Android Chrome. Não considerar as capturas originais como teste da V17.
+
+
+## V18 — Motion por scroll, revelação progressiva e conversão mobile
+
+**Escopo:** landing PT e EN, só em mobile. Sem mudança da copy, do DOM, do desktop ou dos arquivos do diagnóstico.
+
+- **Quadro 2:** foi removida a regra que mostrava todos os chips ao mesmo tempo. As classes existentes `data-reveal` foram mantidas: cena 0 exibe apenas Dados, cena 1 acrescenta Procedimentos e Políticas, e cena 2 acrescenta Decisões e Experiência. Há transição breve com opção de movimento reduzido respeitada. O controlador de cena original do desktop não foi alterado.
+- **Método:** o HTML e os 5 cards permanecem. Em dispositivos `max-width:760px`, com `min-height:741px` e sem preferência de movimento reduzido, a página passa a ter uma jornada vertical de cinco alturas de tela; o palco permanece sticky e o deslocamento vertical controla a translação horizontal dos slides, a barra e o índice. Botões 01–05 e gesto lateral continuam selecionando etapas.
+- **Fallback:** telas mais baixas, `prefers-reduced-motion: reduce` e ambientes sem JavaScript seguem com o carrossel horizontal nativo e o `scroll-snap` da V16. O modo de scroll exige `html.mobile-scroll-ready`, aplicado somente pelo controlador inicializado.
+- **Compatibilidade:** a folha original de mobile possuía `transform:none!important`. Uma regra específica de scroll mode usa `transform:translate3d(var(--mobile-track-x),0,0)!important`; o JavaScript atualiza somente essa variável. O desktop não recebe a classe nem esse estilo.
+- **Mockups:** desenhos simplificados somente no mobile, mostrando os elementos essenciais. O conteúdo e as interfaces completas continuam disponíveis no desktop.
+- **CTA de diagnóstico na landing:** somente a ordem visual do painel muda no mobile: pergunta, explicação, botão, detalhes, separador e, por último, a lista de maturidade. Os links e o `diagnostico.html` em si permanecem inalterados.
+- **Quadros seguintes:** redução moderada de espaçamentos verticais, sem ocultação de argumentos comerciais.
+
+### QA de aceite V18 (ainda requer teste real)
+
+1. S23 FE / Chrome: ir ao Quadro 2; conferir 1 → 3 → 5 chips conforme o scroll e conforme as abas, nos dois idiomas.
+2. Método em Android alto: rolar a página até e através do carrossel, acompanhar cinco capítulos sem cards cortados, testar 01–05 e swipe para avançar/voltar; continuar rolando até as equipes sem ficar preso.
+3. Método no modo paisagem / alturas até 740px: confirmar fallback horizontal por swipe, sem sticky ou bloqueio de scroll vertical.
+4. Desativar animações no Android e conferir o carrossel em swipe sem movimento forçado.
+5. Diagnóstico na landing: validar o título PERGUNTA + CTA antes da escala 01–05; clicar e confirmar rota PT/EN.
+6. Conferir mockups legíveis e quebra de títulos no S23 FE, 360px, 390px, 412px, 430px.
+7. Conferir desktop 1024/1440/1920px: todo CSS de V18 está dentro de media queries até 760px; script do desktop continua pelo mesmo ramo anterior.
+
+**Não declarar QA visual concluído antes da inspeção em navegador real.**
