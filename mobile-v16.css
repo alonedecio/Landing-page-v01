@@ -302,22 +302,24 @@
  */
 @media (max-width:760px) and (min-height:741px) and (prefers-reduced-motion:no-preference){
   html.mobile-scroll-ready .journey {height:500svh;position:relative}
-  html.mobile-scroll-ready .journey-sticky,.journey.is-static .journey-sticky {
+  html.mobile-scroll-ready .journey-sticky {
     position:sticky;top:0;height:100svh;min-height:0;overflow:hidden;
     padding:clamp(15px,2svh,22px) 5% 12px;
   }
   html.mobile-scroll-ready .journey-head {flex:none;padding-bottom:5px}
   html.mobile-scroll-ready .journey-head h2 {font-size:clamp(27px,6.7vw,35px);line-height:1.04;margin:0;text-wrap:balance}
   html.mobile-scroll-ready .journey-navigation {position:relative;top:auto;flex:none;margin:0;padding:8px 0}
-  html.mobile-scroll-ready .journey-viewport,.journey.is-static .journey-viewport {
+  html.mobile-scroll-ready .journey-viewport {
     flex:1;min-height:0;height:auto;overflow:hidden;
     scroll-snap-type:none;touch-action:pan-y;
   }
-  html.mobile-scroll-ready .journey-track,.journey.is-static .journey-track {
-    height:100%;transform:translate3d(0,0,0);
+  html.mobile-scroll-ready .journey-track {
+    height:100%;
+    /* CSS móvel legado usa transform:none!important: só esta regra isolada vence. */
+    transform:translate3d(var(--mobile-track-x,0px),0,0)!important;
     will-change:transform;
   }
-  html.mobile-scroll-ready .journey-card,.journey.is-static .journey-card {
+  html.mobile-scroll-ready .journey-card {
     height:100%;min-height:0;max-height:100%;
     grid-template-rows:minmax(0,1fr) auto;
     align-content:stretch;gap:7px;
