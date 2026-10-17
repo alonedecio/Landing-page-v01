@@ -301,47 +301,47 @@
  * Sticky utiliza o mesmo track/controles e não duplica nenhum slide.
  */
 @media (max-width:760px) and (min-height:741px) and (prefers-reduced-motion:no-preference){
-  .journey {height:500svh;position:relative}
-  .journey-sticky,.journey.is-static .journey-sticky {
+  html.mobile-scroll-ready .journey {height:500svh;position:relative}
+  html.mobile-scroll-ready .journey-sticky,.journey.is-static .journey-sticky {
     position:sticky;top:0;height:100svh;min-height:0;overflow:hidden;
     padding:clamp(15px,2svh,22px) 5% 12px;
   }
-  .journey-head {flex:none;padding-bottom:5px}
-  .journey-head h2 {font-size:clamp(27px,6.7vw,35px);line-height:1.04;margin:0;text-wrap:balance}
-  .journey-navigation {position:relative;top:auto;flex:none;margin:0;padding:8px 0}
-  .journey-viewport,.journey.is-static .journey-viewport {
+  html.mobile-scroll-ready .journey-head {flex:none;padding-bottom:5px}
+  html.mobile-scroll-ready .journey-head h2 {font-size:clamp(27px,6.7vw,35px);line-height:1.04;margin:0;text-wrap:balance}
+  html.mobile-scroll-ready .journey-navigation {position:relative;top:auto;flex:none;margin:0;padding:8px 0}
+  html.mobile-scroll-ready .journey-viewport,.journey.is-static .journey-viewport {
     flex:1;min-height:0;height:auto;overflow:hidden;
     scroll-snap-type:none;touch-action:pan-y;
   }
-  .journey-track,.journey.is-static .journey-track {
+  html.mobile-scroll-ready .journey-track,.journey.is-static .journey-track {
     height:100%;transform:translate3d(0,0,0);
     will-change:transform;
   }
-  .journey-card,.journey.is-static .journey-card {
+  html.mobile-scroll-ready .journey-card,.journey.is-static .journey-card {
     height:100%;min-height:0;max-height:100%;
     grid-template-rows:minmax(0,1fr) auto;
     align-content:stretch;gap:7px;
     padding:12px 5px 10px;
     opacity:1;overflow:hidden;
   }
-  .journey-copy {min-height:0;justify-content:flex-start;padding-right:0;overflow:hidden}
-  .journey-copy h3 {font-size:clamp(31px,8.2vw,41px);margin:3px 0 7px}
-  .journey-number {font-size:9px}
-  .journey-claim {font-size:clamp(15px,4vw,18px);line-height:1.24;margin:0 0 5px}
-  .journey-copy>p:not(.journey-claim){
+  html.mobile-scroll-ready .journey-copy {min-height:0;justify-content:flex-start;padding-right:0;overflow:hidden}
+  html.mobile-scroll-ready .journey-copy h3 {font-size:clamp(31px,8.2vw,41px);margin:3px 0 7px}
+  html.mobile-scroll-ready .journey-number {font-size:9px}
+  html.mobile-scroll-ready .journey-claim {font-size:clamp(15px,4vw,18px);line-height:1.24;margin:0 0 5px}
+  html.mobile-scroll-ready .journey-copy>p:not(.journey-claim){
     display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;
     overflow:hidden;font-size:12px;line-height:1.35;margin:0 0 7px;
   }
-  .journey-output {margin-top:auto;padding-top:6px;gap:3px}
-  .journey-output > span {font-size:9px}
-  .journey-output strong {font-size:clamp(12px,3.55vw,15px);line-height:1.18}
-  .journey-output small {font-size:10px;line-height:1.28}
-  .journey-visual {height:clamp(150px,25svh,218px);min-height:0;max-height:34svh}
-  .mock-top {min-height:29px}
-  .mock-foot {min-height:26px}
-  .journey-bottom {flex:none;padding-top:7px;font-size:9px}
-  .journey-bottom::after {content:"↓ ROLE PARA VER AS ETAPAS · DESLIZE PARA TROCAR"}
-  html[lang="en-GB"] .journey-bottom::after {content:"↓ SCROLL THROUGH THE STAGES · SWIPE TO CHANGE"}
+  html.mobile-scroll-ready .journey-output {margin-top:auto;padding-top:6px;gap:3px}
+  html.mobile-scroll-ready .journey-output > span {font-size:9px}
+  html.mobile-scroll-ready .journey-output strong {font-size:clamp(12px,3.55vw,15px);line-height:1.18}
+  html.mobile-scroll-ready .journey-output small {font-size:10px;line-height:1.28}
+  html.mobile-scroll-ready .journey-visual {height:clamp(150px,25svh,218px);min-height:0;max-height:34svh}
+  html.mobile-scroll-ready .mock-top {min-height:29px}
+  html.mobile-scroll-ready .mock-foot {min-height:26px}
+  html.mobile-scroll-ready .journey-bottom {flex:none;padding-top:7px;font-size:9px}
+  html.mobile-scroll-ready .journey-bottom::after {content:"↓ ROLE PARA VER AS ETAPAS · DESLIZE PARA TROCAR"}
+  html.mobile-scroll-ready[lang="en-GB"] .journey-bottom::after {content:"↓ SCROLL THROUGH THE STAGES · SWIPE TO CHANGE"}
 }
 @media (max-width:760px) and (max-height:690px){
   .decision-stage {position:relative;min-height:0;overflow:visible}
