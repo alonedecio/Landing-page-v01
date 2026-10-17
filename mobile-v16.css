@@ -45,6 +45,12 @@
   .hero-footer {position:relative;left:auto;right:auto;bottom:auto;margin:28px 6% 0;font-size:10px}
   .hero-graph:not(.detail-graph-stage .hero-graph) {pointer-events:none}
 
+  /* V19 — A segunda cena inteira é exclusiva do desktop.
+     Esconder a section elimina também seu espaço de rolagem e o trilho sticky. */
+  .decision-story {display:none}
+  /* O menu mobile não deve oferecer navegação para um quadro oculto. */
+  .navlinks > a[href="#ideia"] {display:none}
+
   /* Cena do problema: controles legíveis, menos área desperdiçada. */
   .decision-stage { min-height:100svh; height:auto; padding:83px 5% 32px; gap:18px; overflow:visible; }
   .decision-copy { min-width:0; }
