@@ -53,3 +53,21 @@ A experiência horizontal no Android utiliza `overflow-x:auto`, `scroll-snap-typ
 8. Conferir cache/caminhos de `mobile-v16.css` na hospedagem oficial.
 
 **Não há afirmação de validação física no S23 FE.** O código está em uma branch isolada para revisão e eventual publicação após QA visual.
+
+
+## V17 — Refinamento guiado pelas capturas do Galaxy S23 FE
+
+Correções pedidas pelo usuário após testar a V16 em dispositivo real:
+
+- **Hero:** esconder apenas o grafo ilustrativo `.hero > .art-graph` e remover a altura reservada para ele. Conteúdo/CTA permanecem.
+- **Quadro 2:** mostrar somente a mensagem da cena ativa dentro da janela, mantendo os três botões e o scroll narrativo; painel cresce de acordo com o conteúdo, evitando cortar o texto do cliente. Transformar os cinco círculos de conhecimento em chips legíveis, sem quebra de palavras nem posições absolutas no mobile.
+- **Mapa interativo:** o código passa a detectar a largura mobile para colocar o AGENTE no centro de uma órbita de sete dimensões; o mesmo código mantém a geometria desktop antiga. Ao selecionar uma dimensão, a lista dos subitens aparece no painel de detalhes, sem sobrepor novos nós ao desenho pequeno.
+- **Organograma:** preservar um líder, dois gestores e três tipos de time como três níveis de uma árvore, com conectores alinhados e três caixas compactas na base. Descrições secundárias ficam visualmente ocultas, mas disponíveis à acessibilidade.
+- **Fechamento:** reduzir tipografia e equilibrar largura/linha, sem alterar o texto editorial.
+- **Cache:** as landing pages solicitam `mobile-v16.css?v=17` para evitar utilizar o CSS anterior guardado no navegador após implantação.
+
+**Escopo de código:** editar o CSS mobile existente no lugar (sem criar uma nova camada de overrides), ajustar somente o ramo de cálculo do grafo em `index.html` e `index-en.html`. `diagnostico.html` e `diagnostico-en.html` não são modificados.
+
+**Verificações concluídas:** scripts sintaticamente válidos, IDs/âncoras/estrutura e CSS inline preservados, geometria radial simulada para larguras mobile e confirmação de que o caminho desktop mantém seus cálculos e nós terciários. O carrossel V16 permanece inalterado.
+
+**Pendente:** validação visual no S23 FE, especialmente transição das três cenas, órbita completa e organograma nas larguras 360/390/412/430px, inclinação horizontal, PT/EN e Android Chrome. Não considerar as capturas originais como teste da V17.

@@ -492,7 +492,7 @@ html {scroll-padding-top:20px}
 @media(max-width:1100px){.navlinks{gap:clamp(10px,2vw,30px)}}
 @media(max-width:800px){.nav{gap:10px}.locale-switch{margin-left:auto}}
 @media(max-width:400px){.mark{font-size:17px}.nav{gap:6px}.locale-switch{padding:3px}.locale-switch a{padding:7px 4px}}
-</style><link rel="stylesheet" href="mobile-v16.css"><link rel="alternate" hreflang="pt-BR" href="index.html"><link rel="alternate" hreflang="en-GB" href="index-en.html"></head><body>
+</style><link rel="stylesheet" href="mobile-v16.css?v=17"><link rel="alternate" hreflang="pt-BR" href="index.html"><link rel="alternate" hreflang="en-GB" href="index-en.html"></head><body>
 <div class="grain" aria-hidden="true"></div><header class="nav"><a href="#inicio" class="mark" aria-label="Conhecimento/Vivo, home">✳ conhecimento<b>/vivo</b></a><nav class="navlinks" id="navlinks" aria-label="Main navigation"><a href="#ideia">The idea</a><a href="#metodo">Our method</a><a href="#aplicacoes">The value</a><a href="#diagnostico">Assessment</a></nav><a class="action" href="#diagnostico">Explore your AI maturity ↗</a><div class="locale-switch" role="group" aria-label="Website language"><a href="index.html" lang="pt-BR" hreflang="pt-BR" aria-label="Português (Brasil)">PT</a><span class="separator" aria-hidden="true">/</span><a href="index-en.html" lang="en-GB" hreflang="en-GB" aria-current="page" aria-label="English (United Kingdom)">EN</a></div><button class="hamburger" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button></header>
 <main><section class="hero" id="inicio"><div class="art-graph" id="artGraph" aria-label="An abstract constellation of connections representing an AI agent's architecture"><svg id="artGraphSvg" viewBox="0 0 800 760" role="img" aria-label="An agent core connected to an intricate network of capabilities"></svg></div><div class="hero-content"><div class="eyebrow">AI AGENTS POWERED BY YOUR BUSINESS EXPERTISE</div><h1>WHAT YOUR BUSINESS<br>KNOWS CAN DO<br><em>SO MUCH MORE<br>FOR IT.</em></h1><p class="hero-copy">We turn your business knowledge into AI agents that consult internal sources, support decisions and carry out authorised tasks — with your organisation in control.</p><div class="hero-actions"><a class="primary" href="#ideia">See how it works <span>↗</span></a><a class="underlink" href="#diagnostico">Explore your AI maturity ↗</a></div></div><div class="hero-footer"><span>SCROLL TO EXPLORE ↓</span></div></section>
 <section class="decision-story" id="ideia" aria-labelledby="decision-title">
@@ -649,11 +649,19 @@ function renderGraph(){
   svg.setAttribute('viewBox','0 0 '+W+' '+H);
   svg.replaceChildren();
   const compact=W<730;
-  const cx=W*.50,cy=H*(compact?.17:.395);
+  // Viewport mobile: o núcleo fica no centro, com sete capacidades em órbita.
+  // Desktop preserva sua geometria e suas interações originais.
+  const mobileRadial=compact&&matchMedia('(max-width:760px)').matches;
+  const cx=W*.50,cy=H*(mobileRadial?.42:compact?.17:.395);
   place(core,cx,cy);
-  const points=compact
-    ?dims.map((d,i)=>({x:W*(i%2===0?.245:.755),y:H*([.36,.425,.49,.555][Math.floor(i/2)])}))
-    :dims.map(d=>{const a=d[1]*Math.PI/180;return{x:cx+Math.cos(a)*W*.35*d[2],y:cy+Math.sin(a)*H*.27*d[2]}});
+  const points=mobileRadial
+    ?dims.map((d,i)=>{
+      const angle=(-90+i*360/dims.length)*Math.PI/180;
+      return{x:cx+Math.cos(angle)*W*.315,y:cy+Math.sin(angle)*H*.275};
+    })
+    :compact
+      ?dims.map((d,i)=>({x:W*(i%2===0?.245:.755),y:H*([.36,.425,.49,.555][Math.floor(i/2)])}))
+      :dims.map(d=>{const a=d[1]*Math.PI/180;return{x:cx+Math.cos(a)*W*.35*d[2],y:cy+Math.sin(a)*H*.27*d[2]}});
   const path=(x1,y1,x2,y2,secondary)=>{
     const element=document.createElementNS(ns,'path');
     const bend=compact?0:((y2-y1)<0?-18:18);
@@ -665,7 +673,9 @@ function renderGraph(){
   };
   points.forEach((p,i)=>{place(major[i],p.x,p.y);path(cx,cy,p.x,p.y,false)});
   leaves.forEach(e=>e.hidden=true);
-  if(active<0)return;
+  // No celular, habilidades específicas já aparecem como chips no painel inferior;
+  // não duplicar nós terciários por cima da órbita.
+  if(active<0||mobileRadial)return;
   const parent=points[active],dim=dims[active],count=dim[3].length;
   const placed=[
     {x:cx,y:cy,w:core.offsetWidth+24,h:core.offsetHeight+24},
