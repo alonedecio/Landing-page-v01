@@ -139,7 +139,12 @@
   .mock-list>div,.file-editor div,.agent-interaction,
   .eval-table>div,.roadmap-line small {font-size:clamp(10px,2.7vw,12px);line-height:1.35}
   .file-tree>div {text-overflow:ellipsis;white-space:nowrap}
-  .journey-bottom {justify-content:space-between;padding-top:15px}
+  .journey-bottom {justify-content:space-between;padding-top:15px;gap:10px;align-items:center}
+  .journey-bottom::after {
+    content:"← DESLIZE PARA EXPLORAR →";
+    font:10px/1.4 var(--mono);color:#b9e2c5;letter-spacing:.035em;
+  }
+  html[lang="en-GB"] .journey-bottom::after {content:"← SWIPE TO EXPLORE →"}
 
   /* Organograma: gestores empilhados em celulares estreitos. */
   .org-chart {max-width:100%;min-width:0}
