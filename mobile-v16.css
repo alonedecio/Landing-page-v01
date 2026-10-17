@@ -122,6 +122,7 @@
     opacity:.84;transition:opacity .26s ease;
   }
   .journey-card.is-current {opacity:1}
+  .journey-progress span {transition:width .19s ease-out}
   .journey-copy {min-width:0}
   .journey-copy h3 {font-size:clamp(39px,10.6vw,61px);line-height:1.02;margin:12px 0 14px;overflow-wrap:break-word}
   .journey-claim {font-size:clamp(19px,5vw,25px);line-height:1.24}
@@ -213,6 +214,14 @@
 @media (max-width:760px) and (max-height:690px){
   .decision-stage {position:relative;min-height:0;overflow:visible}
   .decision-story .scene-scroll-track {display:none}
+}
+@media (max-width:760px) and (prefers-reduced-motion:no-preference){
+  /* Light depth cue as slides settle; no 3D dependency or scroll hijacking. */
+  .journey-card .journey-visual {
+    opacity:.76;transform:translate3d(11px,0,0) scale(.988);
+    transition:transform .45s cubic-bezier(.2,.75,.2,1),opacity .45s ease;
+  }
+  .journey-card.is-current .journey-visual {opacity:1;transform:translate3d(0,0,0) scale(1)}
 }
 @media (max-width:760px) and (prefers-reduced-motion:reduce){
   .journey-viewport {scroll-behavior:auto;scroll-snap-type:x proximity}
