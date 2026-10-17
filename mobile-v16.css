@@ -20,11 +20,11 @@
   .navlinks { top:100%; left:0;right:0; box-shadow:0 15px 40px #0005; }
   .navlinks a { min-height:44px; display:flex;align-items:center; }
 
-  /* Hero: separar conteúdo e visual em planos verticais, sem redução de zoom. */
+  /* Hero mobile é editorial: sem grafo decorativo, uma primeira dobra mais curta. */
   .hero {
     display:flex; flex-direction:column; align-items:stretch;
     height:auto; min-height:0;
-    padding-bottom:clamp(275px,77vw,395px);
+    padding-bottom:48px;
     overflow:hidden;
   }
   .hero-content {
@@ -39,12 +39,10 @@
   .hero-copy {font-size:clamp(14px,3.9vw,17px);line-height:1.58;max-width:58ch;}
   .hero-actions {display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:25px}
   .hero-actions .primary {max-width:100%;min-height:46px}
-  .art-graph {
-    inset:auto -4% 29px -4%;
-    height:clamp(260px,73vw,370px);width:auto;
-    opacity:.9;pointer-events:none;
-  }
-  .hero-footer {left:6%;right:6%;bottom:12px;font-size:9px}
+  /* Apenas o grafo ilustrativo do hero é ocultado.
+     O mapa interativo da seção seguinte permanece disponível. */
+  .hero > .art-graph {display:none}
+  .hero-footer {position:relative;left:auto;right:auto;bottom:auto;margin:28px 6% 0;font-size:10px}
   .hero-graph:not(.detail-graph-stage .hero-graph) {pointer-events:none}
 
   /* Cena do problema: controles legíveis, menos área desperdiçada. */
@@ -54,25 +52,54 @@
   .decision-copy>p {font-size:13px;line-height:1.55}
   .scene-tabs {min-width:0}
   .scene-tab {min-height:41px;line-height:1.3;white-space:normal;font-size:10px;padding:8px 5px}
-  .decision-screen {width:100%;min-width:0;height:clamp(350px,49svh,465px);min-height:350px;}
-  .screen-head {min-width:0}
+  /* A janela cresce com a cena ativa; nenhuma mensagem fica cortada. */
+  .decision-screen {width:100%;min-width:0;height:auto;min-height:0;overflow:hidden}
+  .screen-head {min-width:0;min-height:39px}
   .screen-head>span:nth-child(2){overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .split-stage {min-width:0}
-  .split-messages,.split-knowledge {min-width:0; padding:9px}
-  .story-message p {font-size:clamp(11px,2.9vw,13px);line-height:1.35;overflow-wrap:break-word}
-  .story-message span,.story-message small{font-size:9px}
-  .knowledge-note {font-size:10px;line-height:1.35}
-  .knowledge-satellite {overflow-wrap:anywhere}
+  .split-stage {min-width:0;display:flex;flex-direction:column;height:auto}
+  .split-messages,.split-knowledge {min-width:0;padding:13px 14px}
+  .split-messages {display:flex;gap:9px;border-right:0}
+  .split-messages .story-message {display:none;padding:11px 13px;min-width:0}
+  .decision-story[data-scene="0"] .split-messages .from-person,
+  .decision-story[data-scene="1"] .split-messages .from-document,
+  .decision-story[data-scene="2"] .split-messages .from-team {display:block}
+  .split-messages .story-message p {font-size:clamp(12px,3.3vw,14px);line-height:1.47;overflow-wrap:normal;margin:8px 0}
+  .split-messages .story-message span,.split-messages .story-message small {font-size:10px;line-height:1.45}
+  .split-knowledge {border-top:1px solid #335a4b;gap:10px}
+  /* Chips de conhecimento substituem círculos com palavras quebradas. */
+  .knowledge-constellation {
+    flex:none;min-height:0;display:flex;flex-wrap:wrap;
+    justify-content:center;align-items:center;gap:8px;padding:7px 0;
+  }
+  .knowledge-constellation svg {display:none}
+  .knowledge-constellation .knowledge-satellite {
+    position:static;left:auto;top:auto;transform:none;
+    display:inline-flex;align-items:center;justify-content:center;
+    width:auto;height:auto;min-height:34px;max-width:100%;
+    border-radius:999px;white-space:nowrap;overflow-wrap:normal;
+    font-size:10px;line-height:1.2;padding:8px 11px;
+    opacity:1;
+  }
+  .knowledge-note {font-size:11px;line-height:1.42;padding-top:8px}
+  .decision-status {margin-bottom:10px}
 
   /* O grafo interativo mantém a lógica de coordenadas; ampliamos o espaço útil. */
+  /* Layout radial calculado em JS só no mobile; núcleo ao centro e sete capacidades em órbita. */
   .detail-graph-stage {
-    width:100%;height:clamp(630px,91svh,745px);min-width:0;
+    width:100%;height:clamp(580px,79svh,660px);min-width:0;
     margin-top:25px;overflow:hidden;
   }
   .detail-graph-stage .hero-graph {inset:0;pointer-events:auto}
-  .detail-graph-stage .graph-major {max-width:40%;white-space:normal;text-align:center;line-height:1.22}
-  .detail-graph-stage .graph-minor {max-width:34%;white-space:normal;overflow-wrap:break-word}
-  .detail-graph-stage .graph-info {left:3%;right:3%;width:94%;max-width:none;min-height:0;max-height:140px;overflow-y:auto;padding:11px 12px}
+  .detail-graph-stage .graph-core {width:82px;height:82px;font-size:12px}
+  .detail-graph-stage .graph-major {
+    max-width:39%;white-space:normal;text-align:center;line-height:1.16;
+    font-size:clamp(10px,2.85vw,12px);padding:7px 8px;
+  }
+  .detail-graph-stage .graph-minor {display:none}
+  .detail-graph-stage .graph-info {
+    left:3%;right:3%;bottom:2%;width:94%;max-width:none;
+    min-height:0;max-height:142px;overflow-y:auto;padding:12px;
+  }
   .graph-info .detail-pills {flex-wrap:wrap}
   .graph-info .detail-pills span {font-size:10px;white-space:normal}
 
@@ -148,11 +175,26 @@
   }
   html[lang="en-GB"] .journey-bottom::after {content:"← SWIPE TO EXPLORE →"}
 
-  /* Organograma: gestores empilhados em celulares estreitos. */
-  .org-chart {max-width:100%;min-width:0}
-  .org-card,.org-team {min-width:0;overflow-wrap:break-word}
-  .org-team strong {font-size:clamp(15px,4vw,19px)}
-  .org-team p {font-size:13px;line-height:1.5}
+  /* Organograma mobile como árvore, não uma sequência de cartões. */
+  .org-chart {max-width:100%;min-width:0;padding:22px 12px}
+  .org-card,.org-team {min-width:0;overflow-wrap:normal}
+  .org-lead {min-width:0;width:min(100%,360px);padding:17px 12px}
+  .org-lead strong {font-size:clamp(15px,4vw,19px)}
+  .org-lead small {font-size:10px}
+  .org-stem {height:25px}
+  .org-managers {width:100%;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .org-managers .org-card {width:100%;min-width:0;padding:13px 9px;gap:7px}
+  .org-managers .org-card span {font-size:9px}
+  .org-managers .org-card strong {font-size:clamp(11px,3.05vw,14px);line-height:1.2}
+  .org-managers .org-card small {display:none}
+  .org-team {min-height:0;padding:14px 8px;gap:9px;align-items:center;text-align:center}
+  .org-team strong {font-size:clamp(10px,2.8vw,13px);line-height:1.22}
+  .org-team>span {font-size:9px}
+  .org-team small,.org-team p {display:none}
+  .org-avatar-line {gap:3px}
+  .org-avatar-line i {width:20px;height:20px;font-size:10px}
+  .org-avatar-line i.ai {font-size:13px}
+  .org-foot {margin-top:20px}
 
   /* Diagnóstico: espaço de toque, leitura e resultados sem cortar texto. */
   .topbar {gap:10px}
@@ -167,33 +209,33 @@
   .report-body .radar-wrap {min-width:0;max-width:100%}
   .focus-select button {min-height:52px}
   .results-header h2 {overflow-wrap:break-word}
+  /* Fechamento editorial: linhas intencionais com escala confortável. */
+  .closing {min-height:0;padding:88px 6% 96px}
+  .closing .big {
+    max-width:100%;margin:0;
+    font-size:clamp(27px,7.15vw,43px);
+    line-height:1.12;letter-spacing:-.052em;
+    overflow-wrap:normal;word-break:normal;text-wrap:balance;
+  }
+  .closing .big i {font-size:.97em;line-height:1.14}
+  .closing p {font-size:clamp(14px,3.85vw,17px);line-height:1.6;margin:28px 0 32px}
 }
 @media (max-width:520px){
   .hero h1 {font-size:clamp(35px,9.3vw,47px)}
-  .art-graph {height:clamp(265px,75vw,345px)}
   .decision-copy h2 {font-size:clamp(30px,8.2vw,40px)}
-  .decision-split .split-stage {grid-template-columns:58% 42%}
   .screen-workspace {grid-template-columns:1fr}
   .workspace-side {display:none}
   .workspace-content {padding:11px}
   .workspace-heading strong {font-size:17px}
   .workspace-heading small {font-size:10px}
   .mini-heading {font-size:10px}
-  .split-messages .story-message p {font-size:11px}
-  .split-messages .story-message span {font-size:9px}
-  .knowledge-satellite {width:clamp(47px,12vw,58px);height:clamp(47px,12vw,58px);font-size:8px}
-  .knowledge-note {font-size:9px}
-  .detail-graph-stage .graph-major {font-size:clamp(10px,2.7vw,12px);padding:7px}
-  .detail-graph-stage .graph-minor {font-size:10px;max-width:34%}
-  .org-managers {grid-template-columns:1fr;width:100%;gap:10px}
-  .org-managers .org-card {width:100%;padding:16px 14px}
-  .org-managers .org-card strong {font-size:15px}
-  .org-managers .org-card small {font-size:11px}
-  .org-managers::before,.org-managers::after {display:none}
-  .org-fork {height:32px}
-  .org-teams {grid-template-columns:1fr}
-  .org-team {padding:20px 17px}
-  .org-team>span,.org-team small {font-size:11px}
+  /* Três equipes sob dois gestores, mantendo o diagrama e conectores. */
+  .org-managers::before,.org-managers::after {display:block}
+  .org-fork {width:calc(66.6667% + 6px);max-width:none;height:40px;border:0;border-bottom:1px solid #5f9674;background:none}
+  .org-fork::before {display:block;top:0;height:100%}
+  .org-teams {grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding-top:22px}
+  .org-teams::before {display:none}
+  .org-teams .org-team::before {display:block;height:22px;top:-22px}
   /* Cinco degraus verticais no celular — não são cinco colunas de letras de 7px. */
   .maturity-ladder {display:grid;grid-template-columns:1fr;max-width:none;min-height:0;gap:8px;align-items:stretch}
   .maturity-ladder>div {height:auto!important;min-height:44px;flex-direction:row;align-items:center;justify-content:flex-start;gap:14px;padding:10px 12px}
@@ -210,7 +252,9 @@
   .mock-top b {font-size:9px}
   .journey-copy h3 {font-size:clamp(38px,10.3vw,48px)}
   .journey-output strong {font-size:14px}
+  .closing .big {font-size:clamp(26px,7.5vw,31px)}
 }
+
 @media (max-width:760px) and (max-height:690px){
   .decision-stage {position:relative;min-height:0;overflow:visible}
   .decision-story .scene-scroll-track {display:none}
