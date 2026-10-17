@@ -492,7 +492,7 @@ html {scroll-padding-top:20px}
 @media(max-width:1100px){.navlinks{gap:clamp(10px,2vw,30px)}}
 @media(max-width:800px){.nav{gap:10px}.locale-switch{margin-left:auto}}
 @media(max-width:400px){.mark{font-size:17px}.nav{gap:6px}.locale-switch{padding:3px}.locale-switch a{padding:7px 4px}}
-</style><link rel="alternate" hreflang="pt-BR" href="index.html"><link rel="alternate" hreflang="en-GB" href="index-en.html"></head><body>
+</style><link rel="stylesheet" href="mobile-v16.css"><link rel="alternate" hreflang="pt-BR" href="index.html"><link rel="alternate" hreflang="en-GB" href="index-en.html"></head><body>
 <div class="grain" aria-hidden="true"></div><header class="nav"><a href="#inicio" class="mark" aria-label="Conhecimento Vivo, início">✳ conhecimento<b>/vivo</b></a><nav class="navlinks" id="navlinks" aria-label="Menu principal"><a href="#ideia">A ideia</a><a href="#metodo">O método</a><a href="#aplicacoes">O valor</a><a href="#diagnostico">Diagnóstico</a></nav><a class="action" href="#diagnostico">Descubra sua maturidade ↗</a><div class="locale-switch" role="group" aria-label="Idioma do site"><a href="index.html" lang="pt-BR" hreflang="pt-BR" aria-current="page" aria-label="Português (Brasil)">PT</a><span class="separator" aria-hidden="true">/</span><a href="index-en.html" lang="en-GB" hreflang="en-GB" aria-label="English (United Kingdom)">EN</a></div><button class="hamburger" id="menuToggle" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button></header>
 <main><section class="hero" id="inicio"><div class="art-graph" id="artGraph" aria-label="Constelação abstrata de conexões que representa a arquitetura de um agente"><svg id="artGraphSvg" viewBox="0 0 800 760" role="img" aria-label="Um núcleo de agente conectado a uma rede complexa de capacidades sem rótulos"></svg></div><div class="hero-content"><div class="eyebrow">AGENTES DE IA COM A EXPERTISE DO SEU NEGÓCIO</div><h1>O QUE SUA EMPRESA<br>SABE PODE FAZER<br><em>MUITO MAIS<br>POR ELA.</em></h1><p class="hero-copy">Transformamos o conhecimento do seu negócio em agentes de IA que consultam fontes internas, apoiam decisões e executam tarefas autorizadas — com sua empresa no comando.</p><div class="hero-actions"><a class="primary" href="#ideia">Entenda como funciona <span>↗</span></a><a class="underlink" href="#diagnostico">Descubra sua maturidade em IA ↗</a></div></div><div class="hero-footer"><span>DESLIZE PARA EXPLORAR ↓</span></div></section>
 <section class="decision-story" id="ideia" aria-labelledby="decision-title">
@@ -535,7 +535,7 @@ html {scroll-padding-top:20px}
       </div>
       <div class="journey-progress" aria-hidden="true"><span id="journeyFill"></span></div>
     </div>
-    <div class="journey-viewport" id="journeyViewport">
+    <div class="journey-viewport" id="journeyViewport" role="region" aria-roledescription="carrossel" aria-label="Cinco etapas do método. Deslize horizontalmente ou use os botões numerados." tabindex="0">
       <div class="journey-track" id="journeyTrack">
         <article class="journey-card" id="etapa-descobrir" data-step="0">
           <div class="journey-copy"><div class="journey-number">01 <span>/ 05 · ENCONTRAR O QUE VALE RESOLVER</span></div><h3>DESCOBRIR<span>.</span></h3><p class="journey-claim">Primeiro, identificamos onde a IA pode fazer diferença na sua operação.</p><p>Ouvimos quem faz o trabalho, analisamos rotinas e decisões reais e escolhemos oportunidades com valor para o negócio. Assim, o primeiro agente nasce com um problema claro para resolver.</p><div class="journey-output"><span>ENTREGÁVEL / 01</span><strong>Mapa de oportunidades e habilidades prioritárias</strong><small>Casos de uso, responsáveis e capacidades priorizadas.</small></div></div>
@@ -832,8 +832,20 @@ if(journey){
   }
   function syncJourney(){
     scheduled=false;
-    const isStatic=compact.matches||short.matches||reduced.matches;
+    const isMobile=compact.matches;
+    const isStatic=!isMobile&&(short.matches||reduced.matches);
     journey.classList.toggle('is-static',isStatic);
+    if(isMobile){
+      // Keep five swipeable slides. Native scroll-snap controls touch movement.
+      track.style.transform='none';
+      const width=Math.max(1,viewport.clientWidth);
+      const progress=Math.max(0,Math.min(1,viewport.scrollLeft/(width*4)));
+      const index=Math.max(0,Math.min(4,Math.round(viewport.scrollLeft/width)));
+      slides.forEach((slide,i)=>slide.classList.toggle('is-current',i===index));
+      setCurrent(index,progress);
+      return;
+    }
+    slides.forEach(slide=>slide.classList.remove('is-current'));
     if(isStatic){
       track.style.transform='none';
       const visible=slides.reduce((best,slide,i)=>{
@@ -854,7 +866,12 @@ if(journey){
     if(!scheduled){scheduled=true;requestAnimationFrame(syncJourney)}
   }
   buttons.forEach((button,index)=>button.addEventListener('click',()=>{
-    if(compact.matches||short.matches||reduced.matches){
+    if(compact.matches){
+      // Same swipe surface, controlled without jumping vertically down-page.
+      const left=slides[index].offsetLeft-slides[0].offsetLeft;
+      viewport.scrollTo({left,behavior:reduced.matches?'auto':'smooth'});
+      setCurrent(index,index/4);
+    }else if(short.matches||reduced.matches){
       slides[index].scrollIntoView({behavior:reduced.matches?'auto':'smooth',block:'start'});
     }else{
       const sectionTop=window.scrollY+journey.getBoundingClientRect().top;
@@ -863,6 +880,7 @@ if(journey){
     }
   }));
   window.addEventListener('scroll',requestSync,{passive:true});
+  viewport.addEventListener('scroll',requestSync,{passive:true});
   window.addEventListener('resize',requestSync);
   if(compact.addEventListener)compact.addEventListener('change',requestSync);
   if(short.addEventListener)short.addEventListener('change',requestSync);
