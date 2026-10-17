@@ -492,7 +492,7 @@ html {scroll-padding-top:20px}
 @media(max-width:1100px){.navlinks{gap:clamp(10px,2vw,30px)}}
 @media(max-width:800px){.nav{gap:10px}.locale-switch{margin-left:auto}}
 @media(max-width:400px){.mark{font-size:17px}.nav{gap:6px}.locale-switch{padding:3px}.locale-switch a{padding:7px 4px}}
-</style><link rel="stylesheet" href="mobile-v16.css?v=18"><link rel="alternate" hreflang="pt-BR" href="index.html"><link rel="alternate" hreflang="en-GB" href="index-en.html"></head><body>
+</style><link rel="stylesheet" href="mobile-v16.css?v=19"><link rel="alternate" hreflang="pt-BR" href="index.html"><link rel="alternate" hreflang="en-GB" href="index-en.html"></head><body>
 <div class="grain" aria-hidden="true"></div><header class="nav"><a href="#inicio" class="mark" aria-label="Conhecimento Vivo, início">✳ conhecimento<b>/vivo</b></a><nav class="navlinks" id="navlinks" aria-label="Menu principal"><a href="#ideia">A ideia</a><a href="#metodo">O método</a><a href="#aplicacoes">O valor</a><a href="#diagnostico">Diagnóstico</a></nav><a class="action" href="#diagnostico">Descubra sua maturidade ↗</a><div class="locale-switch" role="group" aria-label="Idioma do site"><a href="index.html" lang="pt-BR" hreflang="pt-BR" aria-current="page" aria-label="Português (Brasil)">PT</a><span class="separator" aria-hidden="true">/</span><a href="index-en.html" lang="en-GB" hreflang="en-GB" aria-label="English (United Kingdom)">EN</a></div><button class="hamburger" id="menuToggle" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button></header>
 <main><section class="hero" id="inicio"><div class="art-graph" id="artGraph" aria-label="Constelação abstrata de conexões que representa a arquitetura de um agente"><svg id="artGraphSvg" viewBox="0 0 800 760" role="img" aria-label="Um núcleo de agente conectado a uma rede complexa de capacidades sem rótulos"></svg></div><div class="hero-content"><div class="eyebrow">AGENTES DE IA COM A EXPERTISE DO SEU NEGÓCIO</div><h1>O QUE SUA EMPRESA<br>SABE PODE FAZER<br><em>MUITO MAIS<br>POR ELA.</em></h1><p class="hero-copy">Transformamos o conhecimento do seu negócio em agentes de IA que consultam fontes internas, apoiam decisões e executam tarefas autorizadas — com sua empresa no comando.</p><div class="hero-actions"><a class="primary" href="#ideia">Entenda como funciona <span>↗</span></a><a class="underlink" href="#diagnostico">Descubra sua maturidade em IA ↗</a></div></div><div class="hero-footer"><span>DESLIZE PARA EXPLORAR ↓</span></div></section>
 <section class="decision-story" id="ideia" aria-labelledby="decision-title">
@@ -622,6 +622,15 @@ html {scroll-padding-top:20px}
 (function(){
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const toggle=document.getElementById('menuToggle'), nav=document.getElementById('navlinks');toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open))});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');toggle.setAttribute('aria-expanded','false')}));
+// V19: no mobile, o primeiro CTA pula o quadro 2 oculto e apresenta a arquitetura.
+const mobileIntro=matchMedia('(max-width:760px)');
+const heroIntro=document.querySelector('.hero-actions a[href="#ideia"]');
+if(heroIntro){
+ const updateIntroTarget=()=>heroIntro.setAttribute('href',mobileIntro.matches?'#transformacao':'#ideia');
+ updateIntroTarget();
+ if(mobileIntro.addEventListener)mobileIntro.addEventListener('change',updateIntroTarget);
+ else if(mobileIntro.addListener)mobileIntro.addListener(updateIntroTarget);
+}
 const observer=new IntersectionObserver(items=>items.forEach(item=>{if(item.isIntersecting){item.target.classList.add('visible');observer.unobserve(item.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(e=>observer.observe(e));
 
 const graph=document.getElementById('agentGraph'), holder=document.getElementById('graphNodes'), svg=document.getElementById('graphLines'), info=document.getElementById('graphInfo');
